@@ -1,0 +1,38 @@
+
+import { defineStore } from "pinia"
+import axios, { AxiosError } from "axios"
+const key = 'user'
+
+
+export const useUser = defineStore(key, {
+    state: (): any => {
+        return {
+            user: null,
+        }
+    },
+
+    getters: {
+        getUser: (state) => {
+            return state.user
+        },
+    },
+
+    actions: {
+        async load(id: string) {
+            try {
+                let responce = await axios.get(`http://devnode1.palemiya.com/public/user/${id}`)
+                if (responce.data.status == 404 || responce.data.status == 500) {
+                    return responce.data.status
+                } else {
+                    const responceData = responce.data
+                    console.log(responceData)
+                    let userData = responceData
+                    this.user = userData
+                }
+            } catch (error: any) {
+                console.log(error)
+            }
+            return 200
+        },
+    },
+})

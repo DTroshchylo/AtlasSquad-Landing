@@ -1,0 +1,81 @@
+query search($query: String){
+    products(first: 200, query: $query) {
+            edges {
+                node {
+                    tags
+                    productType
+                    title
+                    vendor
+                    id
+                    handle
+                    item_quantity_description: metafield(namespace: "custom", key: "item_quantity_description") {
+                        value
+                        type
+                    }
+                    pdf: metafield(namespace: "custom", key: "pdf") {
+                        reference {
+                            ... on GenericFile {
+                                url
+                            }
+                        }
+                    }
+                    additional_media: metafield(namespace: "custom", key: "additional_media") {
+                        reference {
+                                ... on MediaImage {
+                                image {
+                                    originalSrc
+                                    altText
+                                    
+                                }
+                            }
+                        }
+                    }  
+                    options(first: 10){
+                        id
+                        name
+                        values
+                    }
+                    collections(first: 100){
+                        edges{
+                            node{
+                                title
+                                handle
+                            }
+                        }
+                    }
+                    variants(first: 100){
+                        edges{
+                            node{
+                                id
+                                title
+                                quantityAvailable
+                                selectedOptions{
+                                    name
+                                    value
+                                }
+                                image{
+                                    originalSrc
+                                }
+                                priceV2 { 
+                                    amount
+                                }
+                                compareAtPrice{
+                                    amount
+                                }
+                            }
+                        }
+                    }
+                    priceRange { 
+                        maxVariantPrice{
+                            amount
+                            currencyCode
+                        }
+                    }
+                }
+                cursor
+            }
+            pageInfo {
+                hasNextPage
+            }
+        } 
+}

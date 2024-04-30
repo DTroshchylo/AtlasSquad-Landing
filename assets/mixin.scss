@@ -1,0 +1,95 @@
+@use "sass:math";
+
+@function round($value, $fractionDigits: 0) {
+  $power: math.pow(10, $fractionDigits);
+  @return math.div(math.round($power * $value), $power);
+}
+
+@mixin grid-width($columns, $gap: 0) {
+  $total-columns: 12;
+  $column-width: math.div(100%, $total-columns);
+
+  $width: $columns * 6.944444%+($gap * 1.38888888888889%);
+
+  @if $columns >1 {
+    $width: $columns * 7.043%+(math.ceil($columns) - 1) * 1.38888888888889%+($gap * 1.38888888888889%);
+  }
+
+  @if $columns ==12 {
+    $width: 100%;
+  }
+
+  width: $width;
+}
+
+@function gap($count) {
+  @return $count * 1.38888888888889%;
+}
+
+@mixin on($breakpoint) {
+  @if $breakpoint =='phone' {
+    @media (max-width: 599px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint =='tablet' {
+    @media (min-width: 600px) and (max-width: 1023px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint =='laptop' {
+    @media (min-width: 1024px) and (max-width: 1439px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint =='desktop' {
+    @media (min-width: 1440px) {
+      @content;
+    }
+  }
+}
+
+@mixin from($breakpoint) {
+  @if $breakpoint =='tablet' {
+    @media (min-width: 600px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint =='laptop' {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+
+  @else if $breakpoint =='desktop' {
+    @media (min-width: 1440px) {
+      @content;
+    }
+  }
+}
+
+
+
+@mixin ratio($x, $y, $position: relative) {
+  // position: $position;
+  // height: max-content;
+
+  &::before {
+    content: "";
+    display: block;
+    padding-top: unquote(math.div($y, $x ) * 100 + "%");
+    width: 100%;
+  }
+}
+
+
+@mixin a-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

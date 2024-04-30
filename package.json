@@ -1,0 +1,44 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxt/devtools": "latest",
+    "@nuxtjs/apollo": "^5.0.0-alpha.11",
+    "@nuxtjs/strapi": "^1.9.3",
+    "@types/ws": "^8.5.10",
+    "nuxt": "^3.9.0",
+    "nuxt-gtag": "^1.1.1"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.9.7",
+    "@emailjs/browser": "^3.11.0",
+    "@fiddle-digital/string-scroll": "^0.1.2",
+    "@pinia/nuxt": "^0.4.11",
+    "@rollup/plugin-graphql": "^2.0.3",
+    "@types/three": "^0.155.1",
+    "@vue/apollo-composable": "^4.0.2",
+    "axios": "^1.6.4",
+    "glslify-loader": "^2.0.0",
+    "graphql": "^16.8.1",
+    "graphql-tag": "^2.12.6",
+    "gsap": "^3.12.2",
+    "lite-youtube-embed": "^0.3.2",
+    "nuxt-lazy-load": "^3.0.4",
+    "open-simplex-noise": "^2.5.0",
+    "pinia": "^2.1.7",
+    "pixelate": "^0.0.5",
+    "sass": "^1.66.1",
+    "simplex-noise": "^4.0.1",
+    "three": "^0.156.0",
+    "vite-plugin-glsl": "^1.1.2",
+    "vue3-carousel": "^0.3.1",
+    "vue3-lazy-hydration": "^1.2.1"
+  }
+}

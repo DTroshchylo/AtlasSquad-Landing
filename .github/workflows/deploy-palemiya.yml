@@ -1,0 +1,38 @@
+name: Deploy to landing-atlas-squad.fiddle.digital
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [19.x]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      # Setup key
+      - run: set -eu
+      - run: mkdir "$HOME/.ssh"
+      - run: echo "${{ secrets.palemiya }}" > "$HOME/.ssh/key"
+      - run: chmod 600 "$HOME/.ssh/key"
+      # Build
+      - run: npm i --legacy-peer-deps
+      # - run: npm test
+      - run: npm run build
+      # Deploy
+      - run: |
+          rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
+          ./.nuxt ./.output ./public ./nuxt.config.ts \
+          ./ecosystem.master.config.js ./package.json ./package-lock.json \
+          root@178.18.252.243:/home/admin/web/landing-atlas-squad.fiddle.digital/public_html \
+          && ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no root@178.18.252.243 " \
+          cd /home/admin/web/landing-atlas-squad.fiddle.digital/public_html \
+          && npm i --legacy-peer-deps \
+          && chown -R root:root ./* \
+          && pm2 restart ecosystem.master.config.js"
