@@ -30,9 +30,9 @@ jobs:
           rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
           ./.nuxt ./.output ./public ./nuxt.config.ts \
           ./ecosystem.master.config.js ./package.json ./package-lock.json \
-          root@178.18.252.243:/home/admin/web/landing-atlas-squad.fiddle.digital/public_html \
+          root@178.18.252.243:/home/admin/web/atlas-squad-landing.fiddle.digital/public_html \
           && ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no root@178.18.252.243 " \
-          cd /home/admin/web/landing-atlas-squad.fiddle.digital/public_html \
+          cd /home/admin/web/atlas-squad-landing.fiddle.digital/public_html \
           && npm i --legacy-peer-deps \
           && chown -R root:root ./* \
           && pm2 restart ecosystem.master.config.js"
