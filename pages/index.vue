@@ -37,6 +37,14 @@
 
         <div class="form-email">
           <h1 class="-tac">What would you do with total willpower?</h1>
+
+          <form action="">
+            <BaseInput placeholder="Enter your email" />
+            <button>
+              <!-- <span class="-b -up">Submit ></span> -->
+              <span class="-b -up">Submit ></span>
+            </button>
+          </form>
         </div>
 
         <NuxtLink to="/" class="get-recruited -up -b">Get recruited</NuxtLink>
@@ -112,7 +120,8 @@ onMounted(() => {
 
   // });
 
-  deep.value.addEventListener('mousemove', (e: any) => {
+  // deep.value.addEventListener('mousemove', (e: any) => {
+  document.addEventListener('mousemove', (e: any) => {
     calculateAngle(e, deep.value);
   });
   // deep.value.addEventListener('mouseleave', (e: any) => {
@@ -291,11 +300,16 @@ onBeforeUnmount(() => {
 
       .form-email {
         width: 100%;
-        display: flex;
-        justify-content: center;
 
         h1 {
           max-width: 25rem;
+          margin-left: auto;
+          margin-right: auto;
+        }
+        form {
+          width: 32.3943662%;
+          margin-left: auto;
+          margin-right: auto;
         }
       }
 
