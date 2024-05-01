@@ -3,6 +3,13 @@
   
   <NuxtPage />
 
+  <Transition name="-t-splash">
+    <span class="splash" v-if="splash"></span>
+  </Transition>
+  
+  <!-- <span class="splash"></span> -->
+
+
   <Grid />
 </template>
 
@@ -13,6 +20,7 @@ import StringScroll from '~/src/string-scroll';
 import { useAccount } from '~/store/account';
 import StringValidation from '@/src/string-validation';
 import StringStorage from '@/src/string-storage';
+import StringSplit from '~/src/string-split';
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
@@ -83,7 +91,10 @@ onBeforeMount(() => { })
 onMounted(() => {
 
   const  scroll =  StringScroll.getInstance()
-  scroll.setDesktopMode("smooth")
+  let stringScroll = StringSplit.getInstance()
+
+
+  scroll.setDesktopMode("default")
   scroll.setMobileMode("default")
   let stringForm = StringValidation.getInstance()
   let stringStorage = StringStorage.getInstance()
@@ -107,6 +118,22 @@ onMounted(() => {
       document.documentElement.style.setProperty('--vh', `${vh}px`);
     });
   }
+
+
+  // setTimeout(() => {
+  //   const htmlElement = document.documentElement
+  //   htmlElement.classList.add("-go");
+  // }, 150)
+  setTimeout(() => {
+    splash.value = false
+    scroll.setDesktopMode("default")
+    scroll.setMobileMode("default")
+    const htmlElement = document.documentElement
+    // htmlElement.classList.remove("-go");
+    htmlElement.classList.add("-loaded");
+  }, 900)
+
+
 
   global.on("page-change", () => {
     const htmlElement = document.documentElement
@@ -174,6 +201,44 @@ onBeforeUnmount(() => {
       width: 83.09859155%;
     }
   }
+}
+
+.splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
+  background-color: var(--c-black);
+
+  // clip-path: polygon(
+  //   25% 50%, 0% 50%, 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50%,
+  //   25% 50%, 75% 50%, 75% 50%, 25% 50%, 0% 50%, 25% 50%
+  // );
+
+  // clip-path: polygon(
+  //   0% 50%, 0% 0%, 100% 0%, 100% 100%, 0% 100%, 0% 50%,
+  //   40% 50%,
+  //   30% 50%, 50% 50%, 70% 50%, 50% 50%, 40% 50%
+  // );
+
+  clip-path: polygon(
+    0% 50%, 0% 0%, 100% 0%, 100% 100%, 0% 100%,
+    0% 50%, 40% 50%, 30% 50%, 50% 50%,
+    70% 50%, 50% 50%, 40% 50%
+  );
+  
+}
+.-t-splash-leave-active {
+  transition: clip-path 1.2s var(--f-swoosh);
+}
+.-t-splash-leave-to {
+  clip-path: polygon(
+    0% 50%, 0% 0%, 100% 0%, 100% 100%, 0% 100%,
+    0% 50%, 0% 50%, 0% 100%, 100% 100%,
+    100% 0%, 0% 0%, 0% 50%
+  );
 }
 
 

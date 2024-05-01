@@ -5,18 +5,39 @@
     '-select': options.length > 0
   }]">
 
-    <label class="-m -up" :for="forID">{{ name }}</label>
+    <label class="-m -up" :for="forID" v-if="name">{{ name }}</label>
 
-    <input v-if="isTextarea == false && options.length == 0" :id="forID" ref="inputElement"
-      :type='typePassword ? `password` : `text`' :name="inputName" :placeholder="itsPlaceholder" v-model="value"
-      @focus="onInputFocus" @blur="onInputBlur" @keyup="onInputChange" @input="formatInput" required title="error" />
+    <input
+      v-if="isTextarea == false && options.length == 0"
+      :id="forID"
+      ref="inputElement"
+      :type='typePassword ? `password` : `text`'
+      :name="inputName"
+      :placeholder="itsPlaceholder"
+      v-model="value"
+      @focus="onInputFocus"
+      @blur="onInputBlur"
+      @keyup="onInputChange"
+      @input="formatInput"
+      required
+      title="error"
+    />
 
-    <textarea v-if="isTextarea == true && options.length == 0" rows="4" :id="forID" ref="inputElement" type="text"
-      :name="inputName" :placeholder="itsPlaceholder" v-model="value" @focus="onInputFocus" @blur="onInputBlur"
-      @keyup="onInputChange" required></textarea>
+    <textarea
+      v-if="isTextarea == true && options.length == 0" rows="4"
+      :id="forID"
+      ref="inputElement"
+      type="text"
+      :name="inputName"
+      :placeholder="itsPlaceholder"
+      v-model="value"
+      @focus="onInputFocus"
+      @blur="onInputBlur"
+      @keyup="onInputChange"
+      required
+    ></textarea>
 
     <select class="" :id="forID" v-if="options.length > 0" name="role" @change="onInputSelectChange($event)">
-      <!-- id="role" -->
       <option v-for="option in options" :value="option">{{ option }}</option>
     </select>
 
@@ -143,25 +164,12 @@ onMounted(() => {
   input {
     position: relative;
     flex-grow: 1;
-
-    color: var(--c-black);
-    background-color: var(--c-white);
-    box-shadow: inset 0 0 0 1px var(--c-grey-dark);
   }
 
   select {
-    // display: initial;
     width: 100%;
     height: 100%;
-    color: var(--c-black);
-    background-color: var(--c-white);
-    border: none !important;
-    -webkit-appearance: none;
     resize: vertical;
-    border-radius: 0;
-    padding: 0 0 0 0;
-    margin: 0 0 0 auto;
-    outline: none;
   }
 
   textarea {}
@@ -176,23 +184,6 @@ onMounted(() => {
   .validation {
     pointer-events: none;
     transform: translateZ(0);
-  }
-}
-
-@media (min-width: 1024px) {
-  .field {
-
-    textarea:hover,
-    input:hover {
-      // background-color: rgba(var(--c-grey-rgb), 0.8);
-      background-color: var(--c-grey-light);
-    }
-
-    textarea:focus,
-    input:focus {
-      background-color: var(--c-white);
-      transition: background-color 0s var(--f-cubic);
-    }
   }
 }
 </style>

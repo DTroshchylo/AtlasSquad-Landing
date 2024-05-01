@@ -9,8 +9,8 @@ interface IStringSplitConfig {
   text: string;
   align: string;
   globalAlign: string;
+  mode: string;
   processor?: (spanElement: HTMLSpanElement, charIndex: number, charCount: number) => void;
-  randomize?: boolean;
   abs?: boolean;
 }
 
@@ -49,10 +49,12 @@ class StringSplit {
     }
 
 
-    const randomizedIndices = config.randomize ? this.createRandomIndices(config.text.length) : null;
+    const randomizedIndices = config.mode == "random" ? this.createRandomIndices(config.text.length) : null;
     let charsCount = 0
     words.forEach((word, wordIndex) => {
-      let wordData = this.createWordSpan(word, wordIndex, globalCharIndex, randomizedIndices, config)
+      const randomizedWordIndices = config.mode == "random" ? this.createRandomIndices(word.length) : null;
+
+      let wordData = this.createWordSpan(word, wordIndex, globalCharIndex, randomizedIndices, randomizedWordIndices, config)
       const wordSpan = wordData.element;
       element.appendChild(wordSpan);
       charsCount += wordData.charCount
@@ -96,13 +98,14 @@ class StringSplit {
           text: element.innerHTML,
           abs: isAbs,
           align: attr(element, "data-string-split-align", "left"),
-          globalAlign: attr(element, "data-string-split-global-align", "left")
+          globalAlign: attr(element, "data-string-split-global-align", "left"),
+          mode: attr(element, "data-string-split-mode", "default"),
         }).html
       }
     });
   }
 
-  private createWordSpan(word: string, wordIndex: number, startCharIndex: number, randomizedIndices: number[] | null, config: IStringSplitConfig): any {
+  private createWordSpan(word: string, wordIndex: number, startCharIndex: number, randomizedIndices: number[] | null, randomizedWordIndices: number[] | null, config: IStringSplitConfig): any {
     const span = document.createElement('span');
     span.classList.add('-s-word');
     let wordArray = Array.from(word)
@@ -127,12 +130,10 @@ class StringSplit {
       }
 
 
-      const charSpan = this.createCharSpan(char, globalCharIndex, localCharIndex);
+      const charSpan = this.createCharSpan(char, startCharIndex, globalCharIndex, localCharIndex, randomizedIndices, randomizedWordIndices);
 
 
-      if (randomizedIndices) {
-        charSpan.style.setProperty('--char-random-index', String(randomizedIndices[startCharIndex + charIndex]));
-      }
+
       span.appendChild(charSpan);
       if (config['processor']) {
         config['processor'](charSpan, charIndex, word.length);
@@ -149,13 +150,19 @@ class StringSplit {
 
   }
 
-  private createCharSpan(char: string, globalCharIndex: number, charIndex: number): HTMLSpanElement {
+  private createCharSpan(char: string, startCharIndex: number, globalCharIndex: number, charIndex: number, randomizedIndices: number[] | null, randomizedWordIndices: number[] | null): HTMLSpanElement {
     const span = document.createElement('span');
     span.innerText = char;
     span.classList.add('-s-char');
-    span.style.setProperty('--global-char-index', String(globalCharIndex));
-    span.style.setProperty('--char-index', String(charIndex));
 
+    if (randomizedIndices && randomizedWordIndices) {
+      span.style.setProperty('--global-char-index', String(randomizedIndices[globalCharIndex]));
+      span.style.setProperty('--char-index', String(randomizedWordIndices[charIndex]));
+      // span.style.setProperty('--char-random-index', String(randomizedIndices[startCharIndex + charIndex]));
+    } else {
+      span.style.setProperty('--global-char-index', String(globalCharIndex));
+      span.style.setProperty('--char-index', String(charIndex));
+    }
     return span;
   }
 
