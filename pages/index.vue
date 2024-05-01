@@ -29,7 +29,17 @@
         </div>
       </div>
       <div class="-w">
+        <a href="#" class="logo">
+          <svg>
+            <use href="#logo-220x20_typo"></use>
+          </svg>
+        </a>
 
+        <div class="form-email">
+          <h1 class="-tac">What would you do with total willpower?</h1>
+        </div>
+
+        <NuxtLink to="/" class="get-recruited -up -b">Get recruited</NuxtLink>
       </div>
     </section>
   </main>
@@ -252,6 +262,45 @@ onBeforeUnmount(() => {
             rotateY(calc( var(--angleX) / 600 * 30deg))
           ;
         }
+      }
+    }
+
+    .-w {
+      position: relative;
+
+      height: 100%;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      .logo {
+        display: block;
+        width: 11rem;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: clamp(3rem,5%,5%);
+
+        svg {
+          fill: var(--c-grey-0);
+
+          aspect-ratio: 220/20;
+        }
+      }
+
+      .form-email {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+
+        h1 {
+          max-width: 25rem;
+        }
+      }
+
+      .get-recruited {
+        margin-bottom: clamp(3rem,5%,5%);
       }
     }
   }

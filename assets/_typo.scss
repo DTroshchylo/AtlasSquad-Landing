@@ -8,30 +8,29 @@
 }
 
 @font-face {
-  src: url(/fonts/Raleway-SemiBold.ttf) format('truetype');
+  src: url(/fonts/Raleway-Bold.ttf) format('truetype');
   // src: url(/fonts/Archivo-Regular.woff) format('woff');
   // src: url(/fonts/Archivo-Regular.woff2) format('woff2');
-  font-family: 'Raleway-SemiBold';
+  font-family: 'Raleway-Bold';
   font-style: normal;
   font-display: swap;
 }
 
-@font-face {
-  src: url(/fonts/BigShouldersDisplay-Light.ttf) format('truetype');
-  // src: url(/fonts/Archivo-Regular.woff) format('woff');
-  // src: url(/fonts/Archivo-Regular.woff2) format('woff2');
-  font-family: 'BigShouldersDisplay-Light';
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  src: url(/fonts/BigShouldersDisplay-Medium.ttf) format('truetype');
-  font-family: 'BigShouldersDisplay-Medium';
-  font-style: normal;
-  font-display: swap;
-}
+// @font-face {
+//   src: url(/fonts/BigShouldersDisplay-Light.ttf) format('truetype');
+//   // src: url(/fonts/Archivo-Regular.woff) format('woff');
+//   // src: url(/fonts/Archivo-Regular.woff2) format('woff2');
+//   font-family: 'BigShouldersDisplay-Light';
+//   font-style: normal;
+//   font-display: swap;
+// }
+// @font-face {
+//   src: url(/fonts/BigShouldersDisplay-Medium.ttf) format('truetype');
+//   font-family: 'BigShouldersDisplay-Medium';
+//   font-style: normal;
+//   font-display: swap;
+// }
 
-// @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500&display=swap');
 
 h1,
 h2,
@@ -51,57 +50,25 @@ h6 {
   display: block;
 }
 
+
+
 h1,
-.-h1 {
-  font-family: 'BigShouldersDisplay-Light';
-  text-transform: uppercase;
-  font-size: 6.5rem;
-  line-height: 0.9;
-
-  color: var(--c-grey-1);
-}
-
-// h2,
-// .-h2 {
-//   font-family: 'PPMonument';
-//   text-transform: uppercase;
-//   font-size: 5.65rem;
-//   line-height: 0.88;
-// }
-
-// h3,
-// .-h3 {
-//   font-family: 'PPMonument';
-//   text-transform: uppercase;
-//   font-size: 3.9975rem;
-//   line-height: 1;
-// }
-
-// h4,
-// .-h4 {
-//   font-family: 'PPMonument';
-//   text-transform: uppercase;
-//   font-size: 2.827rem;
-//   line-height: 1.05;
-// }
-
-// h5,
-// .-h5 {
-//   // font-family: 'PPMonument';
-//   // text-transform: uppercase;
-//   font-family: 'HelveticaNow', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-//   text-transform: initial;
-//   font-size: 2rem;
-//   // line-height: 1.4;
-//   line-height: 1.25;
-// }
-
+.-h1,
+h2,
+.-h2,
+h3,
+.-h3,
+h4,
+.-h4,
+h5,
+.-h5,
 h6,
 .-h6 {
-  font-family: 'Raleway-SemiBold';
+  font-family: 'Raleway-Bold';
   text-transform: uppercase;
   font-size: 1.2rem;
   line-height: 1.25;
+  letter-spacing: 0.35rem;
 }
 
 
@@ -112,7 +79,8 @@ h6,
   text-transform: uppercase;
 }
 .-b {
-  font-family: 'Raleway-SemiBold';
+  font-family: 'Raleway-Bold';
+  letter-spacing: 0.1rem;
 }
 
 .-tac {
@@ -144,13 +112,6 @@ h6,
 }
 
 
-.-shoulders {
-  font-family: 'BigShouldersDisplay-Medium';
-  text-transform: uppercase;
-}
-// .-linethrough {
-//   text-decoration: line-through;
-// }
 
 
 // .-basic {
@@ -173,7 +134,7 @@ a,
 .-link {
   cursor: pointer;
   // color: var(--c-white);
-  color: var(--c-grey-3);
+  color: var(--c-red);
 }
 
 
