@@ -80,7 +80,7 @@
             @mouseenter="formIn"
             @mouseleave="formOut"
           >
-            <BaseInput itsPlaceholder="Enter your email" />
+            <BaseInput itsPlaceholder="Enter your email" class="-hover-element -focus-element" />
             <button @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
@@ -90,7 +90,7 @@
         </div>
 
         <span class="get-recruited -a-p -split" data-string >
-          <NuxtLink to="/" class="-up -b">
+          <NuxtLink to="/" class="-up -b -hover-element">
             <span data-string-split style="--l-delay: 0.9;">Get recruited</span>
           </NuxtLink>
         </span>
@@ -167,14 +167,14 @@ function formOut() {
 
 
 
-
-
+let mouseX = 0, mouseY = 0, animationX = 0, animationY = 0
+let isFocusOnElement: boolean = false, isHoverOnElement: boolean = false
 onMounted(() => {
 
 
-  let calculateAngle = function (e: any, item: any) {
-    let x = Math.abs(item.getBoundingClientRect().x - e.clientX);
-    let y = Math.abs(item.getBoundingClientRect().y - e.clientY);
+  let calculateAngle = function (clientX: number, clientY: number, item: any) {
+    let x = Math.abs(item.getBoundingClientRect().x - clientX);
+    let y = Math.abs(item.getBoundingClientRect().y - clientY);
 
     let halfWidth = item.getBoundingClientRect().width / 2;
     let halfHeight = item.getBoundingClientRect().height / 2;
@@ -224,8 +224,51 @@ onMounted(() => {
 
   // deep.value.addEventListener('mousemove', (e: any) => {
   deep.value.addEventListener('mousemove', (e: any) => {
-    calculateAngle(e, deep.value);
+    mouseX = e.clientX
+    mouseY = e.clientY
   });
+  function lerp (start: any, end: any, amt: any){
+    return (1-amt)*start+amt*end
+  }
+
+  let hoverElements = document.querySelectorAll('.-hover-element')
+  let focusElements = document.querySelectorAll('.-focus-element')
+
+
+  focusElements.forEach(element => {
+    element.querySelector('input')?.addEventListener('focus', ()=>{
+      isFocusOnElement = true
+    })
+    element.querySelector('input')?.addEventListener('blur', ()=>{
+      isFocusOnElement = false
+    })
+  });
+
+  hoverElements.forEach(element => {
+    element.addEventListener('mouseover', ()=>{
+      isHoverOnElement = true
+    })
+    element.addEventListener('mouseout', ()=>{
+      isHoverOnElement = false
+    })
+  });
+
+
+
+  const animation = ()=>{
+    if(isFocusOnElement || isHoverOnElement){
+      mouseX = window.innerWidth / 2
+      mouseY = window.innerHeight / 2
+    }
+    animationX = lerp(animationX, mouseX, 0.1);
+    animationY = lerp(animationY, mouseY, 0.1);
+    
+    calculateAngle(animationX, animationY, deep.value);
+    requestAnimationFrame(animation)
+  }
+  requestAnimationFrame(animation)
+  
+
   // deep.value.addEventListener('mouseleave', (e: any) => {
 
   //   deep.value.querySelector('.border-wrap').style.transition = '0.3s'
