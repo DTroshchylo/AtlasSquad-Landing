@@ -567,8 +567,11 @@ html.-loaded.-ready {
         position: relative;
         opacity: 0;
         background-color: var(--c-white);
+        scale: 1.5 1;
 
-        transition: opacity 0s linear , background-color 0.05s var(--f-back);
+        transform-origin: 0% 50%;
+
+        transition: opacity 0s linear, background-color 0.05s var(--f-back), scale 0.6s var(--f-cubic);
         transition-delay: calc(var(--global-char-index) * 0.015s + var(--l-delay) * 1s);
       }
     }
@@ -584,7 +587,8 @@ html.-loaded {
       .-s-word {
         .-s-char {
           opacity: 1;
-            background-color: transparent;
+          background-color: transparent;
+          scale: 1 1;
           // transform: translate3d(0,0%,0);
           // transition: transform 0.9s var(--f-cubic);
           // transition-delay: calc(var(--global-char-index) * 0.0375s + 0.3s);

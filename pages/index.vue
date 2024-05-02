@@ -32,6 +32,28 @@
               <use href="#logo-140x100_br"></use>
             </svg>
           </figure>
+
+
+          <figure class="deep-1 deep-ghost" :class="{ '-back': moveTo }">
+            <svg>
+              <use href="#logo-140x100_tl"></use>
+            </svg>
+          </figure>
+          <figure class="deep-2 deep-ghost" :class="{ '-back': moveTo }">
+            <svg>
+              <use href="#logo-140x100_tr"></use>
+            </svg>
+          </figure>
+          <figure class="deep-3 deep-ghost" :class="{ '-back': moveTo }">
+            <svg>
+              <use href="#logo-140x100_bl"></use>
+            </svg>
+          </figure>
+          <figure class="deep-4 deep-ghost" :class="{ '-back': moveTo }">
+            <svg>
+              <use href="#logo-140x100_br"></use>
+            </svg>
+          </figure>
         </div>
       </div>
       <div class="-w">
@@ -95,16 +117,16 @@ function submitButtonEnter() {
 
   setTimeout(() => {
     submitText.value = 'Aa _'
-  }, 40)
+  }, 30)
   setTimeout(() => {
     submitText.value = 'Sb_t -'
-  }, 150)
+  }, 60)
   setTimeout(() => {
     submitText.value = '> tS_um>'
-  }, 225)
+  }, 90)
   setTimeout(() => {
     submitText.value = 'Submit >'
-  }, 300)
+  }, 120)
 }
 
 function submitButtonLeave() {
@@ -112,16 +134,16 @@ function submitButtonLeave() {
 
   setTimeout(() => {
     submitText.value = 'Sutibm-_'
-  }, 40)
+  }, 30)
   setTimeout(() => {
     submitText.value = 'utSm 3'
-  }, 150)
+  }, 60)
   setTimeout(() => {
     submitText.value = 'sSr>'
-  }, 225)
+  }, 90)
   setTimeout(() => {
     submitText.value = '>'
-  }, 300)
+  }, 120)
 }
 
 
@@ -367,6 +389,63 @@ onBeforeUnmount(() => {
             animation: blinking 0.75s ease infinite;
           }
         }
+
+        .deep-ghost {
+          scale: 1.1;
+          opacity: 0.6;
+
+          svg {
+            stroke: var(--c-grey-2);
+          }
+        }
+        // .deep-5 {
+        //   transform:
+        //     translate3d(
+        //       calc( var(--gX) * -0.75px ),
+        //       calc( var(--gY) * -0.5px ),
+        //       calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 40rem)
+        //     )
+        //     rotateZ(calc( var(--angleX) / 600 * 30deg))
+        //     rotateX(calc( var(--angleY) / 200 * -15deg))
+        //     rotateY(calc( var(--angleX) / 600 * 30deg))
+        //   ;
+        // }
+        // .deep-6 {
+        //   transform:
+        //     translate3d(
+        //       calc( var(--gX) * -0.75px ),
+        //       calc( var(--gY) * -0.5px ),
+        //       calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -50rem)
+        //     )
+        //     rotateZ(calc( var(--angleX) / 600 * 30deg))
+        //     rotateX(calc( var(--angleY) / 200 * -15deg))
+        //     rotateY(calc( var(--angleX) / 600 * 30deg))
+        //   ;
+        // }
+        // .deep-7 {
+        //   transform:
+        //     translate3d(
+        //       calc( var(--gX) * -1.125px ),
+        //       calc( var(--gY) * -0.75px ),
+        //       calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -30rem)
+        //     )
+        //     rotateZ(calc( var(--angleX) / 600 * 30deg))
+        //     rotateX(calc( var(--angleY) / 200 * -15deg))
+        //     rotateY(calc( var(--angleX) / 600 * 30deg))
+        //   ;
+        // }
+        // .deep-8 {
+        //   transform:
+        //     translate3d(
+        //       calc( var(--gX) * -1.5px ),
+        //       calc( var(--gY) * -1px ),
+        //       calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem)
+        //     )
+        //     rotateZ(calc( var(--angleX) / 600 * 30deg))
+        //     rotateX(calc( var(--angleY) / 200 * -15deg))
+        //     rotateY(calc( var(--angleX) / 600 * 30deg))
+        //   ;
+        // }
       }
     }
     // .bg.-form-active {
