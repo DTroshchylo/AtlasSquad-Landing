@@ -167,8 +167,6 @@ function formOut() {
 
 
 
-
-
 onMounted(() => {
 
 
@@ -176,8 +174,12 @@ onMounted(() => {
     let x = Math.abs(item.getBoundingClientRect().x - e.clientX);
     let y = Math.abs(item.getBoundingClientRect().y - e.clientY);
 
+    
     let halfWidth = item.getBoundingClientRect().width / 2;
     let halfHeight = item.getBoundingClientRect().height / 2;
+
+    
+
 
     let calcAngleX = (x - halfWidth) / 5;
     let calcAngleY = (y - halfHeight) / 5;
@@ -191,19 +193,40 @@ onMounted(() => {
 
     // glare.style.transform = `translate3d(${x - glareRect.width / 2}px,${y - glareRect.height / 2}px, 0)`
 
+    
+
+    
     const deltaX = x - halfWidth;
     const deltaY = y - halfHeight;
 
-    // let angle = Math.atan2(deltaY, deltaX) * (180 / Math.PI);
+    // setInterval (move,1000/60)
+    // function move() {
+
+      
+    //   deltaX.value = lerp (deltaX.value, e.clientX, 0.1);
+    //   deltaY.value = lerp (deltaY.value, e.clientY, 0.1);
+
+
+
+      item.style.setProperty('--angleX', calcAngleX)
+      item.style.setProperty('--angleY', calcAngleY)
+      item.style.setProperty('--gXabs', Math.abs(deltaX))
+      item.style.setProperty('--gYabs', Math.abs(deltaY))
+      item.style.setProperty('--gX', deltaX)
+      item.style.setProperty('--gY', deltaY)
+      
+    // }
+    // function lerp (start: number, end: number, amt: number){
+    //   return ((1-amt) * start) + (amt * end)
+    // }
+
+    
+
+    // let angle = Math.atan2(deltaY.value, deltaX.value) * (180 / Math.PI);
     // if (angle < 0) {
     //   angle += 360;
     // }
-    item.style.setProperty('--angleX', calcAngleX)
-    item.style.setProperty('--angleY', calcAngleY)
-    item.style.setProperty('--gX', deltaX)
-    item.style.setProperty('--gY', deltaY)
-    item.style.setProperty('--gXabs', Math.abs(deltaX))
-    item.style.setProperty('--gYabs', Math.abs(deltaY))
+    
 
     // item.querySelector('.border-wrap').style.transform = `rotateY(${calcAngleX}deg) rotateX(${-calcAngleY}deg) `;
     // item.querySelector('.deep img').style.transform = `translate3d(${ (x - halfWidth) / 20 }px, ${ (y - halfHeight) / 20 }px, 0)`;
