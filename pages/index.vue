@@ -78,12 +78,12 @@
 
           <form
             action=""
-            class="-a-clip-center -hover-element"
+            class="-a-clip-center "
             data-string
             style="--l-delay: -0.15;"
           >
-            <BaseInput itsPlaceholder="Enter your email" class="-focus-element" />
-            <button @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave">
+            <BaseInput itsPlaceholder="Enter your email" class="-focus-element -hover-element" />
+            <button @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
@@ -192,7 +192,7 @@ function submitButtonLeave() {
 
 
 let mouseX = 0, mouseY = 0, animationX = 0, animationY = 0
-let isFocusOnElement: boolean = false, isHoverOnElement: boolean = false
+let isFocusOnElement = ref(false), isHoverOnElement = ref(false)
 onMounted(() => {
 
   let calculateAngle = function (clientX: number, clientY: number, item: any) {
@@ -231,26 +231,28 @@ onMounted(() => {
 
   focusElements.forEach(element => {
     element.querySelector('input')?.addEventListener('focus', ()=>{
-      isFocusOnElement = true
+      isFocusOnElement.value = true
     })
     element.querySelector('input')?.addEventListener('blur', ()=>{
-      isFocusOnElement = false
+      isFocusOnElement.value = false
     })
   });
 
   hoverElements.forEach(element => {
     element.addEventListener('mouseover', ()=>{
-      isHoverOnElement = true
+      console.log(true)
+      isHoverOnElement.value = true
     })
     element.addEventListener('mouseout', ()=>{
-      isHoverOnElement = false
+      console.log(false)
+      isHoverOnElement.value = false
     })
   });
 
 
 
   const animation = ()=>{
-    if(isFocusOnElement || isHoverOnElement){
+    if(isFocusOnElement.value || isHoverOnElement.value){
       mouseX = window.innerWidth / 2
       mouseY = window.innerHeight / 2
     }
