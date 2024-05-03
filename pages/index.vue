@@ -442,6 +442,7 @@ onBeforeUnmount(() => {
           opacity: 0.6;
 
           svg {
+            filter: initial;
             stroke: var(--c-grey-2);
           }
         }
