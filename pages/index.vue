@@ -3,53 +3,53 @@
     <section class="c-welcome">
       <div
         class="bg"
-        :class="{
-          '-form-active': formActive
-        }"
+        :class="[{
+          '-form-active': isFocusOnElement || isHoverOnElement
+        }]"
       >
         <span class="bg-ray"></span>
         <!-- <span class="bg-ray ray-1"></span> -->
         <!-- <span class="bg-ray ray-2"></span> -->
 
         <div class="-a-scale-in" data-string style="--l-delay: -0.15; --l-modifier: 1.5">
-          <figure class="deep-1" :class="{ '-back': moveTo }">
+          <figure class="deep-1" >
             <svg>
               <use href="#logo-140x100_tl"></use>
             </svg>
           </figure>
-          <figure class="deep-2" :class="{ '-back': moveTo }">
+          <figure class="deep-2" >
             <svg>
               <use href="#logo-140x100_tr"></use>
             </svg>
           </figure>
-          <figure class="deep-3" :class="{ '-back': moveTo }">
+          <figure class="deep-3" >
             <svg>
               <use href="#logo-140x100_bl"></use>
             </svg>
           </figure>
-          <figure class="deep-4" :class="{ '-back': moveTo }">
+          <figure class="deep-4" >
             <svg>
               <use href="#logo-140x100_br"></use>
             </svg>
           </figure>
 
 
-          <figure class="deep-1 deep-ghost" :class="{ '-back': moveTo }">
+          <figure class="deep-1 deep-ghost" >
             <svg>
               <use href="#logo-140x100_tl"></use>
             </svg>
           </figure>
-          <figure class="deep-2 deep-ghost" :class="{ '-back': moveTo }">
+          <figure class="deep-2 deep-ghost" >
             <svg>
               <use href="#logo-140x100_tr"></use>
             </svg>
           </figure>
-          <figure class="deep-3 deep-ghost" :class="{ '-back': moveTo }">
+          <figure class="deep-3 deep-ghost" >
             <svg>
               <use href="#logo-140x100_bl"></use>
             </svg>
           </figure>
-          <figure class="deep-4 deep-ghost" :class="{ '-back': moveTo }">
+          <figure class="deep-4 deep-ghost" >
             <svg>
               <use href="#logo-140x100_br"></use>
             </svg>
@@ -63,7 +63,12 @@
           </svg>
         </a>
 
-        <div class="form-email">
+        <div
+          class="form-email"
+          :class="{
+            '-hidden': recruitedCap || joinCap
+          }"
+         >
           <h1 class="-tac -a-p -split" data-string>
             <!-- data-string-split-mode="random" -->
             <span data-string-split style="--l-delay: 0.6;">
@@ -73,14 +78,11 @@
 
           <form
             action=""
-            class="-a-clip-center"
+            class="-a-clip-center -hover-element"
             data-string
             style="--l-delay: -0.15;"
-
-            @mouseenter="formIn"
-            @mouseleave="formOut"
           >
-            <BaseInput itsPlaceholder="Enter your email" class="-hover-element -focus-element" />
+            <BaseInput itsPlaceholder="Enter your email" class="-focus-element" />
             <button @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
@@ -89,11 +91,25 @@
           </form>
         </div>
 
-        <span class="get-recruited -a-p -split" data-string >
-          <NuxtLink to="/" class="-up -b -hover-element">
-            <span data-string-split style="--l-delay: 0.9;">Get recruited</span>
-          </NuxtLink>
-        </span>
+        <Transition name="-t-desc">
+          <div class="description -tac -a-p -split -split-random" data-string v-if="recruitedCap || joinCap">
+            <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">Planning for the future, and reflecting on one's values and decisions. The PFC is critical for such complex cognitive behaviors and decision-making processes. This module involves contemplating one's mortality.</span>
+            <span v-if="joinCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">This module involves contemplating one's mortality and life's purpose, activities that require abstract thinking, planning for the future, and reflecting on one's values and decisions. The PFC is critical for such complex cognitive behaviors and decision-making processes. This module involves contemplating one's mortality and life's purpose, activities that require abstract thinking.</span>
+          </div>
+        </Transition>
+
+        <div class="get-recruited -a-p -split" data-string>
+          <div>
+            <NuxtLink to="/" class="-up -b -hover-element" @mouseenter="recruitedCap = true" @mouseleave="recruitedCap = false">
+              <span data-string-split style="--l-delay: 0.9;">Get recruited</span>
+            </NuxtLink>
+          </div>
+          <div>
+            <NuxtLink to="/" class="-up -b -hover-element" @mouseenter="joinCap = true" @mouseleave="joinCap = false">
+              <span data-string-split style="--l-delay: 1.2;">Join now</span>
+            </NuxtLink>
+          </div>
+        </div>
       </div>
     </section>
   </main>
@@ -107,7 +123,19 @@ const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
 
 
+
+
+
+const recruitedCap = ref(false)
+const joinCap = ref(false)
+
+
+
+
+
 const deep = ref()
+
+
 
 const submitTextBasic = ref("Submit >")
 const submitText = ref(">")
@@ -147,30 +175,25 @@ function submitButtonLeave() {
 }
 
 
-let formActive = ref(false)
-let moveTo = ref(false)
+// let formActive = ref(false)
+// let moveTo = ref(false)
 
-function formIn() {
-  formActive.value = true
-}
-function formOut() {
-  formActive.value = false
-  moveTo.value = true
-  setTimeout(() => {
-    moveTo.value = false
-  }, 150);
-}
-
-
-
-
+// function formIn() {
+//   formActive.value = true
+// }
+// function formOut() {
+//   formActive.value = false
+//   moveTo.value = true
+//   setTimeout(() => {
+//     moveTo.value = false
+//   }, 150);
+// }
 
 
 
 let mouseX = 0, mouseY = 0, animationX = 0, animationY = 0
 let isFocusOnElement: boolean = false, isHoverOnElement: boolean = false
 onMounted(() => {
-
 
   let calculateAngle = function (clientX: number, clientY: number, item: any) {
     let x = Math.abs(item.getBoundingClientRect().x - clientX);
@@ -180,74 +203,20 @@ onMounted(() => {
     let halfWidth = item.getBoundingClientRect().width / 2;
     let halfHeight = item.getBoundingClientRect().height / 2;
 
-    
-
-
     let calcAngleX = (x - halfWidth) / 5;
     let calcAngleY = (y - halfHeight) / 5;
-
-    // let gX = (1 - (x / (halfWidth * 2))) * 100;
-    // let gY = (1 - (y / (halfHeight * 2))) * 100;
-
-
-    // let glare = item.querySelector('.glare')
-    // let glareRect = glare.getBoundingClientRect()
-
-    // glare.style.transform = `translate3d(${x - glareRect.width / 2}px,${y - glareRect.height / 2}px, 0)`
-
-    
-
     
     const deltaX = x - halfWidth;
     const deltaY = y - halfHeight;
 
-    // setInterval (move,1000/60)
-    // function move() {
 
-      
-    //   deltaX.value = lerp (deltaX.value, e.clientX, 0.1);
-    //   deltaY.value = lerp (deltaY.value, e.clientY, 0.1);
-
-
-
-      item.style.setProperty('--angleX', calcAngleX)
-      item.style.setProperty('--angleY', calcAngleY)
-      item.style.setProperty('--gXabs', Math.abs(deltaX))
-      item.style.setProperty('--gYabs', Math.abs(deltaY))
-      item.style.setProperty('--gX', deltaX)
-      item.style.setProperty('--gY', deltaY)
-      
-    // }
-    // function lerp (start: number, end: number, amt: number){
-    //   return ((1-amt) * start) + (amt * end)
-    // }
-
-    
-
-    // let angle = Math.atan2(deltaY.value, deltaX.value) * (180 / Math.PI);
-    // if (angle < 0) {
-    //   angle += 360;
-    // }
-    
-
-    // item.querySelector('.border-wrap').style.transform = `rotateY(${calcAngleX}deg) rotateX(${-calcAngleY}deg) `;
-    // item.querySelector('.deep img').style.transform = `translate3d(${ (x - halfWidth) / 20 }px, ${ (y - halfHeight) / 20 }px, 0)`;
+    item.style.setProperty('--angleX', calcAngleX)
+    item.style.setProperty('--angleY', calcAngleY)
+    item.style.setProperty('--gXabs', Math.abs(deltaX))
+    item.style.setProperty('--gYabs', Math.abs(deltaY))
+    item.style.setProperty('--gX', deltaX)
+    item.style.setProperty('--gY', deltaY)
   }
-
-  // deep.value.addEventListener('mouseenter', (e: any) => {
-
-  //   deep.value.querySelector('.border-wrap').style.transition = '0.1s'
-  //   setTimeout(() => {
-  //     global.emit('activate-torus')
-  //     calculateAngle(e, deep.value);
-  //   }, 0);
-  //   setTimeout(() => {
-  //     deep.value.querySelector('.border-wrap').style.transition = '0.0s'
-  //   }, 100)
-
-  // });
-
-  // deep.value.addEventListener('mousemove', (e: any) => {
   deep.value.addEventListener('mousemove', (e: any) => {
     mouseX = e.clientX
     mouseY = e.clientY
@@ -366,7 +335,7 @@ onBeforeUnmount(() => {
         // perspective: calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem + 90rem);
         perspective: 100rem;
 
-        // transform: perspective 0.6s var(--f-swoosh);
+        transform: perspective 0.6s var(--f-swoosh);
 
         figure {
           position: absolute;
@@ -377,22 +346,19 @@ onBeforeUnmount(() => {
           align-items: center;
           will-change: transform;
 
-          // opacity: 1;
-          // transition: opacity 0.3s var(--f-back);
-
+          // transition: scale 0.3s var(--f-cubic);
+          
           svg {
-            fill: transparent;
+            fill: rgba(var(--c-black-rgb),0);
             stroke: var(--c-grey-4);
             // stroke: blue;
             stroke-width: 0.1px;
             filter: drop-shadow( 0 0 1rem var(--c-white));
+            
+            scale: 1;
+            transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.9s var(--f-back);
           }
         }
-        // figure.-back {
-        //   opacity: 0;
-        //   transition: opacity 0.0s var(--f-back);
-        //   // transition: transform 0.15s var(--f-cubic);
-        // }
         .deep-1 {
           transform:
             translate3d(
@@ -404,9 +370,11 @@ onBeforeUnmount(() => {
             rotateX(calc( var(--angleY) / 200 * -15deg))
             rotateY(calc( var(--angleX) / 600 * 30deg))
           ;
-
+          
           svg {
             animation: blinking 0.3s ease infinite;
+            
+            transition-delay: 0.15s;
           }
         }
         .deep-2 {
@@ -421,8 +389,11 @@ onBeforeUnmount(() => {
             rotateY(calc( var(--angleX) / 600 * 30deg))
           ;
 
+          
           svg {
             animation: blinking 0.45s ease infinite;
+
+            transition-delay: 0.225s;
           }
         }
         .deep-3 {
@@ -437,8 +408,11 @@ onBeforeUnmount(() => {
             rotateY(calc( var(--angleX) / 600 * 30deg))
           ;
 
+          
           svg {
             animation: blinking 0.6s ease infinite;
+            
+            transition-delay: 0.3s;
           }
         }
         .deep-4 {
@@ -453,8 +427,11 @@ onBeforeUnmount(() => {
             rotateY(calc( var(--angleX) / 600 * 30deg))
           ;
 
+          
           svg {
             animation: blinking 0.75s ease infinite;
+            
+            transition-delay: 0.45s;
           }
         }
 
@@ -466,73 +443,23 @@ onBeforeUnmount(() => {
             stroke: var(--c-grey-2);
           }
         }
-        // .deep-5 {
-        //   transform:
-        //     translate3d(
-        //       calc( var(--gX) * -0.75px ),
-        //       calc( var(--gY) * -0.5px ),
-        //       calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 40rem)
-        //     )
-        //     rotateZ(calc( var(--angleX) / 600 * 30deg))
-        //     rotateX(calc( var(--angleY) / 200 * -15deg))
-        //     rotateY(calc( var(--angleX) / 600 * 30deg))
-        //   ;
-        // }
-        // .deep-6 {
-        //   transform:
-        //     translate3d(
-        //       calc( var(--gX) * -0.75px ),
-        //       calc( var(--gY) * -0.5px ),
-        //       calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -50rem)
-        //     )
-        //     rotateZ(calc( var(--angleX) / 600 * 30deg))
-        //     rotateX(calc( var(--angleY) / 200 * -15deg))
-        //     rotateY(calc( var(--angleX) / 600 * 30deg))
-        //   ;
-        // }
-        // .deep-7 {
-        //   transform:
-        //     translate3d(
-        //       calc( var(--gX) * -1.125px ),
-        //       calc( var(--gY) * -0.75px ),
-        //       calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -30rem)
-        //     )
-        //     rotateZ(calc( var(--angleX) / 600 * 30deg))
-        //     rotateX(calc( var(--angleY) / 200 * -15deg))
-        //     rotateY(calc( var(--angleX) / 600 * 30deg))
-        //   ;
-        // }
-        // .deep-8 {
-        //   transform:
-        //     translate3d(
-        //       calc( var(--gX) * -1.5px ),
-        //       calc( var(--gY) * -1px ),
-        //       calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem)
-        //     )
-        //     rotateZ(calc( var(--angleX) / 600 * 30deg))
-        //     rotateX(calc( var(--angleY) / 200 * -15deg))
-        //     rotateY(calc( var(--angleX) / 600 * 30deg))
-        //   ;
-        // }
       }
     }
-    // .bg.-form-active {
-    //   div {
-    //     figure {
-    //       transform:
-    //         translate3d(
-    //           0,
-    //           0,
-    //           0
-    //         )
-    //         rotateZ(0)
-    //         rotateX(0)
-    //         rotateY(0)
-    //       ;
-    //       transition: transform 0.6s var(--f-cubic);
-    //     }
-    //   }
-    // }
+    .bg.-form-active {
+      div {
+        // perspective: 0rem;
+
+        figure {
+          svg {
+            fill: rgba(var(--c-black-rgb),1);
+            scale: 0.8;
+            filter: drop-shadow( 0 0 0rem var(--c-white));
+
+            transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.3s var(--f-cubic);
+          }
+        }
+      }
+    }
 
     .-w {
       position: relative;
@@ -542,13 +469,14 @@ onBeforeUnmount(() => {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
 
       .logo {
         display: block;
         width: 11rem;
         margin-left: auto;
         margin-right: auto;
+        margin-bottom: auto;
         margin-top: clamp(3rem,5%,5%);
 
         svg {
@@ -565,6 +493,8 @@ onBeforeUnmount(() => {
 
       .form-email {
         width: 100%;
+        opacity: 1;
+        transition: opacity 0.6s var(--f-cubic);
 
         h1 {
           max-width: 25rem;
@@ -627,12 +557,50 @@ onBeforeUnmount(() => {
           }
         }
       }
+      .form-email.-hidden {
+        opacity: 0;
+      }
+
+      .description {
+        position: absolute;
+        width: 49.29577465%;
+        margin-top: auto;
+        margin-bottom: auto;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .-t-desc-enter-active,
+      .-t-desc-leave-active {
+        opacity: 1;
+        scale: 1;
+        transition: opacity 0.6s var(--f-cubic), scale 0.6s var(--f-cubic);
+      }
+      .-t-desc-enter-from,
+      .-t-desc-leave-to {
+        opacity: 0;
+        scale: 1.2;
+      }
 
       .get-recruited {
         margin-bottom: clamp(3rem,5%,5%);
-      }
-      .get-recruited:hover {
-        animation: blinking 0.6s infinite step-end;
+        display: flex;
+        width: 49.29577465%;
+        margin-top: auto;
+        margin-left: auto;
+        margin-right: auto;
+
+        div {
+          width: 50%;
+          text-align: center;
+          
+          a {
+            display: block;
+            padding: 1rem;
+          }
+          a:hover {
+            animation: blinking 0.6s infinite step-end;
+          }
+        }
       }
     }
   }

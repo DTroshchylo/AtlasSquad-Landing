@@ -20,8 +20,8 @@
       @keyup="onInputChange"
       @input="formatInput"
       required
-      title="error"
     />
+      <!-- title="error" -->
 
     <textarea
       v-if="isTextarea == true && options.length == 0" rows="4"

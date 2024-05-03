@@ -17,7 +17,7 @@ export default defineNuxtConfig({
         { rel: 'msapplication-TileImage', href: '/fav/mstile-144x144.png' }
       ],
       bodyAttrs: {
-        class: '-EWJ'
+        class: '-atlas-squad'
       }
     },
     pageTransition: { name: '-t-page' }

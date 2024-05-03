@@ -5,6 +5,7 @@
   --w-author: Fiddle.Digital;
   --c-white: #999997;
   --c-black: #090908;
+  --c-black-rgb: 9, 9, 8;
   --c-sblack: #000000;
   
   --c-grey-0: #64625F;
@@ -14,6 +15,7 @@
   --c-grey-2: #121210;
   --c-grey-3: #595956;
   --c-grey-4: #242322;
+  --c-grey-4-rgb: 36, 35, 34;
   --c-red: #AB533A;
   --c-red-rgb: 171, 83, 58;
 
@@ -541,6 +543,7 @@ html.-loaded.-ready {
 
 .-splited {
   --l-delay: 0;
+  --l-modifier: 0;
 
   .-s-word {
     display: inline-flex;
@@ -572,7 +575,18 @@ html.-loaded.-ready {
         transform-origin: 0% 50%;
 
         transition: opacity 0s linear, background-color 0.05s var(--f-back), scale 0.6s var(--f-cubic);
-        transition-delay: calc(var(--global-char-index) * 0.015s + var(--l-delay) * 1s);
+        transition-delay: calc( (var(--global-char-index) / (1 + var(--l-modifier)) ) * 0.015s + var(--l-delay) * 1s);
+      }
+    }
+  }
+}
+.-a-p.-split-random {
+  .-splited {
+    .-s-word {
+      .-s-char {
+        background-color: initial;
+        transition: opacity 0s linear, background-color 0.05s var(--f-back);
+        transition-delay: calc( (var(--global-char-index) / (1 + var(--l-modifier)) ) * 0.015s + var(--l-delay) * 1s);
       }
     }
   }
