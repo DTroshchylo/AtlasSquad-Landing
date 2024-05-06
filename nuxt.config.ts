@@ -105,8 +105,13 @@ export default defineNuxtConfig({
         file: '~/pages/user.vue',
       })
       pages.push({
+        name: 'invite-page',
+        path: '/invite/:slug',
+        file: '~/pages/invite.vue',
+      })
+      pages.push({
         name: 'landing-page',
-        path: '/:id',
+        path: '/:slug',
         file: '~/pages/landing.vue',
       })
       
