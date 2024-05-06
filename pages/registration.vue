@@ -9,7 +9,7 @@
         </a>
   
         <div class="temp-registration">
-          <input placeholder="email" text="youremail@already.here">
+          <input placeholder="email" value="youremail@already.here">
           <input placeholder="name">
           <input placeholder="surname">
           <input placeholder="another type of ingo">
