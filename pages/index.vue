@@ -71,8 +71,9 @@
          >
           <h1 class="-tac -a-p -split" data-string>
             <!-- data-string-split-mode="random" -->
+            <!-- What would you do with total willpower? -->
             <span data-string-split style="--l-delay: 0.6;">
-              What would you do with total willpower?
+              Take the first step towards your goals
             </span>
           </h1>
 
@@ -83,11 +84,18 @@
             style="--l-delay: -0.15;"
           >
             <BaseInput itsPlaceholder="Enter your email" class="-focus-element -hover-element" />
-            <button @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
+
+            <!-- <button @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
-            </button>
+            </button> -->
+            <NuxtLink to="/quiz" @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
+              <span class="holder -b -up" :data-text="submitTextBasic">
+                <span class="-b -up">{{ submitText }}</span>
+              </span>
+            </NuxtLink>
+
           </form>
         </div>
 
@@ -100,15 +108,15 @@
 
         <div class="get-recruited -a-p -split" data-string>
           <div>
-            <NuxtLink to="/" class="-up -b -hover-element" @mouseenter="recruitedCap = true" @mouseleave="recruitedCap = false">
+            <NuxtLink to="/influencerQuiz" class="-up -b -hover-element" @mouseenter="recruitedCap = true" @mouseleave="recruitedCap = false">
               <span data-string-split style="--l-delay: 0.9;">Get recruited</span>
             </NuxtLink>
           </div>
-          <div>
+          <!-- <div>
             <NuxtLink to="/" class="-up -b -hover-element" @mouseenter="joinCap = true" @mouseleave="joinCap = false">
               <span data-string-split style="--l-delay: 1.2;">Join now</span>
             </NuxtLink>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -513,6 +521,8 @@ onBeforeUnmount(() => {
           position: relative;
           display: flex;
 
+          border: 1px solid red;
+
           &::after {
             content: '';
             display: block;
@@ -532,11 +542,16 @@ onBeforeUnmount(() => {
             margin-bottom: initial;
             flex-grow: 1;
           }
-          button {
+          button,
+          a {
             position: absolute;
             height: 100%;
             right: 0;
             border-left: 1px solid var(--c-grey-4);
+            color: var(--c-grey-3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
 
             .holder {
               position: relative;
@@ -587,6 +602,7 @@ onBeforeUnmount(() => {
       .get-recruited {
         margin-bottom: clamp(3rem,5%,5%);
         display: flex;
+        justify-content: center;
         width: 49.29577465%;
         margin-top: auto;
         margin-left: auto;
@@ -595,6 +611,8 @@ onBeforeUnmount(() => {
         div {
           width: 50%;
           text-align: center;
+
+          border: 1px solid blue;
           
           a {
             display: block;

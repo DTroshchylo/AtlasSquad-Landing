@@ -1,5 +1,5 @@
 <template>
-  <main class="page home-page">
+  <main class="page landing-page">
     Personal landing {{ personalSlug }}
   </main>
 </template>
