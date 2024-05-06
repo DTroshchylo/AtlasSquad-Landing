@@ -27,8 +27,8 @@ export const useInfluencer = defineStore(key, {
 
     async loadInviteInfluencer(slug: string) {
         try {
-            let responce: any = await axios.get(`http://localhost:3054/api/public/invite-influencer?slug=${slug}`)
-            // let responce: any = await axios.get(`https://devnode1.palemiya.com/api/public/invite-influencer?slug=${slug}`)
+            //let responce: any = await axios.get(`http://localhost:3054/api/public/invite-influencer?slug=${slug}`)
+            let responce: any = await axios.get(`https://devnode1.palemiya.com/api/public/invite-influencer?slug=${slug}`)
             if(responce.data.attributes != null){
                 this.inviteInfluencer = responce.data.attributes
             }
@@ -38,8 +38,8 @@ export const useInfluencer = defineStore(key, {
         
     },
     async loadInfluencer(slug: string) {
-        let responce: any = await axios.get(`http://localhost:3054/api/public/influencer?slug=${slug}`)
-        // let responce: any = await axios.get(`https://devnode1.palemiya.com/api/public/influencer?slug=${slug}`)
+        //let responce: any = await axios.get(`http://localhost:3054/api/public/influencer?slug=${slug}`)
+        let responce: any = await axios.get(`https://devnode1.palemiya.com/api/public/influencer?slug=${slug}`)
         if(responce.data.attributes != null){
             this.influencer = responce.data.attributes
         }
