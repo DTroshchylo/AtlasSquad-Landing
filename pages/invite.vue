@@ -1,12 +1,12 @@
 <template>
     <main class="page landing-page" v-if="influencer!=null">
       
-        <div>
-            <h1>{{ influencer.name }}</h1>
-            <h2>{{ influencer.title }}</h2>
-            <h3>{{ influencer.description }}</h3>
-        </div>
-        
+      <div>
+        <h1>Influencer name: {{ influencer.name }}</h1>
+        <h2>Influencer title: {{ influencer.title }}</h2>
+        <h3>Influencer description: {{ influencer.description }}</h3>
+      </div>
+      
         
     </main>
   </template>
