@@ -72,10 +72,11 @@
           <h1 class="-tac -a-p -split" data-string>
             <!-- data-string-split-mode="random" -->
             <!-- What would you do with total willpower? -->
-            <span data-string-split style="--l-delay: 0.6;">
-              Take the first step towards your goals
-            </span>
+            <span data-string-split style="--l-delay: 0.6;">Take the first step towards your goals</span>
           </h1>
+          <p class="caption -a-p -split" data-string >
+            <span data-string-split style="--l-delay: 0.6;">Sign up for a free verification module at Atlas Squad</span>
+          </p>
 
           <form
             action=""
@@ -100,16 +101,25 @@
         </div>
 
         <Transition name="-t-desc">
-          <div class="description -tac -a-p -split -split-random" data-string v-if="recruitedCap || joinCap">
+          <div class="description -tac -a-p -split -split-random" data-string v-if="recruitedCap">
             <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">Planning for the future, and reflecting on one's values and decisions. The PFC is critical for such complex cognitive behaviors and decision-making processes. This module involves contemplating one's mortality.</span>
-            <span v-if="joinCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">This module involves contemplating one's mortality and life's purpose, activities that require abstract thinking, planning for the future, and reflecting on one's values and decisions. The PFC is critical for such complex cognitive behaviors and decision-making processes. This module involves contemplating one's mortality and life's purpose, activities that require abstract thinking.</span>
+            <!-- <span v-if="joinCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">This module involves contemplating one's mortality and life's purpose, activities that require abstract thinking, planning for the future, and reflecting on one's values and decisions. The PFC is critical for such complex cognitive behaviors and decision-making processes. This module involves contemplating one's mortality and life's purpose, activities that require abstract thinking.</span> -->
           </div>
         </Transition>
 
         <div class="get-recruited -a-p -split" data-string>
+          
           <div>
             <NuxtLink to="/influencerQuiz" class="-up -b -hover-element" @mouseenter="recruitedCap = true" @mouseleave="recruitedCap = false">
-              <span data-string-split style="--l-delay: 0.9;">Get recruited</span>
+              <span class="wrap">
+                <span class="-base" data-string-split style="--l-delay: 0.9;">Become an influencer</span>
+
+                <span class="-hover">Get recruited</span>
+
+                <svg>
+                  <use href="#icon-20_info"></use>
+                </svg>
+              </span>
             </NuxtLink>
           </div>
           <!-- <div>
@@ -145,7 +155,7 @@ const deep = ref()
 
 
 
-const submitTextBasic = ref("Submit >")
+const submitTextBasic = ref("Became a candidate >")
 const submitText = ref(">")
 
 function submitButtonEnter() {
@@ -161,7 +171,7 @@ function submitButtonEnter() {
     submitText.value = '> tS_um>'
   }, 90)
   setTimeout(() => {
-    submitText.value = 'Submit >'
+    submitText.value = 'Became a candidate >'
   }, 120)
 }
 
@@ -511,10 +521,18 @@ onBeforeUnmount(() => {
           max-width: 25rem;
           margin-left: auto;
           margin-right: auto;
-          margin-bottom: 1.25rem;
+         margin-bottom: 0.5rem;
+        }
+        .caption {
+          text-align: center;
+          max-width: 25rem;
+          margin-left: auto;
+          margin-right: auto;
         }
         form {
-          width: 32.3943662%;
+          margin-top: 1.25rem;
+          // width: 32.3943662%;
+          width: 49.29577465%;
           margin-left: auto;
           margin-right: auto;
 
@@ -615,11 +633,58 @@ onBeforeUnmount(() => {
           border: 1px solid blue;
           
           a {
-            display: block;
             padding: 1rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .wrap {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              position: relative;
+
+              .-base {
+                opacity: 1;
+                transform: translate(0,0);
+                transition: transform 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
+              }
+              .-hover {
+                position: absolute;
+                opacity: 0;
+                transform: translate(0,100%);
+                transition: transform 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
+              }
+              svg {
+                width: 1rem;
+                position: absolute;
+                left: 100%;
+                bottom: 100%;
+
+                scale: 1;
+                opacity: 1;
+                transition: scale 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
+              }
+            }
           }
           a:hover {
             animation: blinking 0.6s infinite step-end;
+
+            .wrap {
+
+              .-base {
+                opacity: 0;
+                transform: translate(0,-50%);
+              }
+              .-hover {
+                opacity: 1;
+                transform: translate(0,0);
+              }
+              svg {
+                scale: 0;
+                opacity: 0;
+              }
+            }
           }
         }
       }

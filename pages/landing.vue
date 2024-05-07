@@ -1,7 +1,8 @@
 <template>
   <main class="page landing-page" v-if="influencer!=null">
     <div>
-        <h1>{{ influencer.name }}</h1>
+      <h1>Influencer name: {{ influencer.name }}</h1>
+      <p>Form for registration</p>
     </div>
   </main>
 </template>
