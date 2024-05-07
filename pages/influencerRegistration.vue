@@ -67,7 +67,7 @@ onBeforeUnmount(() => {
       }
 
       .logo {
-        border: 1px solid blue;
+        // border: 1px solid blue;
         
         display: block;
         width: 11rem;

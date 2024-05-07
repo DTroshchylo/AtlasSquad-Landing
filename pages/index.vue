@@ -539,7 +539,7 @@ onBeforeUnmount(() => {
           position: relative;
           display: flex;
 
-          border: 1px solid red;
+          // border: 1px solid red;
 
           &::after {
             content: '';
@@ -630,7 +630,7 @@ onBeforeUnmount(() => {
           width: 50%;
           text-align: center;
 
-          border: 1px solid blue;
+          // border: 1px solid blue;
           
           a {
             padding: 1rem;
