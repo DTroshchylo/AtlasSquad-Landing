@@ -89,9 +89,8 @@ onBeforeUnmount(() => {
       }
 
       .temp-registration {
-        margin-top: auto;
-        margin-bottom: auto;
-
+        
+        
         text-align: center;
 
         input {

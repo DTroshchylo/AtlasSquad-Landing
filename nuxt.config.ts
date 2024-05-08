@@ -90,14 +90,14 @@ export default defineNuxtConfig({
   hooks: {
     'pages:extend'(pages) {
       pages.push({
-        name: 'quiz',
-        path: '/quiz',
-        file: '~/pages/quiz.vue',
+        name: 'user-tc',
+        path: '/user-tc',
+        file: '~/pages/user-tc.vue',
       }),
       pages.push({
-        name: 'influencerQuiz',
-        path: '/influencerQuiz',
-        file: '~/pages/influencerQuiz.vue',
+        name: 'influencer-tc',
+        path: '/influencer-tc',
+        file: '~/pages/influencer-tc.vue',
       }),
       pages.push({
         name: 'user-page',

@@ -91,7 +91,7 @@
                 <span class="-b -up">{{ submitText }}</span>
               </span>
             </button> -->
-            <NuxtLink to="/quiz" @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
+            <NuxtLink to="/user-tc" @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
@@ -110,7 +110,7 @@
         <div class="get-recruited -a-p -split" data-string>
           
           <div>
-            <NuxtLink to="/influencerQuiz" class="-up -b -hover-element" @mouseenter="recruitedCap = true" @mouseleave="recruitedCap = false">
+            <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter="recruitedCap = true" @mouseleave="recruitedCap = false">
               <span class="wrap">
                 <span class="-base" data-string-split style="--l-delay: 0.9;">Become an influencer</span>
 

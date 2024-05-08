@@ -31,7 +31,7 @@
             <label for="test">I agree text</label>
           </div>
 
-          <NuxtLink to="/influencerRegistration">Next step opens a submition form</NuxtLink>
+          <NuxtLink to="/influencer-registration">Next step opens a submition form</NuxtLink>
         </div>
       </div>
     </section>

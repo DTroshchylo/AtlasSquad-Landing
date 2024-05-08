@@ -176,6 +176,13 @@ ul {
   }
 }
 
+.-hl {
+  display: block;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid var(--c-grey-4);
+}
+
 //---
 .pagination {
   padding-top: 2rem;
