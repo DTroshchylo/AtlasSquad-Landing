@@ -56,12 +56,23 @@
           </figure>
         </div>
       </div>
+
       <div class="-w">
-        <a href="#" class="logo -a-to-top" data-string>
-          <svg>
-            <use href="#logo-220x20_typo"></use>
-          </svg>
-        </a>
+        <header>
+          <a href="#" class="logo -a-to-top" data-string>
+            <svg>
+              <use href="#logo-220x20_typo"></use>
+            </svg>
+          </a>
+          <span>
+            <NuxtLink class="-grey" to="/">
+              <span>More Info</span>
+              <svg>
+                <use href="#icon-20_info"></use>
+              </svg>
+            </NuxtLink>
+          </span>
+        </header>
 
         <div
           class="form-email"
@@ -70,12 +81,10 @@
           }"
          >
           <h1 class="-tac -a-p -split" data-string>
-            <!-- data-string-split-mode="random" -->
-            <!-- What would you do with total willpower? -->
-            <span data-string-split style="--l-delay: 0.6;">Take the first step towards your goals</span>
+            <span data-string-split style="--l-delay: 0.6;">What would you do with total willpower?</span>
           </h1>
           <p class="caption -a-p -split" data-string >
-            <span data-string-split style="--l-delay: 0.6;">Sign up for a free verification module at Atlas Squad</span>
+            <span data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering journey</span>
           </p>
 
           <form
@@ -102,8 +111,7 @@
 
         <Transition name="-t-desc">
           <div class="description -tac -a-p -split -split-random" data-string v-if="recruitedCap">
-            <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">Planning for the future, and reflecting on one's values and decisions. The PFC is critical for such complex cognitive behaviors and decision-making processes. This module involves contemplating one's mortality.</span>
-            <!-- <span v-if="joinCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">This module involves contemplating one's mortality and life's purpose, activities that require abstract thinking, planning for the future, and reflecting on one's values and decisions. The PFC is critical for such complex cognitive behaviors and decision-making processes. This module involves contemplating one's mortality and life's purpose, activities that require abstract thinking.</span> -->
+            <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas Squad experience is for a select group of achievers who want the very best in AI-driven, personalized self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
           </div>
         </Transition>
 
@@ -112,9 +120,9 @@
           <div>
             <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter="recruitedCap = true" @mouseleave="recruitedCap = false">
               <span class="wrap">
-                <span class="-base" data-string-split style="--l-delay: 0.9;">Become an influencer</span>
+                <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
 
-                <span class="-hover">Get recruited</span>
+                <span class="-hover">Become our recruiter</span>
 
                 <svg>
                   <use href="#icon-20_info"></use>
@@ -122,12 +130,11 @@
               </span>
             </NuxtLink>
           </div>
-          <!-- <div>
-            <NuxtLink to="/" class="-up -b -hover-element" @mouseenter="joinCap = true" @mouseleave="joinCap = false">
-              <span data-string-split style="--l-delay: 1.2;">Join now</span>
-            </NuxtLink>
-          </div> -->
         </div>
+
+        <footer>
+          <NuxtLink to="/" class="-grey">Privacy and cookie policy</NuxtLink>
+        </footer>
       </div>
     </section>
   </main>
@@ -492,23 +499,55 @@ onBeforeUnmount(() => {
       align-items: center;
       justify-content: center;
 
-      .logo {
-        display: block;
-        width: 11rem;
-        margin-left: auto;
-        margin-right: auto;
+
+      header {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
         margin-bottom: auto;
         margin-top: clamp(3rem,5%,5%);
 
-        svg {
-          fill: var(--c-grey-0);
-
-          aspect-ratio: 220/20;
+        &::before {
+          content: '';
+          width: 32.3943662%;
         }
-      }
-      .logo:hover {
-        svg {
-          fill: var(--c-white);
+        .logo {
+          flex-shrink: 0;
+          display: block;
+          width: 11rem;
+          
+  
+          svg {
+            fill: var(--c-grey-0);
+  
+            aspect-ratio: 220/20;
+          }
+        }
+        .logo:hover {
+          svg {
+            fill: var(--c-white);
+          }
+        }
+        >span {
+          display: flex;
+          justify-content: flex-end;
+          width: 32.3943662%;
+          text-align: right;
+
+          a {
+            display: flex;
+
+            svg {
+              width: 1rem;
+              transform: translate(0,-50%);
+            }
+          }
+          a:hover {
+            svg {
+              fill: var(--c-white);
+            }
+          }
         }
       }
 
@@ -687,6 +726,14 @@ onBeforeUnmount(() => {
             }
           }
         }
+      }
+
+      footer {
+        width: 100%;
+        padding-bottom: 2rem;
+        text-align: left;
+        
+        a {}
       }
     }
   }
