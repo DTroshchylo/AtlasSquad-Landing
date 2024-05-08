@@ -1,5 +1,5 @@
 <template>
-  <header>
+  <!-- <header>
     <span class="bg"></span>
     <div class="-w">
       <a class="logo" href="/">
@@ -17,7 +17,32 @@
         </svg>
       </a>
     </div>
+  </header> -->
+
+  <header class="the-header">
+    <div class="-w">
+      <!-- <a href="/" class="logo -a-to-top" data-string>
+        <svg>
+          <use href="#logo-220x20_typo"></use>
+        </svg>
+      </a> -->
+      <!-- <NuxtLink class="logo" to="/" v-if="path != '/'"> -->
+      <NuxtLink class="logo" to="/" >
+        <svg>
+          <use href="#logo-220x20_typo"></use>
+        </svg>
+      </NuxtLink>
+      <span>
+        <NuxtLink class="-grey" to="/more-info">
+          <span>More Info</span>
+          <svg>
+            <use href="#icon-20_info"></use>
+          </svg>
+        </NuxtLink>
+      </span>
+    </div>
   </header>
+
 </template>
 
 <script setup lang="ts">
@@ -35,6 +60,11 @@ const props = defineProps(
   }
 )
 
+
+const route = useRoute();
+const path = computed(() => route.path)
+
+
 onMounted(() => {
 })
 onBeforeUnmount(() => {
@@ -43,89 +73,60 @@ onBeforeUnmount(() => {
 </script>
 
 <style lang="scss" scoped>
-header {
-  position: fixed;
-  z-index: 100;
+.the-header {
+  position: absolute;
   top: 0;
   left: 0;
+  z-index: 100;
   width: 100%;
-
-  .bg {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-
-    background-color: var(--c-sblack);
-
-    clip-path: polygon(
-      0% 0%,
-      100% 0%,
-      100% calc(100% - 2rem),
-      15.97222222% calc(100% - 2rem),
-      calc(15.97222222% - 2rem) 100%,
-      0% 100%,
-    );
-  }
-
-  .logo {
-    position: relative;
+  // margin-bottom: auto;
+  margin-top: clamp(3rem,5%,5%);
+  
+  .-w {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    width: 15.49295775%;
 
-    box-sizing: border-box;
-
-    svg {
-      width: 7rem;
-      position: absolute;
-      aspect-ratio: 140/100;
-
-      animation: blinking 1.5s infinite step-end;
-
-      scale: 1;
-      transition: scale 0.3s var(--f-cubic);
+    &::before {
+      content: '';
+      width: 32.3943662%;
     }
-    svg:first-child {
-      position: relative;
+    .logo {
+      flex-shrink: 0;
+      display: block;
+      width: 11rem;
+  
+      svg {
+        fill: var(--c-grey-0);
+  
+        aspect-ratio: 220/20;
+      }
     }
-    svg:nth-child(1) {
-      transition-delay: 0.225s;
-      
+    .logo:hover {
+      svg {
+        fill: var(--c-white);
+      }
     }
-    svg:nth-child(2) {
-      animation-duration: 2.1s;
-      transition-delay: 0.075s;
-    }
-    svg:nth-child(3) {
-      animation-duration: 1.65s;
-    }
-    svg:nth-child(4) {
-      animation-duration: 3s;
-      transition-delay: 0.15s;
-    }
-  }
-  .logo:hover {
-    svg {
-      scale: 1.5;
-    }
-    svg:nth-child(1) {
-      transition-delay: 0.075s;
-    }
-    svg:nth-child(2) {
-      
-    }
-    svg:nth-child(3) {
-      transition-delay: 0.15s;
-    }
-    svg:nth-child(4) {
-      transition-delay: 0.225s;
+    >span {
+      display: flex;
+      justify-content: flex-end;
+      width: 32.3943662%;
+      text-align: right;
+  
+      a {
+        display: flex;
+  
+        svg {
+          width: 1rem;
+          transform: translate(0,-50%);
+        }
+      }
+      a:hover {
+        svg {
+          fill: var(--c-white);
+        }
+      }
     }
   }
 }
-
-
-
 </style>

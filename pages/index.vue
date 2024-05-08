@@ -1,79 +1,64 @@
 <template>
   <main class="page home-page" ref="deep">
-    <section class="c-welcome">
-      <div
-        class="bg"
-        :class="[{
-          '-form-active': isFocusOnElement || isHoverOnElement
-        }]"
-      >
-        <span class="bg-ray"></span>
-        <!-- <span class="bg-ray ray-1"></span> -->
-        <!-- <span class="bg-ray ray-2"></span> -->
+    <div
+      class="bg"
+      :class="[{
+        '-form-active': isFocusOnElement || isHoverOnElement
+      }]"
+    >
+      <span class="bg-ray"></span>
+      <!-- <span class="bg-ray ray-1"></span> -->
+      <!-- <span class="bg-ray ray-2"></span> -->
 
-        <div class="-a-scale-in" data-string style="--l-delay: -0.15; --l-modifier: 1.5">
-          <figure class="deep-1" >
-            <svg>
-              <use href="#logo-140x100_tl"></use>
-            </svg>
-          </figure>
-          <figure class="deep-2" >
-            <svg>
-              <use href="#logo-140x100_tr"></use>
-            </svg>
-          </figure>
-          <figure class="deep-3" >
-            <svg>
-              <use href="#logo-140x100_bl"></use>
-            </svg>
-          </figure>
-          <figure class="deep-4" >
-            <svg>
-              <use href="#logo-140x100_br"></use>
-            </svg>
-          </figure>
+      <div class="-a-scale-in" data-string style="--l-delay: -0.15; --l-modifier: 1.5">
+        <figure class="deep-1" >
+          <svg>
+            <use href="#logo-140x100_tl"></use>
+          </svg>
+        </figure>
+        <figure class="deep-2" >
+          <svg>
+            <use href="#logo-140x100_tr"></use>
+          </svg>
+        </figure>
+        <figure class="deep-3" >
+          <svg>
+            <use href="#logo-140x100_bl"></use>
+          </svg>
+        </figure>
+        <figure class="deep-4" >
+          <svg>
+            <use href="#logo-140x100_br"></use>
+          </svg>
+        </figure>
 
 
-          <figure class="deep-1 deep-ghost" >
-            <svg>
-              <use href="#logo-140x100_tl"></use>
-            </svg>
-          </figure>
-          <figure class="deep-2 deep-ghost" >
-            <svg>
-              <use href="#logo-140x100_tr"></use>
-            </svg>
-          </figure>
-          <figure class="deep-3 deep-ghost" >
-            <svg>
-              <use href="#logo-140x100_bl"></use>
-            </svg>
-          </figure>
-          <figure class="deep-4 deep-ghost" >
-            <svg>
-              <use href="#logo-140x100_br"></use>
-            </svg>
-          </figure>
-        </div>
+        <figure class="deep-1 deep-ghost" >
+          <svg>
+            <use href="#logo-140x100_tl"></use>
+          </svg>
+        </figure>
+        <figure class="deep-2 deep-ghost" >
+          <svg>
+            <use href="#logo-140x100_tr"></use>
+          </svg>
+        </figure>
+        <figure class="deep-3 deep-ghost" >
+          <svg>
+            <use href="#logo-140x100_bl"></use>
+          </svg>
+        </figure>
+        <figure class="deep-4 deep-ghost" >
+          <svg>
+            <use href="#logo-140x100_br"></use>
+          </svg>
+        </figure>
       </div>
+    </div>
 
+
+    <section class="c-welcome">
       <div class="-w">
-        <header>
-          <a href="#" class="logo -a-to-top" data-string>
-            <svg>
-              <use href="#logo-220x20_typo"></use>
-            </svg>
-          </a>
-          <span>
-            <NuxtLink class="-grey" to="/">
-              <span>More Info</span>
-              <svg>
-                <use href="#icon-20_info"></use>
-              </svg>
-            </NuxtLink>
-          </span>
-        </header>
-
         <div
           class="form-email"
           :class="{
@@ -108,22 +93,27 @@
 
           </form>
         </div>
+      </div>
+    </section>
 
-        <Transition name="-t-desc">
-          <div class="description -tac -a-p -split -split-random" data-string v-if="recruitedCap">
-            <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas Squad experience is for a select group of achievers who want the very best in AI-driven, personalized self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
-          </div>
-        </Transition>
 
+    <Transition name="-t-desc">
+      <div class="description -tac -a-p -split -split-random" data-string v-if="recruitedCap">
+        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas Squad experience is for a select group of achievers who want the very best in AI-driven, personalized self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
+      </div>
+    </Transition>
+    
+    <section class="c-recruited">
+      <div class="-w">
         <div class="get-recruited -a-p -split" data-string>
           
           <div>
             <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter="recruitedCap = true" @mouseleave="recruitedCap = false">
               <span class="wrap">
                 <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
-
+    
                 <span class="-hover">Become our recruiter</span>
-
+    
                 <svg>
                   <use href="#icon-20_info"></use>
                 </svg>
@@ -131,12 +121,10 @@
             </NuxtLink>
           </div>
         </div>
-
-        <footer>
-          <NuxtLink to="/" class="-grey">Privacy and cookie policy</NuxtLink>
-        </footer>
       </div>
     </section>
+
+
   </main>
 </template>
 
@@ -314,180 +302,195 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .page {
+  padding-top: initial !important;
+  padding-bottom: initial !important;
   position: relative;
+  height: 100%;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+  // flex-shrink: 0;
+  flex-grow: 1;
 
-  .c-welcome {
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
-    position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  .bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
 
-    .bg {
+    .bg-ray {
       position: absolute;
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-image: url(/images/logo-bg.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+
+      animation: logo-bg 12s infinite ease-in-out;
+    }
+    // .ray-1 {}
+    // .ray-2 {
+    //   scale: -1 -1;
+
+    //   animation-duration: 15s;
+    //   animation-delay: -3s;
+    // }
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: center;
-      overflow: hidden;
 
-      .bg-ray {
+      // perspective: calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem + 90rem);
+      perspective: 100rem;
+
+      transform: perspective 0.6s var(--f-swoosh);
+
+      figure {
         position: absolute;
-        display: block;
-        width: 100%;
-        height: 100%;
-        background-image: url(/images/logo-bg.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-
-        animation: logo-bg 12s infinite ease-in-out;
-      }
-      // .ray-1 {}
-      // .ray-2 {
-      //   scale: -1 -1;
-
-      //   animation-duration: 15s;
-      //   animation-delay: -3s;
-      // }
-      div {
-        position: absolute;
-        top: 0;
-        left: 0;
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        will-change: transform;
 
-        // perspective: calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem + 90rem);
-        perspective: 100rem;
-
-        transform: perspective 0.6s var(--f-swoosh);
-
-        figure {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          will-change: transform;
-
-          // transition: scale 0.3s var(--f-cubic);
+        // transition: scale 0.3s var(--f-cubic);
+        
+        svg {
+          fill: rgba(var(--c-black-rgb),0);
+          stroke: var(--c-grey-4);
+          // stroke: blue;
+          stroke-width: 0.1px;
+          filter: drop-shadow( 0 0 1rem var(--c-white));
           
-          svg {
-            fill: rgba(var(--c-black-rgb),0);
-            stroke: var(--c-grey-4);
-            // stroke: blue;
-            stroke-width: 0.1px;
-            filter: drop-shadow( 0 0 1rem var(--c-white));
-            
-            scale: 1;
-            transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.9s var(--f-back);
-          }
+          scale: 1;
+          transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.9s var(--f-back);
         }
-        .deep-1 {
-          transform:
-            translate3d(
-              calc( var(--gX) * -0.75px ),
-              calc( var(--gY) * -0.5px ),
-              calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 20rem)
-            )
-            rotateZ(calc( var(--angleX) / 600 * 30deg))
-            rotateX(calc( var(--angleY) / 200 * -15deg))
-            rotateY(calc( var(--angleX) / 600 * 30deg))
-          ;
+      }
+      .deep-1 {
+        transform:
+          translate3d(
+            calc( var(--gX) * -0.75px ),
+            calc( var(--gY) * -0.5px ),
+            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 20rem)
+          )
+          rotateZ(calc( var(--angleX) / 600 * 30deg))
+          rotateX(calc( var(--angleY) / 200 * -15deg))
+          rotateY(calc( var(--angleX) / 600 * 30deg))
+        ;
+        
+        svg {
+          animation: blinking 0.3s ease infinite;
           
-          svg {
-            animation: blinking 0.3s ease infinite;
-            
-            transition-delay: 0.15s;
-          }
+          transition-delay: 0.15s;
         }
-        .deep-2 {
-          transform:
-            translate3d(
-              calc( var(--gX) * -0.75px ),
-              calc( var(--gY) * -0.5px ),
-              calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -50rem)
-            )
-            rotateZ(calc( var(--angleX) / 600 * 30deg))
-            rotateX(calc( var(--angleY) / 200 * -15deg))
-            rotateY(calc( var(--angleX) / 600 * 30deg))
-          ;
+      }
+      .deep-2 {
+        transform:
+          translate3d(
+            calc( var(--gX) * -0.75px ),
+            calc( var(--gY) * -0.5px ),
+            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -50rem)
+          )
+          rotateZ(calc( var(--angleX) / 600 * 30deg))
+          rotateX(calc( var(--angleY) / 200 * -15deg))
+          rotateY(calc( var(--angleX) / 600 * 30deg))
+        ;
 
+        
+        svg {
+          animation: blinking 0.45s ease infinite;
+
+          transition-delay: 0.225s;
+        }
+      }
+      .deep-3 {
+        transform:
+          translate3d(
+            calc( var(--gX) * -1.125px ),
+            calc( var(--gY) * -0.75px ),
+            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -30rem)
+          )
+          rotateZ(calc( var(--angleX) / 600 * 30deg))
+          rotateX(calc( var(--angleY) / 200 * -15deg))
+          rotateY(calc( var(--angleX) / 600 * 30deg))
+        ;
+
+        
+        svg {
+          animation: blinking 0.6s ease infinite;
           
-          svg {
-            animation: blinking 0.45s ease infinite;
-
-            transition-delay: 0.225s;
-          }
+          transition-delay: 0.3s;
         }
-        .deep-3 {
-          transform:
-            translate3d(
-              calc( var(--gX) * -1.125px ),
-              calc( var(--gY) * -0.75px ),
-              calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -30rem)
-            )
-            rotateZ(calc( var(--angleX) / 600 * 30deg))
-            rotateX(calc( var(--angleY) / 200 * -15deg))
-            rotateY(calc( var(--angleX) / 600 * 30deg))
-          ;
+      }
+      .deep-4 {
+        transform:
+          translate3d(
+            calc( var(--gX) * -1.5px ),
+            calc( var(--gY) * -1px ),
+            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem)
+          )
+          rotateZ(calc( var(--angleX) / 600 * 30deg))
+          rotateX(calc( var(--angleY) / 200 * -15deg))
+          rotateY(calc( var(--angleX) / 600 * 30deg))
+        ;
 
+        
+        svg {
+          animation: blinking 0.75s ease infinite;
           
-          svg {
-            animation: blinking 0.6s ease infinite;
-            
-            transition-delay: 0.3s;
-          }
+          transition-delay: 0.45s;
         }
-        .deep-4 {
-          transform:
-            translate3d(
-              calc( var(--gX) * -1.5px ),
-              calc( var(--gY) * -1px ),
-              calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem)
-            )
-            rotateZ(calc( var(--angleX) / 600 * 30deg))
-            rotateX(calc( var(--angleY) / 200 * -15deg))
-            rotateY(calc( var(--angleX) / 600 * 30deg))
-          ;
+      }
 
-          
-          svg {
-            animation: blinking 0.75s ease infinite;
-            
-            transition-delay: 0.45s;
-          }
-        }
+      .deep-ghost {
+        scale: 1.1;
+        opacity: 0.6;
 
-        .deep-ghost {
-          scale: 1.1;
-          opacity: 0.6;
-
-          svg {
-            filter: initial;
-            stroke: var(--c-grey-2);
-          }
+        svg {
+          filter: initial;
+          stroke: var(--c-grey-2);
         }
       }
     }
-    .bg.-form-active {
-      div {
-        // perspective: 0rem;
+  }
+  .bg.-form-active {
+    div {
+      // perspective: 0rem;
 
-        figure {
-          svg {
-            fill: rgba(var(--c-black-rgb),1);
-            scale: 0.8;
-            filter: drop-shadow( 0 0 0rem var(--c-white));
+      figure {
+        svg {
+          fill: rgba(var(--c-black-rgb),1);
+          scale: 0.8;
+          filter: drop-shadow( 0 0 0rem var(--c-white));
 
-            transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.3s var(--f-cubic);
-          }
+          transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.3s var(--f-cubic);
         }
       }
     }
+  }
+
+  .c-welcome {
+    height: 100%;
+    width: 100%;
+    position: relative;
+
+    margin-top: auto;
+    margin-bottom: -5%;
 
     .-w {
       position: relative;
@@ -498,58 +501,6 @@ onBeforeUnmount(() => {
       flex-direction: column;
       align-items: center;
       justify-content: center;
-
-
-      header {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: auto;
-        margin-top: clamp(3rem,5%,5%);
-
-        &::before {
-          content: '';
-          width: 32.3943662%;
-        }
-        .logo {
-          flex-shrink: 0;
-          display: block;
-          width: 11rem;
-          
-  
-          svg {
-            fill: var(--c-grey-0);
-  
-            aspect-ratio: 220/20;
-          }
-        }
-        .logo:hover {
-          svg {
-            fill: var(--c-white);
-          }
-        }
-        >span {
-          display: flex;
-          justify-content: flex-end;
-          width: 32.3943662%;
-          text-align: right;
-
-          a {
-            display: flex;
-
-            svg {
-              width: 1rem;
-              transform: translate(0,-50%);
-            }
-          }
-          a:hover {
-            svg {
-              fill: var(--c-white);
-            }
-          }
-        }
-      }
 
       .form-email {
         width: 100%;
@@ -635,107 +586,104 @@ onBeforeUnmount(() => {
       .form-email.-hidden {
         opacity: 0;
       }
+    }
+  }
+  .c-recruited {
+    margin-top: auto;
+    width: 100%;
 
-      .description {
-        position: absolute;
-        width: 49.29577465%;
-        margin-top: auto;
-        margin-bottom: auto;
-        margin-left: auto;
-        margin-right: auto;
-      }
-      .-t-desc-enter-active,
-      .-t-desc-leave-active {
-        opacity: 1;
-        scale: 1;
-        transition: opacity 0.6s var(--f-cubic), scale 0.6s var(--f-cubic);
-      }
-      .-t-desc-enter-from,
-      .-t-desc-leave-to {
-        opacity: 0;
-        scale: 1.2;
-      }
+    .get-recruited {
+      margin-bottom: clamp(3rem,5%,5%);
+      display: flex;
+      justify-content: center;
+      width: 49.29577465%;
+      margin-top: auto;
+      margin-left: auto;
+      margin-right: auto;
 
-      .get-recruited {
-        margin-bottom: clamp(3rem,5%,5%);
-        display: flex;
-        justify-content: center;
-        width: 49.29577465%;
-        margin-top: auto;
-        margin-left: auto;
-        margin-right: auto;
+      div {
+        width: 50%;
+        text-align: center;
 
-        div {
-          width: 50%;
-          text-align: center;
+        // border: 1px solid blue;
+        
+        a {
+          padding: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
 
-          // border: 1px solid blue;
-          
-          a {
-            padding: 1rem;
+          .wrap {
             display: flex;
             justify-content: center;
             align-items: center;
+            position: relative;
 
-            .wrap {
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              position: relative;
+            .-base {
+              opacity: 1;
+              transform: translate(0,0);
+              transition: transform 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
+            }
+            .-hover {
+              position: absolute;
+              opacity: 0;
+              transform: translate(0,100%);
+              transition: transform 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
+            }
+            svg {
+              width: 1rem;
+              position: absolute;
+              left: 100%;
+              bottom: 100%;
 
-              .-base {
-                opacity: 1;
-                transform: translate(0,0);
-                transition: transform 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
-              }
-              .-hover {
-                position: absolute;
-                opacity: 0;
-                transform: translate(0,100%);
-                transition: transform 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
-              }
-              svg {
-                width: 1rem;
-                position: absolute;
-                left: 100%;
-                bottom: 100%;
-
-                scale: 1;
-                opacity: 1;
-                transition: scale 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
-              }
+              scale: 1;
+              opacity: 1;
+              transition: scale 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
             }
           }
-          a:hover {
-            animation: blinking 0.6s infinite step-end;
+        }
+        a:hover {
+          animation: blinking 0.6s infinite step-end;
 
-            .wrap {
+          .wrap {
 
-              .-base {
-                opacity: 0;
-                transform: translate(0,-50%);
-              }
-              .-hover {
-                opacity: 1;
-                transform: translate(0,0);
-              }
-              svg {
-                scale: 0;
-                opacity: 0;
-              }
+            .-base {
+              opacity: 0;
+              transform: translate(0,-50%);
+            }
+            .-hover {
+              opacity: 1;
+              transform: translate(0,0);
+            }
+            svg {
+              scale: 0;
+              opacity: 0;
             }
           }
         }
       }
-
-      footer {
-        width: 100%;
-        padding-bottom: 2rem;
-        text-align: left;
-        
-        a {}
-      }
     }
+  }
+
+
+  .description {
+    position: absolute;
+    width: 49.29577465%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .-t-desc-enter-active,
+  .-t-desc-leave-active {
+    opacity: 1;
+    scale: 1;
+    transition: opacity 0.6s var(--f-cubic), scale 0.6s var(--f-cubic);
+  }
+  .-t-desc-enter-from,
+  .-t-desc-leave-to {
+    opacity: 0 !important;
+    scale: 1.2;
   }
 }
 

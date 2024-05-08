@@ -1,7 +1,12 @@
 <template>
   <SvgList />
   
-  <NuxtPage />
+
+  <div class="page-wrap">
+    <TheHeader />
+    <NuxtPage />
+    <TheFooter />
+  </div>
 
   <Transition name="-t-splash">
     <span class="splash" v-if="splash"></span>
@@ -180,26 +185,19 @@ onBeforeUnmount(() => {
 <style lang="scss">
 @import "assets/styles.scss";
 
-.content {
-  padding-bottom: 200vh;
-  --string-progress: 0;
-  
-  .-w {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    // padding-top: 5rem;
-    --string-progress-content: var(--string-progress);
-  
-    .main-nav {
-      // margin-top: 9rem;
-      position: sticky;
-      top: 9rem;
-      width: 14.08450704%;
-    }
-    .page {
-      width: 83.09859155%;
-    }
+.page-wrap {
+  position: relative;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+
+  .the-header,
+  .the-footer,
+  .page {
+    width: 100%;
+  }
+  .page {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
   }
 }
 

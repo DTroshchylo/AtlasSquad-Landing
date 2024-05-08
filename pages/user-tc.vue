@@ -2,11 +2,6 @@
   <main class="page tc-page" >
     <section class="c-tc">
       <div class="-w">
-        <a href="/" class="logo -a-to-top" data-string>
-          <svg>
-            <use href="#logo-220x20_typo"></use>
-          </svg>
-        </a>
 
         <div class="tc-content">
 
@@ -112,52 +107,19 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .page {
-  padding-bottom: 2rem;
-
   .c-tc {
-    height: 100vh;
-    height: calc(var(--vh, 1vh) * 100);
+    
     position: relative;
 
     .-w {
       position: relative;
 
-      height: 100%;
 
-      // display: flex;
-      // flex-direction: column;
-      // align-items: center;
-      // justify-content: center;
-
-
-      &::after {
-        content: '';
-        display: block;
-        margin-bottom: clamp(6rem,10%,10%);
-      }
-
-      .logo {
-        // border: 1px solid red;
-
-        
-        display: block;
-        width: 11rem;
-        margin-left: auto;
-        margin-right: auto;
-        // margin-bottom: auto;
-        margin-top: clamp(3rem,5%,5%);
-
-        svg {
-          fill: var(--c-grey-0);
-
-          aspect-ratio: 220/20;
-        }
-      }
-      .logo:hover {
-        svg {
-          fill: var(--c-white);
-        }
-      }
+      // &::after {
+      //   content: '';
+      //   display: block;
+      //   margin-bottom: clamp(6rem,10%,10%);
+      // }
 
       .tc-content {
         margin-top: clamp(3rem,5%,5%);
@@ -245,8 +207,8 @@ onBeforeUnmount(() => {
               height: 1.2rem;
               width: 1.2rem;
               border-radius: 0.5rem;
-              border: 1px solid rgba(255, 255, 255, 0.05);
-              background-color: #181818;
+              border: 1px solid var(--c-grey-4);
+              background-color: var(--c-black);
               pointer-events: none;
 
               svg {
