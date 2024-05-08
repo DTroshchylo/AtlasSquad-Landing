@@ -166,16 +166,16 @@ const submitTextBasic = ref("Became a candidate >")
 const submitText = ref(">")
 
 function submitButtonEnter() {
-  submitText.value = 'a +'
+  submitText.value = 'ao +'
 
   setTimeout(() => {
-    submitText.value = 'Aa _'
+    submitText.value = 'Aa nAc _'
   }, 30)
   setTimeout(() => {
-    submitText.value = 'Sb_t -'
+    submitText.value = 'S dit Ab_t -'
   }, 60)
   setTimeout(() => {
-    submitText.value = '> tS_um>'
+    submitText.value = '> cAm( C a tS_um>'
   }, 90)
   setTimeout(() => {
     submitText.value = 'Became a candidate >'
@@ -183,16 +183,16 @@ function submitButtonEnter() {
 }
 
 function submitButtonLeave() {
-  submitText.value = '8JuTug _'
+  submitText.value = '8JOme a cnuTug _'
 
   setTimeout(() => {
-    submitText.value = 'Sutibm-_'
+    submitText.value = 'con C%__tibm-_'
   }, 30)
   setTimeout(() => {
-    submitText.value = 'utSm 3'
+    submitText.value = 'utS2 Bn m 3'
   }, 60)
   setTimeout(() => {
-    submitText.value = 'sSr>'
+    submitText.value = 'sVa aSr>'
   }, 90)
   setTimeout(() => {
     submitText.value = '>'
