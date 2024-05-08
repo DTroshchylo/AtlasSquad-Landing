@@ -78,14 +78,14 @@
             data-string
             style="--l-delay: -0.15;"
           >
-            <BaseInput itsPlaceholder="Enter your email" class="-focus-element -hover-element" />
+            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email" class="-focus-element -hover-element" />
 
             <!-- <button @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
             </button> -->
-            <NuxtLink to="/user-tc" @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
+            <NuxtLink to="/user-tc" @click.native="onSendEmail" @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
@@ -131,6 +131,7 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import GlobalClass from '@/src/globalClass'
+import StringStorage from '~/src/string-storage';
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
@@ -142,9 +143,16 @@ const global = nuxtApp.$globalClass as GlobalClass
 const recruitedCap = ref(false)
 const joinCap = ref(false)
 
+const email = ref('')
+const onEmailChange = (value: any)=>{
+  email.value = value
+}
 
-
-
+const onSendEmail = ()=>{
+  
+  storage.local.set('email', email.value)
+  
+}
 
 const deep = ref()
 
@@ -203,10 +211,12 @@ function submitButtonLeave() {
 // }
 
 
-
+let storage: any
 let mouseX = 0, mouseY = 0, animationX = 0, animationY = 0
 let isFocusOnElement = ref(false), isHoverOnElement = ref(false)
 onMounted(() => {
+
+  storage = StringStorage.getInstance()
 
   let calculateAngle = function (clientX: number, clientY: number, item: any) {
     let x = Math.abs(item.getBoundingClientRect().x - clientX);
@@ -265,18 +275,46 @@ onMounted(() => {
 
 
   const animation = ()=>{
-    if(isFocusOnElement.value || isHoverOnElement.value){
-      mouseX = window.innerWidth / 2
-      mouseY = window.innerHeight / 2
+
+
+    requestAnimationId = requestAnimationFrame(animation)
+    now = Date.now();
+    elapsed = now - then;
+    if (elapsed > fpsInterval) {
+      then = now - (elapsed % fpsInterval);
+      if(isFocusOnElement.value || isHoverOnElement.value){
+        mouseX = window.innerWidth / 2
+        mouseY = window.innerHeight / 2
+      }
+      animationX = lerp(animationX, mouseX, 0.1);
+      animationY = lerp(animationY, mouseY, 0.1);
+      calculateAngle(animationX, animationY, deep.value);
     }
-    animationX = lerp(animationX, mouseX, 0.1);
-    animationY = lerp(animationY, mouseY, 0.1);
-    
-    calculateAngle(animationX, animationY, deep.value);
-    requestAnimationFrame(animation)
   }
-  requestAnimationFrame(animation)
-  
+  //requestAnimationFrame(animation)
+
+
+
+  var fpsInterval: any, startTime: any, now: any, then: any, elapsed: any;
+  var isAnimationStarted: boolean = false
+  var requestAnimationId: number = 0
+
+  function startAnimating(fps: number) {
+    if (isAnimationStarted) { return }
+    fpsInterval = 1000 / fps;
+    then = Date.now();
+    startTime = then;
+    animation();
+    isAnimationStarted = true
+  }
+  function stopAnimating() {
+    if (!isAnimationStarted) { return }
+    cancelAnimationFrame(requestAnimationId)
+    isAnimationStarted = false
+  }
+
+  startAnimating(30)
+
 
   // deep.value.addEventListener('mouseleave', (e: any) => {
 

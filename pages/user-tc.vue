@@ -77,7 +77,7 @@
   
             <!-- <NuxtLink to="/registration">Submit / go to registration / go to platform, actually</NuxtLink> -->
             <Transition name="-t-submit">
-              <a class="-up -b -red" href="https://atlas-squad.fiddle.digital/registration" v-if="checkedTerms">Go to my Dashoboard</a>
+              <a class="-up -b -red" :href="`https://atlas-squad.fiddle.digital/registration?email=${email}`" v-if="checkedTerms">Go to my Dashoboard</a>
             </Transition>
           </div>
 
@@ -90,15 +90,16 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import GlobalClass from '@/src/globalClass'
+import StringStorage from '~/src/string-storage';
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
 
 
 const checkedTerms = ref(false);
-
+const email = ref('')
 onMounted(() => {
-
+  email.value = StringStorage.getInstance().local.get('email')
 })
 onBeforeUnmount(() => {
 })
