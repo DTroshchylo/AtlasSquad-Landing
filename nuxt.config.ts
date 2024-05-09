@@ -90,6 +90,11 @@ export default defineNuxtConfig({
   hooks: {
     'pages:extend'(pages) {
       pages.push({
+        name: 'user-page',
+        path: '/user/:id',
+        file: '~/pages/user.vue',
+      })
+      pages.push({
         name: 'user-tc',
         path: '/user-tc',
         file: '~/pages/user-tc.vue',
@@ -99,11 +104,7 @@ export default defineNuxtConfig({
         path: '/influencer-tc',
         file: '~/pages/influencer-tc.vue',
       }),
-      pages.push({
-        name: 'user-page',
-        path: '/user/:id',
-        file: '~/pages/user.vue',
-      })
+      
       pages.push({
         name: 'invite-page',
         path: '/invite/:slug',

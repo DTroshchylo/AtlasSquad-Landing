@@ -2,8 +2,23 @@
     <main class="page user-page">
         <div v-if="user != null && user.status == null">
             <h5>{{ user.id }}</h5>
-            <div>{{ user.raiting }}</div>
+            <div>role: {{ user.role }}</div>
+            <div>description: {{ user.description }}</div>
+            <div>descriptionMentor: {{ user.descriptionMentor }}</div>
 
+            <div>percentageTopTotal: {{ user.placeInRating.percentageTopTotal }}</div>
+            <div>percentageBehindProgress: {{ user.placeInRating.percentageBehindProgress }}</div>
+
+            <div v-for="item in user.strengths">
+                <div>{{ item.title }}</div>
+                <div>{{ item.description }}</div>
+            </div>
+            <div v-for="item in user.weakSides">
+                <div>{{ item.title }}</div>
+                <div>{{ item.description }}</div>
+            </div>
+            
+            
         </div>
 
         <div v-if="user == null || user.status == 404">404</div>
