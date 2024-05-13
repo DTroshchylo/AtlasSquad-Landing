@@ -49,6 +49,7 @@
 import { ref, onMounted } from 'vue'
 import GlobalClass from '@/src/globalClass'
 import axios from 'axios';
+import StringValidation from '~/src/string-validation';
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
@@ -60,7 +61,10 @@ const socialLink = ref('')
 const registrationForm = ref()
 
 onMounted(() => {
+  let stringForm = StringValidation.getInstance()
+
   registrationForm.value?.addEventListener('submit', async (event: Event) => {
+    console.log('submit')
     event.preventDefault();
     axios.get(`https://atlas-squad-landing.fiddle.digital/api/send-influencer?name=${name.value}&email=${email.value}&message=${socialLink.value}&why=${why.value}`)
   })
