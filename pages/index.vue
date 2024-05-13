@@ -107,14 +107,14 @@
       <div class="-w">
         <div class="get-recruited -a-p -split" data-string>
           
-          <div>
+          <div class="-a-p" data-string>
             <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter="recruitedCap = true" @mouseleave="recruitedCap = false">
               <span class="wrap">
                 <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
     
                 <span class="-hover">Become our recruiter</span>
     
-                <svg>
+                <svg class="-a-to-top">
                   <use href="#icon-20_info"></use>
                 </svg>
               </span>
@@ -149,14 +149,10 @@ const onEmailChange = (value: any)=>{
 }
 
 const onSendEmail = ()=>{
-  
   storage.local.set('email', email.value)
-  
 }
 
 const deep = ref()
-
-
 
 const submitTextBasic = ref("Became a candidate >")
 const submitText = ref(">")
@@ -263,11 +259,11 @@ onMounted(() => {
 
   hoverElements.forEach(element => {
     element.addEventListener('mouseover', ()=>{
-      console.log(true)
+      // console.log(true)
       isHoverOnElement.value = true
     })
     element.addEventListener('mouseout', ()=>{
-      console.log(false)
+      // console.log(false)
       isHoverOnElement.value = false
     })
   });
@@ -362,6 +358,7 @@ onBeforeUnmount(() => {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    pointer-events: none;
 
     .bg-ray {
       position: absolute;
@@ -676,7 +673,7 @@ onBeforeUnmount(() => {
 
               scale: 1;
               opacity: 1;
-              transition: scale 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
+              transition: scale 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic),  transform 0.9s var(--f-cubic);
             }
           }
         }
@@ -747,56 +744,4 @@ html.-loaded {
 }
 
 
-
-
-@keyframes logo-bg {
-  0% {
-    opacity: 0.2;
-    scale: 1;
-  }
-  20% {
-    opacity: 0.8;
-  }
-  // 20.25% {
-  //   opacity: 0.0;
-  // }
-  // 20.5% {
-  //   opacity: 0.05;
-  // }
-  // 20.75% {
-  //   opacity: 0.0;
-  // }
-  // 21% {
-  //   opacity: 0.05;
-  // }
-  // 21.25% {
-  //   opacity: 0.0;
-  // }
-  // 21.5% {
-  //   opacity: 0.05;
-  // }
-  // 21.75% {
-  //   opacity: 0.0;
-  // }
-  // 22% {
-  //   opacity: 0.05;
-  // }
-  30% {
-    opacity: 0.0;
-  }
-  60% {
-    opacity: 0.99;
-    scale: 1.2;
-  }
-  65% {
-    opacity: 0.4;
-  }
-  90% {
-    opacity: 0.99;
-  }
-  100% {
-    opacity: 0.2;
-    scale: 1;
-  }
-}
 </style>

@@ -142,12 +142,7 @@ onBeforeUnmount(() => {
           margin-left: auto;
           margin-right: auto;
 
-          >* {
-            margin-left: 10%;
-          }
-          .-hl {
-            margin-left: initial;
-          }
+          >* {}
           .-h6 {
             margin-bottom: 1rem;
           }
@@ -161,9 +156,17 @@ onBeforeUnmount(() => {
           p {
             margin-bottom: 1rem;
           }
+          ul {
+            margin-left: 10%;
+
+            li {
+              list-style-type: decimal;
+            }
+          }
         }
 
         .submition {
+          position: relative;
           margin-top: 4rem;
           width: 49.29577465%;
           max-width: 35rem;
@@ -173,6 +176,8 @@ onBeforeUnmount(() => {
           flex-direction: column;
           justify-content: flex-start;
           align-items: center;
+
+          margin-bottom: 2rem;
 
           .checking {
             position: relative;
@@ -241,6 +246,8 @@ onBeforeUnmount(() => {
           }
 
           a {
+            position: absolute;
+            top: 100%;
             padding: 1rem;
             display: block;
           }

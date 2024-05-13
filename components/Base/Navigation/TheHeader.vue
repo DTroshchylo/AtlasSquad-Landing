@@ -20,26 +20,26 @@
   </header> -->
 
   <header class="the-header">
-    <div class="-w">
+    <div class="-w -a-p" data-string>
       <!-- <a href="/" class="logo -a-to-top" data-string>
         <svg>
           <use href="#logo-220x20_typo"></use>
         </svg>
       </a> -->
       <!-- <NuxtLink class="logo" to="/" v-if="path != '/'"> -->
-      <NuxtLink class="logo" to="/" >
+      <NuxtLink class="logo -a-to-top" to="/" >
         <svg>
           <use href="#logo-220x20_typo"></use>
         </svg>
       </NuxtLink>
-      <span>
-        <NuxtLink class="-grey" to="/more-info">
+      <div>
+        <NuxtLink class="-grey -a-to-top" style="--l-delay: 0.15;" to="/more-info">
           <span>More Info</span>
           <svg>
             <use href="#icon-20_info"></use>
           </svg>
         </NuxtLink>
-      </span>
+      </div>
     </div>
   </header>
 
@@ -107,7 +107,7 @@ onBeforeUnmount(() => {
         fill: var(--c-white);
       }
     }
-    >span {
+    >div {
       display: flex;
       justify-content: flex-end;
       width: 32.3943662%;
