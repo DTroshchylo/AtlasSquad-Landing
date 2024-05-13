@@ -1,54 +1,51 @@
 <template>
   <main class="page home-page" ref="deep">
-    <div
-      class="bg"
-      :class="[{
-        '-form-active': isFocusOnElement || isHoverOnElement
-      }]"
-    >
+    <div class="bg" :class="[{
+      '-form-active': isFocusOnElement || isHoverOnElement
+    }]">
       <span class="bg-ray"></span>
       <!-- <span class="bg-ray ray-1"></span> -->
       <!-- <span class="bg-ray ray-2"></span> -->
 
       <div class="-a-scale-in" data-string style="--l-delay: -0.15; --l-modifier: 1.5">
-        <figure class="deep-1" >
+        <figure class="deep-1">
           <svg>
             <use href="#logo-140x100_tl"></use>
           </svg>
         </figure>
-        <figure class="deep-2" >
+        <figure class="deep-2">
           <svg>
             <use href="#logo-140x100_tr"></use>
           </svg>
         </figure>
-        <figure class="deep-3" >
+        <figure class="deep-3">
           <svg>
             <use href="#logo-140x100_bl"></use>
           </svg>
         </figure>
-        <figure class="deep-4" >
+        <figure class="deep-4">
           <svg>
             <use href="#logo-140x100_br"></use>
           </svg>
         </figure>
 
 
-        <figure class="deep-1 deep-ghost" >
+        <figure class="deep-1 deep-ghost">
           <svg>
             <use href="#logo-140x100_tl"></use>
           </svg>
         </figure>
-        <figure class="deep-2 deep-ghost" >
+        <figure class="deep-2 deep-ghost">
           <svg>
             <use href="#logo-140x100_tr"></use>
           </svg>
         </figure>
-        <figure class="deep-3 deep-ghost" >
+        <figure class="deep-3 deep-ghost">
           <svg>
             <use href="#logo-140x100_bl"></use>
           </svg>
         </figure>
-        <figure class="deep-4 deep-ghost" >
+        <figure class="deep-4 deep-ghost">
           <svg>
             <use href="#logo-140x100_br"></use>
           </svg>
@@ -59,37 +56,31 @@
 
     <section class="c-welcome">
       <div class="-w">
-        <div
-          class="form-email"
-          :class="{
-            '-hidden': recruitedCap || joinCap
-          }"
-         >
+        <div class="form-email" :class="{
+          '-hidden': recruitedCap || joinCap
+        }">
           <h1 class="-tac -a-p -split" data-string>
             <span data-string-split style="--l-delay: 0.6;">What would you do with total willpower?</span>
           </h1>
-          <p class="caption -a-p -split" data-string >
+          <p class="caption -a-p -split" data-string>
             <span data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering journey</span>
           </p>
 
-          <form
-            action=""
-            class="-a-clip-center "
-            data-string
-            style="--l-delay: -0.15;"
-          >
-            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email" class="-focus-element -hover-element" />
+          <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
+            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email"
+              class="-focus-element -hover-element" />
 
             <!-- <button @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
             </button> -->
-            <NuxtLink to="/user-tc" @click.native="onSendEmail" @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
+            <button @click.native="onSendEmail($event)" @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave"
+              class="-hover-element">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
-            </NuxtLink>
+            </button>
 
           </form>
         </div>
@@ -99,21 +90,24 @@
 
     <Transition name="-t-desc">
       <div class="description -tac -a-p -split -split-random" data-string v-if="recruitedCap">
-        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas Squad experience is for a select group of achievers who want the very best in AI-driven, personalized self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
+        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas
+          Squad experience is for a select group of achievers who want the very best in AI-driven, personalized
+          self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
       </div>
     </Transition>
-    
+
     <section class="c-recruited">
       <div class="-w">
         <div class="get-recruited -a-p -split" data-string>
-          
+
           <div class="-a-p" data-string>
-            <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter="recruitedCap = true" @mouseleave="recruitedCap = false">
+            <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter="recruitedCap = true"
+              @mouseleave="recruitedCap = false">
               <span class="wrap">
                 <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
-    
+
                 <span class="-hover">Become our recruiter</span>
-    
+
                 <svg class="-a-to-top">
                   <use href="#icon-20_info"></use>
                 </svg>
@@ -132,6 +126,7 @@
 import { ref, onMounted } from 'vue'
 import GlobalClass from '@/src/globalClass'
 import StringStorage from '~/src/string-storage';
+import axios from 'axios';
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
@@ -144,12 +139,31 @@ const recruitedCap = ref(false)
 const joinCap = ref(false)
 
 const email = ref('')
-const onEmailChange = (value: any)=>{
+const error = ref('')
+const onEmailChange = (value: any) => {
   email.value = value
 }
 
-const onSendEmail = ()=>{
-  storage.local.set('email', email.value)
+const onSendEmail = async (e: any) => {
+  e.preventDefault()
+  if (/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\[\]\\.,;:\s@\"]+\.)+[^<>()\[\]\\.,;:\s@\"]{2,})$/.test(email.value)) {
+
+    let answer = await axios.post(`https://devnode1.palemiya.com/api/authorization/check-email`, {
+      email: email.value
+    })
+
+    if (answer.data.status == 403) {
+      error.value = 'Email reserv'
+    } else {
+      storage.local.set('email', email.value)
+      navigateTo(`/user-tc`)
+    }
+
+
+  } else {
+    error.value = 'Email not valid'
+  }
+
 }
 
 const deep = ref()
@@ -218,13 +232,13 @@ onMounted(() => {
     let x = Math.abs(item.getBoundingClientRect().x - clientX);
     let y = Math.abs(item.getBoundingClientRect().y - clientY);
 
-    
+
     let halfWidth = item.getBoundingClientRect().width / 2;
     let halfHeight = item.getBoundingClientRect().height / 2;
 
     let calcAngleX = (x - halfWidth) / 5;
     let calcAngleY = (y - halfHeight) / 5;
-    
+
     const deltaX = x - halfWidth;
     const deltaY = y - halfHeight;
 
@@ -240,8 +254,8 @@ onMounted(() => {
     mouseX = e.clientX
     mouseY = e.clientY
   });
-  function lerp (start: any, end: any, amt: any){
-    return (1-amt)*start+amt*end
+  function lerp(start: any, end: any, amt: any) {
+    return (1 - amt) * start + amt * end
   }
 
   let hoverElements = document.querySelectorAll('.-hover-element')
@@ -249,20 +263,20 @@ onMounted(() => {
 
 
   focusElements.forEach(element => {
-    element.querySelector('input')?.addEventListener('focus', ()=>{
+    element.querySelector('input')?.addEventListener('focus', () => {
       isFocusOnElement.value = true
     })
-    element.querySelector('input')?.addEventListener('blur', ()=>{
+    element.querySelector('input')?.addEventListener('blur', () => {
       isFocusOnElement.value = false
     })
   });
 
   hoverElements.forEach(element => {
-    element.addEventListener('mouseover', ()=>{
+    element.addEventListener('mouseover', () => {
       // console.log(true)
       isHoverOnElement.value = true
     })
-    element.addEventListener('mouseout', ()=>{
+    element.addEventListener('mouseout', () => {
       // console.log(false)
       isHoverOnElement.value = false
     })
@@ -270,7 +284,7 @@ onMounted(() => {
 
 
 
-  const animation = ()=>{
+  const animation = () => {
 
 
     requestAnimationId = requestAnimationFrame(animation)
@@ -278,7 +292,7 @@ onMounted(() => {
     elapsed = now - then;
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
-      if(isFocusOnElement.value || isHoverOnElement.value){
+      if (isFocusOnElement.value || isHoverOnElement.value) {
         mouseX = window.innerWidth / 2
         mouseY = window.innerHeight / 2
       }
@@ -349,7 +363,7 @@ onBeforeUnmount(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   .bg {
     position: absolute;
     width: 100%;
@@ -372,6 +386,7 @@ onBeforeUnmount(() => {
 
       animation: logo-bg 12s infinite ease-in-out;
     }
+
     // .ray-1 {}
     // .ray-2 {
     //   scale: -1 -1;
@@ -404,90 +419,70 @@ onBeforeUnmount(() => {
         will-change: transform;
 
         // transition: scale 0.3s var(--f-cubic);
-        
+
         svg {
-          fill: rgba(var(--c-black-rgb),0);
+          fill: rgba(var(--c-black-rgb), 0);
           stroke: var(--c-grey-4);
           // stroke: blue;
           stroke-width: 0.1px;
-          filter: drop-shadow( 0 0 1rem var(--c-white));
-          
+          filter: drop-shadow(0 0 1rem var(--c-white));
+
           scale: 1;
           transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.9s var(--f-back);
         }
       }
+
       .deep-1 {
         transform:
-          translate3d(
-            calc( var(--gX) * -0.75px ),
-            calc( var(--gY) * -0.5px ),
-            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 20rem)
-          )
-          rotateZ(calc( var(--angleX) / 600 * 30deg))
-          rotateX(calc( var(--angleY) / 200 * -15deg))
-          rotateY(calc( var(--angleX) / 600 * 30deg))
-        ;
-        
+          translate3d(calc(var(--gX) * -0.75px),
+            calc(var(--gY) * -0.5px),
+            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 20rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
+
         svg {
           animation: blinking 0.3s ease infinite;
-          
+
           transition-delay: 0.15s;
         }
       }
+
       .deep-2 {
         transform:
-          translate3d(
-            calc( var(--gX) * -0.75px ),
-            calc( var(--gY) * -0.5px ),
-            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -50rem)
-          )
-          rotateZ(calc( var(--angleX) / 600 * 30deg))
-          rotateX(calc( var(--angleY) / 200 * -15deg))
-          rotateY(calc( var(--angleX) / 600 * 30deg))
-        ;
+          translate3d(calc(var(--gX) * -0.75px),
+            calc(var(--gY) * -0.5px),
+            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -50rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
 
-        
+
         svg {
           animation: blinking 0.45s ease infinite;
 
           transition-delay: 0.225s;
         }
       }
+
       .deep-3 {
         transform:
-          translate3d(
-            calc( var(--gX) * -1.125px ),
-            calc( var(--gY) * -0.75px ),
-            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -30rem)
-          )
-          rotateZ(calc( var(--angleX) / 600 * 30deg))
-          rotateX(calc( var(--angleY) / 200 * -15deg))
-          rotateY(calc( var(--angleX) / 600 * 30deg))
-        ;
+          translate3d(calc(var(--gX) * -1.125px),
+            calc(var(--gY) * -0.75px),
+            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -30rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
 
-        
+
         svg {
           animation: blinking 0.6s ease infinite;
-          
+
           transition-delay: 0.3s;
         }
       }
+
       .deep-4 {
         transform:
-          translate3d(
-            calc( var(--gX) * -1.5px ),
-            calc( var(--gY) * -1px ),
-            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem)
-          )
-          rotateZ(calc( var(--angleX) / 600 * 30deg))
-          rotateX(calc( var(--angleY) / 200 * -15deg))
-          rotateY(calc( var(--angleX) / 600 * 30deg))
-        ;
+          translate3d(calc(var(--gX) * -1.5px),
+            calc(var(--gY) * -1px),
+            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
 
-        
+
         svg {
           animation: blinking 0.75s ease infinite;
-          
+
           transition-delay: 0.45s;
         }
       }
@@ -503,15 +498,16 @@ onBeforeUnmount(() => {
       }
     }
   }
+
   .bg.-form-active {
     div {
       // perspective: 0rem;
 
       figure {
         svg {
-          fill: rgba(var(--c-black-rgb),1);
+          fill: rgba(var(--c-black-rgb), 1);
           scale: 0.8;
-          filter: drop-shadow( 0 0 0rem var(--c-white));
+          filter: drop-shadow(0 0 0rem var(--c-white));
 
           transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.3s var(--f-cubic);
         }
@@ -546,14 +542,16 @@ onBeforeUnmount(() => {
           max-width: 25rem;
           margin-left: auto;
           margin-right: auto;
-         margin-bottom: 0.5rem;
+          margin-bottom: 0.5rem;
         }
+
         .caption {
           text-align: center;
           max-width: 25rem;
           margin-left: auto;
           margin-right: auto;
         }
+
         form {
           margin-top: 1.25rem;
           // width: 32.3943662%;
@@ -581,10 +579,12 @@ onBeforeUnmount(() => {
             transition: opacity 0.9s var(--f-cubic);
             transition-delay: 0.9s;
           }
+
           .field {
             margin-bottom: initial;
             flex-grow: 1;
           }
+
           button,
           a {
             position: absolute;
@@ -610,6 +610,7 @@ onBeforeUnmount(() => {
                 content: attr(data-text);
                 visibility: hidden;
               }
+
               span {
                 position: absolute;
                 text-align: right;
@@ -618,17 +619,19 @@ onBeforeUnmount(() => {
           }
         }
       }
+
       .form-email.-hidden {
         opacity: 0;
       }
     }
   }
+
   .c-recruited {
     margin-top: auto;
     width: 100%;
 
     .get-recruited {
-      margin-bottom: clamp(3rem,5%,5%);
+      margin-bottom: clamp(3rem, 5%, 5%);
       display: flex;
       justify-content: center;
       width: 49.29577465%;
@@ -641,7 +644,7 @@ onBeforeUnmount(() => {
         text-align: center;
 
         // border: 1px solid blue;
-        
+
         a {
           padding: 1rem;
           display: flex;
@@ -656,15 +659,17 @@ onBeforeUnmount(() => {
 
             .-base {
               opacity: 1;
-              transform: translate(0,0);
+              transform: translate(0, 0);
               transition: transform 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
             }
+
             .-hover {
               position: absolute;
               opacity: 0;
-              transform: translate(0,100%);
+              transform: translate(0, 100%);
               transition: transform 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
             }
+
             svg {
               width: 1rem;
               position: absolute;
@@ -673,10 +678,11 @@ onBeforeUnmount(() => {
 
               scale: 1;
               opacity: 1;
-              transition: scale 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic),  transform 0.9s var(--f-cubic);
+              transition: scale 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic), transform 0.9s var(--f-cubic);
             }
           }
         }
+
         a:hover {
           animation: blinking 0.6s infinite step-end;
 
@@ -684,12 +690,14 @@ onBeforeUnmount(() => {
 
             .-base {
               opacity: 0;
-              transform: translate(0,-50%);
+              transform: translate(0, -50%);
             }
+
             .-hover {
               opacity: 1;
-              transform: translate(0,0);
+              transform: translate(0, 0);
             }
+
             svg {
               scale: 0;
               opacity: 0;
@@ -709,12 +717,14 @@ onBeforeUnmount(() => {
     margin-left: auto;
     margin-right: auto;
   }
+
   .-t-desc-enter-active,
   .-t-desc-leave-active {
     opacity: 1;
     scale: 1;
     transition: opacity 0.6s var(--f-cubic), scale 0.6s var(--f-cubic);
   }
+
   .-t-desc-enter-from,
   .-t-desc-leave-to {
     opacity: 0 !important;
@@ -742,6 +752,4 @@ html.-loaded {
 @media (min-width: 1024px) {
   .page {}
 }
-
-
 </style>
