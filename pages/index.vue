@@ -149,14 +149,10 @@ const onEmailChange = (value: any)=>{
 }
 
 const onSendEmail = ()=>{
-  
   storage.local.set('email', email.value)
-  
 }
 
 const deep = ref()
-
-
 
 const submitTextBasic = ref("Became a candidate >")
 const submitText = ref(">")
@@ -263,11 +259,11 @@ onMounted(() => {
 
   hoverElements.forEach(element => {
     element.addEventListener('mouseover', ()=>{
-      console.log(true)
+      // console.log(true)
       isHoverOnElement.value = true
     })
     element.addEventListener('mouseout', ()=>{
-      console.log(false)
+      // console.log(false)
       isHoverOnElement.value = false
     })
   });
@@ -748,56 +744,4 @@ html.-loaded {
 }
 
 
-
-
-@keyframes logo-bg {
-  0% {
-    opacity: 0.2;
-    scale: 1;
-  }
-  20% {
-    opacity: 0.8;
-  }
-  // 20.25% {
-  //   opacity: 0.0;
-  // }
-  // 20.5% {
-  //   opacity: 0.05;
-  // }
-  // 20.75% {
-  //   opacity: 0.0;
-  // }
-  // 21% {
-  //   opacity: 0.05;
-  // }
-  // 21.25% {
-  //   opacity: 0.0;
-  // }
-  // 21.5% {
-  //   opacity: 0.05;
-  // }
-  // 21.75% {
-  //   opacity: 0.0;
-  // }
-  // 22% {
-  //   opacity: 0.05;
-  // }
-  30% {
-    opacity: 0.0;
-  }
-  60% {
-    opacity: 0.99;
-    scale: 1.2;
-  }
-  65% {
-    opacity: 0.4;
-  }
-  90% {
-    opacity: 0.99;
-  }
-  100% {
-    opacity: 0.2;
-    scale: 1;
-  }
-}
 </style>

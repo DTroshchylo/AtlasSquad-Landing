@@ -291,4 +291,34 @@ onBeforeUnmount(() => {
     opacity: 1;
   }
 }
+
+
+
+
+@keyframes logo-bg {
+  0% {
+    opacity: 0.2;
+    scale: 1;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  30% {
+    opacity: 0.0;
+  }
+  60% {
+    opacity: 0.99;
+    scale: 1.2;
+  }
+  65% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.99;
+  }
+  100% {
+    opacity: 0.2;
+    scale: 1;
+  }
+}
 </style>
