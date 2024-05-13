@@ -13,7 +13,7 @@
           <form ref="registrationForm" data-string-validation-form="registration" data-string-storage="registration">
             <div class="row">
               <label for="form-email">Email</label>
-              <input class="-tac" id="form-email" v-model="email" type="password" data-string-id="email"
+              <input class="-tac" id="form-email" v-model="email" type="text" data-string-id="email"
                 data-string-validation="email|Email not formated;required|Field is required">
               <div class="error" data-string-validation-error="email"></div>
             </div>
