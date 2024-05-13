@@ -1,5 +1,5 @@
 <template>
-  <main class="page temp-page" >
+  <main class="page temp-page">
     <section class="c-temp">
       <div class="-w">
         <a href="/" class="logo -a-to-top" data-string>
@@ -7,14 +7,14 @@
             <use href="#logo-220x20_typo"></use>
           </svg>
         </a>
-  
+
         <div class="temp-registration">
-          <input placeholder="email" text="youremail@already.here">
-          <input placeholder="name">
-          <input placeholder="surname">
-          <input placeholder="link to channetl">
-  
-          <a href="https://atlas-squad.fiddle.digital" target="_blank">We click and we get a notification 'Done'</a>
+          <input placeholder="email" text="youremail@already.here" v-model="email">
+          <input placeholder="name" v-model="name">
+          <input placeholder="link to channetl" v-model="socialLink">
+          <input placeholder="why" v-model="why">
+
+          <a @click="submit">We click and we get a notification 'Done'</a>
           <p>Once the form is submitted — Atlas Squad team gets the request through Email, Slack, whatever</p>
         </div>
       </div>
@@ -25,12 +25,19 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import GlobalClass from '@/src/globalClass'
+import axios from 'axios';
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
 
+const name = ref('')
+const email = ref('')
+const why = ref('')
+const socialLink = ref('')
 
-
+const submit = () => {
+  axios.get(`https://atlas-squad-landing.fiddle.digital/api/send-influencer?name=${name.value}&email=${email.value}&message=${socialLink.value}&why=${why.value}`)
+}
 
 onMounted(() => {
 
@@ -63,18 +70,18 @@ onBeforeUnmount(() => {
       &::after {
         content: '';
         display: block;
-        margin-bottom: clamp(6rem,10%,10%);
+        margin-bottom: clamp(6rem, 10%, 10%);
       }
 
       .logo {
         // border: 1px solid blue;
-        
+
         display: block;
         width: 11rem;
         margin-left: auto;
         margin-right: auto;
         margin-bottom: auto;
-        margin-top: clamp(3rem,5%,5%);
+        margin-top: clamp(3rem, 5%, 5%);
 
         svg {
           fill: var(--c-grey-0);
@@ -82,6 +89,7 @@ onBeforeUnmount(() => {
           aspect-ratio: 220/20;
         }
       }
+
       .logo:hover {
         svg {
           fill: var(--c-white);
@@ -89,8 +97,8 @@ onBeforeUnmount(() => {
       }
 
       .temp-registration {
-        
-        
+
+
         text-align: center;
 
         input {
@@ -121,5 +129,4 @@ html.-loaded {
 @media (min-width: 1024px) {
   .page {}
 }
-
 </style>
