@@ -9,13 +9,36 @@
         </a>
 
         <div class="temp-registration">
-          <input placeholder="email" text="youremail@already.here" v-model="email">
-          <input placeholder="name" v-model="name">
-          <input placeholder="link to channetl" v-model="socialLink">
-          <input placeholder="why" v-model="why">
 
-          <a @click="submit">We click and we get a notification 'Done'</a>
-          <p>Once the form is submitted — Atlas Squad team gets the request through Email, Slack, whatever</p>
+          <form ref="registrationForm" data-string-validation-form="registration" data-string-storage="registration">
+            <div class="row">
+              <label for="form-email">Email</label>
+              <input class="-tac" id="form-email" v-model="email" type="password" data-string-id="email"
+                data-string-validation="email|Email not formated;required|Field is required">
+              <div class="error" data-string-validation-error="email"></div>
+            </div>
+            <div class="row">
+              <label for="">Name</label>
+              <input v-model="name" type="text" data-string-id="name"
+                data-string-validation="required|Field is required">
+              <div class="error" data-string-validation-error="name"></div>
+            </div>
+            <div class="row">
+              <label for="">Link to channel</label>
+              <input v-model="socialLink" type="text" data-string-id="socialLink"
+                data-string-validation="required|Field is required">
+              <div class="error" data-string-validation-error="socialLink"></div>
+            </div>
+            <div class="row">
+              <label for="">Why</label>
+              <input v-model="why" type="text">
+            </div>
+
+
+            <button type="submit" class="-link -red -up -b">Registration</button>
+            <p>Once the form is submitted — Atlas Squad team gets the request through Email, Slack, whatever</p>
+          </form>
+
         </div>
       </div>
     </section>
@@ -34,13 +57,13 @@ const name = ref('')
 const email = ref('')
 const why = ref('')
 const socialLink = ref('')
-
-const submit = () => {
-  axios.get(`https://atlas-squad-landing.fiddle.digital/api/send-influencer?name=${name.value}&email=${email.value}&message=${socialLink.value}&why=${why.value}`)
-}
+const registrationForm = ref()
 
 onMounted(() => {
-
+  registrationForm.value?.addEventListener('submit', async (event: Event) => {
+    event.preventDefault();
+    axios.get(`https://atlas-squad-landing.fiddle.digital/api/send-influencer?name=${name.value}&email=${email.value}&message=${socialLink.value}&why=${why.value}`)
+  })
 })
 onBeforeUnmount(() => {
 })
