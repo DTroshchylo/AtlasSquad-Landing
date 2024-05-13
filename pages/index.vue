@@ -107,14 +107,14 @@
       <div class="-w">
         <div class="get-recruited -a-p -split" data-string>
           
-          <div>
+          <div class="-a-p" data-string>
             <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter="recruitedCap = true" @mouseleave="recruitedCap = false">
               <span class="wrap">
                 <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
     
                 <span class="-hover">Become our recruiter</span>
     
-                <svg>
+                <svg class="-a-to-top">
                   <use href="#icon-20_info"></use>
                 </svg>
               </span>
@@ -362,6 +362,7 @@ onBeforeUnmount(() => {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    pointer-events: none;
 
     .bg-ray {
       position: absolute;
@@ -676,7 +677,7 @@ onBeforeUnmount(() => {
 
               scale: 1;
               opacity: 1;
-              transition: scale 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
+              transition: scale 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic),  transform 0.9s var(--f-cubic);
             }
           }
         }

@@ -1,7 +1,7 @@
 <template>
   <footer class="the-footer">
-    <div class="-w">
-      <NuxtLink to="/privacy-cookies" class="-grey">Privacy and cookie policy</NuxtLink>
+    <div class="-w -a-p" data-string>
+      <NuxtLink to="/privacy-cookies" class="-grey -a-to-bottom" style="--l-delay: 0.3">Privacy and cookie policy</NuxtLink>
     </div>
   </footer>
 </template>
@@ -28,5 +28,11 @@ onUnmounted(() => {
   bottom: 0;
   padding: 1rem 0;
   margin-top: auto;
+
+  .-w {
+    a {
+      display: inline-block;
+    }
+  }
 }
 </style>
