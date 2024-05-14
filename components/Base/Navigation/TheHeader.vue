@@ -1,32 +1,6 @@
 <template>
-  <!-- <header>
-    <span class="bg"></span>
-    <div class="-w">
-      <a class="logo" href="/">
-        <svg>
-          <use href="#logo-140x100_tl"></use>
-        </svg>
-        <svg>
-          <use href="#logo-140x100_tr"></use>
-        </svg>
-        <svg>
-          <use href="#logo-140x100_bl"></use>
-        </svg>
-        <svg>
-          <use href="#logo-140x100_br"></use>
-        </svg>
-      </a>
-    </div>
-  </header> -->
-
   <header class="the-header">
     <div class="-w -a-p" data-string>
-      <!-- <a href="/" class="logo -a-to-top" data-string>
-        <svg>
-          <use href="#logo-220x20_typo"></use>
-        </svg>
-      </a> -->
-      <!-- <NuxtLink class="logo" to="/" v-if="path != '/'"> -->
       <NuxtLink class="logo -a-to-top" to="/" >
         <svg>
           <use href="#logo-220x20_typo"></use>
@@ -79,22 +53,19 @@ onBeforeUnmount(() => {
   left: 0;
   z-index: 100;
   width: 100%;
-  // margin-bottom: auto;
-  margin-top: clamp(3rem,5%,5%);
+
+  margin-top: 2rem;
   
   .-w {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
 
-    &::before {
-      content: '';
-      width: 32.3943662%;
-    }
     .logo {
       flex-shrink: 0;
       display: block;
-      width: 11rem;
+      width: 13rem;
   
       svg {
         fill: var(--c-grey-0);
@@ -102,17 +73,10 @@ onBeforeUnmount(() => {
         aspect-ratio: 220/20;
       }
     }
-    .logo:hover {
-      svg {
-        fill: var(--c-white);
-      }
-    }
+    
     >div {
-      display: flex;
-      justify-content: flex-end;
-      width: 32.3943662%;
-      text-align: right;
-  
+      margin-top: 1rem;
+
       a {
         display: flex;
   
@@ -121,9 +85,45 @@ onBeforeUnmount(() => {
           transform: translate(0,-50%);
         }
       }
-      a:hover {
+      
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .the-header {
+    margin-top: clamp(3rem,5%,5%);
+
+    .-w {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+
+      &::before {
+        content: '';
+        width: 32.3943662%;
+      }
+      .logo {
+        width: 11rem;
+      }
+      .logo:hover {
         svg {
           fill: var(--c-white);
+        }
+      }
+      >div {
+        margin-top: initial;
+        margin-left: initial;
+        margin-right: initial;
+        text-align: right;
+        display: flex;
+        justify-content: flex-end;
+        width: 32.3943662%;
+
+        a:hover {
+          svg {
+            fill: var(--c-white);
+          }
         }
       }
     }

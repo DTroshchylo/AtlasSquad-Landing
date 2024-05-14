@@ -30,8 +30,22 @@ onUnmounted(() => {
   margin-top: auto;
 
   .-w {
+    display: flex;
+    justify-content: center;
+
     a {
       display: inline-block;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .the-footer {
+    .-w {
+      justify-content: initial;
+      display: block;
+
+      a {}
     }
   }
 }
