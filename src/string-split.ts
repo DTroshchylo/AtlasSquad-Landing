@@ -35,6 +35,7 @@ class StringSplit {
 
   public split(config: IStringSplitConfig): any {
     if (config.text.length === 0) return "";
+    config.text = this.decodeHtmlEntity(config.text)
     const element = document.createElement('span');
     const words = config.text.split(' ');
 
@@ -53,7 +54,6 @@ class StringSplit {
     let charsCount = 0
     words.forEach((word, wordIndex) => {
       const randomizedWordIndices = config.mode == "random" ? this.createRandomIndices(word.length) : null;
-
       let wordData = this.createWordSpan(word, wordIndex, globalCharIndex, randomizedIndices, randomizedWordIndices, config)
       const wordSpan = wordData.element;
       element.appendChild(wordSpan);
@@ -181,6 +181,10 @@ class StringSplit {
     }
     return indices;
   }
+
+  private decodeHtmlEntity(str: string) {
+    return str.replace(/&amp;/g, '&')
+  };
 }
 
 export default StringSplit
