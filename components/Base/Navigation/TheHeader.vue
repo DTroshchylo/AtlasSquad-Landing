@@ -79,7 +79,8 @@ onBeforeUnmount(() => {
 
       a {
         display: flex;
-  
+        margin-right: -0.5rem;
+
         svg {
           width: 1rem;
           transform: translate(0,-50%);
@@ -120,6 +121,9 @@ onBeforeUnmount(() => {
         justify-content: flex-end;
         width: 32.3943662%;
 
+        a {
+          margin-right: initial;
+        }
         a:hover {
           svg {
             fill: var(--c-white);
