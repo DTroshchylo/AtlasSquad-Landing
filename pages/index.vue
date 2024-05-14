@@ -239,6 +239,8 @@ let isFocusOnElement = ref(false), isHoverOnElement = ref(false)
 
 
 
+var startAnimating: any
+var stopAnimating: any
 
 // query check
 let mobile = ref(false)
@@ -247,12 +249,16 @@ let queryCheck = () => {
   if (window.innerWidth >= 1024) {
     mobile.value = false
     desktop.value = true
+
+    startAnimating(30)
   } else {
     mobile.value = true
     desktop.value = false
+
+    stopAnimating()
   }
 }
-var stopAnimating: any
+
 
 onMounted(() => {
 
@@ -344,7 +350,7 @@ onMounted(() => {
   var isAnimationStarted: boolean = false
   var requestAnimationId: number = 0
 
-  function startAnimating(fps: number) {
+  startAnimating = (fps: number) => {
     if (isAnimationStarted) { return }
     fpsInterval = 1000 / fps;
     then = Date.now();
