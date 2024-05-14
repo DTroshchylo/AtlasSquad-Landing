@@ -7,20 +7,24 @@
 
     <section class="c-form">
       <div class="-w">
-        <form ref="registrationForm" class="-a-p" data-string data-string-validation-form="registration" data-string-storage="registration">
+        <form ref="registrationForm" class="-a-p" data-string data-string-validation-form="registration"
+          data-string-storage="registration">
           <div class="row -a-scale-out" style="--l-delay: 0;">
             <label for="form-email">Email *</label>
-            <input id="form-email" class="-tac" v-model="email" type="text" data-string-id="email" data-string-validation="email|Email not formated;required|Field is required">
+            <input id="form-email" class="-tac" v-model="email" type="text" data-string-id="email"
+              data-string-validation="email|Email not formated;required|Field is required">
             <div class="-error -mm" data-string-validation-error="email"></div>
           </div>
           <div class="row -a-scale-out" style="--l-delay: 0.075;">
             <label for="form-name">Name *</label>
-            <input id="form-name" v-model="name" type="text" data-string-id="name" data-string-validation="required|Field is required">
+            <input id="form-name" v-model="name" type="text" data-string-id="name"
+              data-string-validation="required|Field is required">
             <div class="-error -mm" data-string-validation-error="name"></div>
           </div>
           <div class="row -a-scale-out" style="--l-delay: 0.15;">
             <label for="form-channel-link">Link to channel *</label>
-            <input id="form-channel-link" v-model="socialLink" type="text" data-string-id="socialLink" data-string-validation="required|Field is required">
+            <input id="form-channel-link" v-model="socialLink" type="text" data-string-id="socialLink"
+              data-string-validation="required|Field is required">
             <div class="-error -mm" data-string-validation-error="socialLink"></div>
           </div>
           <div class="row -a-scale-out" style="--l-delay: 0.225;">
@@ -53,7 +57,7 @@
             </span>
 
             <button type="submit" class="-link -red -up -b -a-to-bottom" style="--l-delay: 0.15;">Submit Form</button>
-            
+
           </div>
         </form>
 
@@ -105,7 +109,7 @@ onBeforeUnmount(() => {
   padding-top: initial !important;
   padding-bottom: initial !important;
 
-  
+
 
   .bg {
     position: absolute;
@@ -134,17 +138,18 @@ onBeforeUnmount(() => {
       animation: logo-bg 12s infinite ease-in-out;
     }
   }
+
   .c-form {
     position: relative;
 
-    
+
     .-w {
       height: 100%;
       min-height: 100vh;
       min-height: calc(var(--vh, 1vh) * 100);
       display: flex;
       align-items: center;
-      
+
 
       form {
         padding-top: 8rem;
@@ -155,6 +160,7 @@ onBeforeUnmount(() => {
           margin-bottom: 1.5rem;
 
           .-error {
+            display: none;
             position: absolute;
             top: 100%;
             right: 0;
@@ -162,13 +168,17 @@ onBeforeUnmount(() => {
             background-color: var(--c-grey-2);
             color: var(--c-red);
           }
+
+          .-error.-show {
+            display: initial;
+          }
         }
 
         .submition {
           position: relative;
           margin-top: 2rem;
           // margin-top: 4rem;
-          
+
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
@@ -199,6 +209,7 @@ onBeforeUnmount(() => {
               opacity: 0.5;
               cursor: pointer;
             }
+
             .checkmark {
               flex-shrink: 0;
               position: relative;
@@ -228,6 +239,7 @@ onBeforeUnmount(() => {
               }
             }
           }
+
           .checking input:checked~.checkmark {
             svg {
               opacity: 1;
@@ -252,6 +264,7 @@ onBeforeUnmount(() => {
     }
   }
 }
+
 @media (min-width: 1024px) {
   .page {
     .bg {
@@ -262,11 +275,12 @@ onBeforeUnmount(() => {
         height: 100%;
       }
     }
+
     .c-form {
-      
+
       .-w {
         form {
-          padding-top: clamp(6rem,10%,10%);
+          padding-top: clamp(6rem, 10%, 10%);
           padding-bottom: 4rem;
           // margin-top: clamp(3rem,5%,5%);
 
@@ -276,14 +290,14 @@ onBeforeUnmount(() => {
           margin-right: auto;
 
 
-          
+
           .submition {
             width: 49.29577465%;
             max-width: 35rem;
             margin-left: auto;
             margin-right: auto;
 
-            
+
           }
         }
       }
