@@ -252,7 +252,7 @@ let queryCheck = () => {
     desktop.value = false
   }
 }
-
+var stopAnimating: any
 
 onMounted(() => {
 
@@ -352,7 +352,7 @@ onMounted(() => {
     animation();
     isAnimationStarted = true
   }
-  function stopAnimating() {
+  stopAnimating = () => {
     if (!isAnimationStarted) { return }
     cancelAnimationFrame(requestAnimationId)
     isAnimationStarted = false
@@ -383,6 +383,7 @@ onMounted(() => {
 
 })
 onBeforeUnmount(() => {
+  stopAnimating()
   window.removeEventListener("resize", queryCheck)
 })
 
