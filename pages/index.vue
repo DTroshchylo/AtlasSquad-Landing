@@ -7,7 +7,7 @@
       <!-- <span class="bg-ray ray-1"></span> -->
       <!-- <span class="bg-ray ray-2"></span> -->
 
-      <div class="-a-scale-in" data-string style="--l-delay: -0.15; --l-modifier: 1.5">
+      <div class="-a-scale-in" ref="bglogo" data-string style="--l-delay: -0.15; --l-modifier: 1.5">
         <figure class="deep-1">
           <svg>
             <use href="#logo-140x100_tl"></use>
@@ -63,30 +63,30 @@
             <span data-string-split style="--l-delay: 0.6;">What would you do with total willpower?</span>
           </h1>
           <p class="caption -a-p -split" data-string>
-            <span class="-m-m" data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering journey</span>
+            <span class="-m-m" data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering
+              journey</span>
           </p>
 
           <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
-            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email" class="-focus-element -hover-element" />
-            
-            <button
-              @click.native="onSendEmail($event)"
-              @mouseenter="submitButtonEnter"
-              @mouseleave="submitButtonLeave"
-              class="-hover-element"
+            <BaseInput :type="'email'" :onInputChanged="onEmailChange" itsPlaceholder="Enter your email"
+              class="-focus-element -hover-element" />
 
-              v-if="desktop"
-            >
+            <button type="submit" @click.native="onSendEmail($event)" @mouseenter="submitButtonEnter"
+              @mouseleave="submitButtonLeave" class="-hover-element" v-if="desktop">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
             </button>
 
-            <button @click.native="onSendEmail($event)" v-if="mobile" class="-tac">
+
+
+            <button type="submit" @click.native="onSendEmail($event)" v-if="mobile" class="-tac">
               <span class="-up -b -link">Became a candidate ></span>
             </button>
 
           </form>
+
+
         </div>
       </div>
     </section>
@@ -94,7 +94,9 @@
 
     <Transition name="-t-desc">
       <div class="description -tac -a-p -split -split-random" data-string v-if="desktop && recruitedCap">
-        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas Squad experience is for a select group of achievers who want the very best in AI-driven, personalized self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
+        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas
+          Squad experience is for a select group of achievers who want the very best in AI-driven, personalized
+          self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
       </div>
     </Transition>
 
@@ -103,14 +105,8 @@
         <div class="get-recruited -a-p -split" data-string>
 
           <div class="-a-p" data-string>
-            <NuxtLink
-              to="/influencer-tc"
-              class="-up -b -hover-element"
-              @mouseenter.native="recruitedCap = true"
-              @mouseleave.native="recruitedCap = false"
-
-              v-if="desktop"
-            >
+            <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter.native="recruitedCap = true"
+              @mouseleave.native="recruitedCap = false" v-if="desktop">
               <span class="wrap">
                 <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
 
@@ -122,11 +118,7 @@
               </span>
             </NuxtLink>
 
-            <NuxtLink
-              to="/influencer-tc"
-              class="-up -b"
-              v-if="mobile"
-            >
+            <NuxtLink to="/influencer-tc" class="-up -b" v-if="mobile">
               <span class="" style="--l-delay: 0.9;" data-string-split>Become our recruiter</span>
             </NuxtLink>
 
@@ -164,15 +156,19 @@ const global = nuxtApp.$globalClass as GlobalClass
 
 const recruitedCap = ref(false)
 const joinCap = ref(false)
+const isFocus = ref(false)
 
 const email = ref('')
 const error = ref('')
+const errors = ref(new Array<string>())
 const onEmailChange = (value: any) => {
   email.value = value
 }
 
+
 const onSendEmail = async (e: any) => {
-  e.preventDefault()
+  //e.preventDefault()
+  errors.value = new Array<string>()
   if (/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\[\]\\.,;:\s@\"]+\.)+[^<>()\[\]\\.,;:\s@\"]{2,})$/.test(email.value)) {
 
     let answer = await axios.post(`https://devnode1.palemiya.com/api/authorization/check-email`, {
@@ -181,6 +177,7 @@ const onSendEmail = async (e: any) => {
 
     if (answer.data.status == 403) {
       error.value = 'Email reserv'
+      errors.value.push('Email reserv')
     } else {
       storage.local.set('email', email.value)
       navigateTo(`/user-tc`)
@@ -189,11 +186,14 @@ const onSendEmail = async (e: any) => {
 
   } else {
     error.value = 'Email not valid'
+    errors.value.push('Email not valid')
   }
 
 }
 
+
 const deep = ref()
+const bglogo = ref()
 
 const submitTextBasic = ref("Became a candidate >")
 const submitText = ref(">")
@@ -283,7 +283,7 @@ onMounted(() => {
     item.style.setProperty('--gY', deltaY)
   }
   deep.value.addEventListener('mousemove', (e: any) => {
-    if(desktop.value == true) {
+    if (desktop.value == true) {
       mouseX = e.clientX
       mouseY = e.clientY
     }
@@ -307,12 +307,12 @@ onMounted(() => {
 
   hoverElements.forEach(element => {
     element.addEventListener('mouseover', () => {
-      if(desktop.value == true) {
+      if (desktop.value == true) {
         isHoverOnElement.value = true
       }
     })
     element.addEventListener('mouseout', () => {
-      if(desktop.value == true) {
+      if (desktop.value == true) {
         isHoverOnElement.value = false
       }
     })
@@ -334,7 +334,7 @@ onMounted(() => {
       }
       animationX = lerp(animationX, mouseX, 0.1);
       animationY = lerp(animationY, mouseY, 0.1);
-      calculateAngle(animationX, animationY, deep.value);
+      calculateAngle(animationX, animationY, bglogo.value);
     }
   }
   //requestAnimationFrame(animation)
@@ -406,7 +406,7 @@ onBeforeUnmount(() => {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   .bg {
     position: absolute;
     width: 100%;
@@ -431,6 +431,7 @@ onBeforeUnmount(() => {
 
       animation: logo-bg 12s infinite ease-in-out;
     }
+
     div {
       position: absolute;
       top: 0;
@@ -460,30 +461,35 @@ onBeforeUnmount(() => {
           transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.9s var(--f-back);
         }
       }
+
       .deep-1 {
         svg {
           animation: blinking 0.3s ease infinite;
           transition-delay: 0.15s;
         }
       }
+
       .deep-2 {
         svg {
           animation: blinking 0.45s ease infinite;
           transition-delay: 0.225s;
         }
       }
+
       .deep-3 {
         svg {
           animation: blinking 0.6s ease infinite;
           transition-delay: 0.3s;
         }
       }
+
       .deep-4 {
         svg {
           animation: blinking 0.75s ease infinite;
           transition-delay: 0.45s;
         }
       }
+
       .deep-ghost {
         scale: 1.1;
         opacity: 0.6;
@@ -495,7 +501,7 @@ onBeforeUnmount(() => {
       }
     }
   }
-  
+
 
   .c-welcome {
     height: 100%;
@@ -505,7 +511,7 @@ onBeforeUnmount(() => {
     // margin-top: 5rem;
     margin-top: auto;
     margin-bottom: -5rem;
-    
+
     .-w {
       position: relative;
       height: 100%;
@@ -535,7 +541,7 @@ onBeforeUnmount(() => {
         form {
           margin-top: 1.25rem;
           position: relative;
-          
+
           &::after {
             content: '';
             display: block;
@@ -557,6 +563,7 @@ onBeforeUnmount(() => {
               text-align: center;
             }
           }
+
           button {
             width: 100%;
           }
@@ -616,7 +623,7 @@ onBeforeUnmount(() => {
           }
         }
 
-        
+
       }
     }
   }
@@ -664,8 +671,8 @@ html.-loaded {
 
 @media (max-width: 1024px) {
   .page {
-    .bg {
-    }
+    .bg {}
+
     .bg.-form-active {
       div {
         figure {
@@ -691,6 +698,7 @@ html.-loaded {
         width: 100%;
         height: 100%;
       }
+
       div {
         perspective: 100rem;
         transform: perspective 0.6s var(--f-swoosh);
@@ -709,18 +717,21 @@ html.-loaded {
               calc(var(--gY) * -0.5px),
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 20rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
         }
+
         .deep-2 {
           transform:
             translate3d(calc(var(--gX) * -0.75px),
               calc(var(--gY) * -0.5px),
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -50rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
         }
+
         .deep-3 {
           transform:
             translate3d(calc(var(--gX) * -1.125px),
               calc(var(--gY) * -0.75px),
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -30rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
         }
+
         .deep-4 {
           transform:
             translate3d(calc(var(--gX) * -1.5px),
@@ -728,7 +739,7 @@ html.-loaded {
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
         }
 
-        
+
       }
     }
 
@@ -754,9 +765,11 @@ html.-loaded {
           h1 {
             max-width: 25rem;
           }
+
           .caption {
             max-width: 25rem;
           }
+
           form {
             width: 49.29577465%;
             margin-left: auto;
