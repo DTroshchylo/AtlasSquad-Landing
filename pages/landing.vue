@@ -1,59 +1,56 @@
 <template>
-  <main class="page landing-page" ref="deep" v-if="influencer!=null">
+  <main class="page landing-page" ref="deep" v-if="influencer != null">
     <!-- <div>
       <h1>Influencer name: {{ influencer.name }}</h1>
       <p>Form for registration</p>
     </div> -->
 
-    <div
-      class="bg"
-      :class="[{
-        '-form-active': isFocusOnElement || isHoverOnElement
-      }]"
-    >
+    <div class="bg" :class="[{
+      '-form-active': isFocusOnElement || isHoverOnElement
+    }]">
       <span class="bg-ray"></span>
       <!-- <span class="bg-ray ray-1"></span> -->
       <!-- <span class="bg-ray ray-2"></span> -->
 
       <div class="-a-scale-in" data-string style="--l-delay: -0.15; --l-modifier: 1.5">
-        <figure class="deep-1" >
+        <figure class="deep-1">
           <svg>
             <use href="#logo-140x100_tl"></use>
           </svg>
         </figure>
-        <figure class="deep-2" >
+        <figure class="deep-2">
           <svg>
             <use href="#logo-140x100_tr"></use>
           </svg>
         </figure>
-        <figure class="deep-3" >
+        <figure class="deep-3">
           <svg>
             <use href="#logo-140x100_bl"></use>
           </svg>
         </figure>
-        <figure class="deep-4" >
+        <figure class="deep-4">
           <svg>
             <use href="#logo-140x100_br"></use>
           </svg>
         </figure>
 
 
-        <figure class="deep-1 deep-ghost" >
+        <figure class="deep-1 deep-ghost">
           <svg>
             <use href="#logo-140x100_tl"></use>
           </svg>
         </figure>
-        <figure class="deep-2 deep-ghost" >
+        <figure class="deep-2 deep-ghost">
           <svg>
             <use href="#logo-140x100_tr"></use>
           </svg>
         </figure>
-        <figure class="deep-3 deep-ghost" >
+        <figure class="deep-3 deep-ghost">
           <svg>
             <use href="#logo-140x100_bl"></use>
           </svg>
         </figure>
-        <figure class="deep-4 deep-ghost" >
+        <figure class="deep-4 deep-ghost">
           <svg>
             <use href="#logo-140x100_br"></use>
           </svg>
@@ -64,33 +61,21 @@
 
     <section class="c-welcome">
       <div class="-w">
-        <div
-          class="form-email"
-         >
+        <div class="form-email">
           <h1 class="-tac -a-p -split" data-string>
-            <span data-string-split style="--l-delay: 0.6;">{{ influencer.name }} is on his way to total willpower</span>
+            <span data-string-split style="--l-delay: 0.6;">{{ influencer.name }} is on his way to total
+              willpower</span>
           </h1>
-          <p class="caption -a-p -split" data-string >
+          <p class="caption -a-p -split" data-string>
             <span data-string-split style="--l-delay: 0.6;">Start your own personalized self-engineering journey.</span>
           </p>
 
-          <form
-            action=""
-            class="-a-clip-center "
-            data-string
-            style="--l-delay: -0.15;"
-          >
-            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email" class="-focus-element -hover-element" />
+          <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
+            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email"
+              class="-focus-element -hover-element" />
 
-            <NuxtLink
-              to="/user-tc"
-              @click.native="onSendEmail"
-              @mouseenter="submitButtonEnter"
-              @mouseleave="submitButtonLeave"
-              class="-hover-element"
-
-              v-if="desktop"
-            >
+            <NuxtLink to="/user-tc" @click.native="onSendEmail" @mouseenter="submitButtonEnter"
+              @mouseleave="submitButtonLeave" class="-hover-element" v-if="desktop">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
@@ -111,7 +96,7 @@
   </main>
 </template>
 
-<script setup lang="ts">  
+<script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import GlobalClass from '@/src/globalClass'
 import StringStorage from '~/src/string-storage';
@@ -120,7 +105,7 @@ import { useInfluencer } from '~/store/influencer';
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
 const storeInfluencer = useInfluencer()
-const influencer: any = computed(()=>{
+const influencer: any = computed(() => {
   return storeInfluencer.getInfluencer
 })
 const router = useRouter()
@@ -135,12 +120,13 @@ const personalSlug = ref('')
 
 
 const email = ref('')
-const onEmailChange = (value: any)=>{
+const onEmailChange = (value: any) => {
   email.value = value
 }
 
-const onSendEmail = ()=>{
+const onSendEmail = () => {
   storage.local.set('email', email.value)
+  storage.local.set('invite', route.params.slug.toString())
 }
 
 
@@ -206,7 +192,7 @@ let queryCheck = () => {
 
 
 onMounted(() => {
-  if(influencer.value == null){
+  if (influencer.value == null) {
     navigateTo('/')
   }
 
@@ -217,13 +203,13 @@ onMounted(() => {
     let x = Math.abs(item.getBoundingClientRect().x - clientX);
     let y = Math.abs(item.getBoundingClientRect().y - clientY);
 
-    
+
     let halfWidth = item.getBoundingClientRect().width / 2;
     let halfHeight = item.getBoundingClientRect().height / 2;
 
     let calcAngleX = (x - halfWidth) / 5;
     let calcAngleY = (y - halfHeight) / 5;
-    
+
     const deltaX = x - halfWidth;
     const deltaY = y - halfHeight;
 
@@ -241,8 +227,8 @@ onMounted(() => {
       mouseY = e.clientY
     }
   });
-  function lerp (start: any, end: any, amt: any){
-    return (1-amt)*start+amt*end
+  function lerp(start: any, end: any, amt: any) {
+    return (1 - amt) * start + amt * end
   }
 
   let hoverElements = document.querySelectorAll('.-hover-element')
@@ -250,10 +236,10 @@ onMounted(() => {
 
 
   focusElements.forEach(element => {
-    element.querySelector('input')?.addEventListener('focus', ()=>{
+    element.querySelector('input')?.addEventListener('focus', () => {
       isFocusOnElement.value = true
     })
-    element.querySelector('input')?.addEventListener('blur', ()=>{
+    element.querySelector('input')?.addEventListener('blur', () => {
       isFocusOnElement.value = false
     })
   });
@@ -273,7 +259,7 @@ onMounted(() => {
 
 
 
-  const animation = ()=>{
+  const animation = () => {
 
 
     requestAnimationId = requestAnimationFrame(animation)
@@ -281,7 +267,7 @@ onMounted(() => {
     elapsed = now - then;
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
-      if(isFocusOnElement.value || isHoverOnElement.value){
+      if (isFocusOnElement.value || isHoverOnElement.value) {
         mouseX = window.innerWidth / 2
         mouseY = window.innerHeight / 2
       }
@@ -342,7 +328,7 @@ await useAsyncData('loadInfluencer', () => storeInfluencer.loadInfluencer(route.
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  
+
   .bg {
     position: absolute;
     width: 100%;
@@ -367,6 +353,7 @@ await useAsyncData('loadInfluencer', () => storeInfluencer.loadInfluencer(route.
 
       animation: logo-bg 12s infinite ease-in-out;
     }
+
     div {
       position: absolute;
       top: 0;
@@ -396,30 +383,35 @@ await useAsyncData('loadInfluencer', () => storeInfluencer.loadInfluencer(route.
           transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.9s var(--f-back);
         }
       }
+
       .deep-1 {
         svg {
           animation: blinking 0.3s ease infinite;
           transition-delay: 0.15s;
         }
       }
+
       .deep-2 {
         svg {
           animation: blinking 0.45s ease infinite;
           transition-delay: 0.225s;
         }
       }
+
       .deep-3 {
         svg {
           animation: blinking 0.6s ease infinite;
           transition-delay: 0.3s;
         }
       }
+
       .deep-4 {
         svg {
           animation: blinking 0.75s ease infinite;
           transition-delay: 0.45s;
         }
       }
+
       .deep-ghost {
         scale: 1.1;
         opacity: 0.6;
@@ -431,7 +423,7 @@ await useAsyncData('loadInfluencer', () => storeInfluencer.loadInfluencer(route.
       }
     }
   }
-  
+
 
   .c-welcome {
     height: 100%;
@@ -441,7 +433,7 @@ await useAsyncData('loadInfluencer', () => storeInfluencer.loadInfluencer(route.
     // margin-top: 5rem;
     margin-top: auto;
     margin-bottom: -5rem;
-    
+
     .-w {
       position: relative;
       height: 100%;
@@ -471,7 +463,7 @@ await useAsyncData('loadInfluencer', () => storeInfluencer.loadInfluencer(route.
         form {
           margin-top: 1.25rem;
           position: relative;
-          
+
           &::after {
             content: '';
             display: block;
@@ -493,6 +485,7 @@ await useAsyncData('loadInfluencer', () => storeInfluencer.loadInfluencer(route.
               text-align: center;
             }
           }
+
           button,
           a {
             width: 100%;
@@ -533,8 +526,8 @@ html.-loaded {
 
 @media (max-width: 1024px) {
   .page {
-    .bg {
-    }
+    .bg {}
+
     .bg.-form-active {
       div {
         figure {
@@ -560,6 +553,7 @@ html.-loaded {
         width: 100%;
         height: 100%;
       }
+
       div {
         perspective: 100rem;
         transform: perspective 0.6s var(--f-swoosh);
@@ -581,18 +575,21 @@ html.-loaded {
               calc(var(--gY) * -0.5px),
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 20rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
         }
+
         .deep-2 {
           transform:
             translate3d(calc(var(--gX) * -0.75px),
               calc(var(--gY) * -0.5px),
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -50rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
         }
+
         .deep-3 {
           transform:
             translate3d(calc(var(--gX) * -1.125px),
               calc(var(--gY) * -0.75px),
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -30rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
         }
+
         .deep-4 {
           transform:
             translate3d(calc(var(--gX) * -1.5px),
@@ -600,7 +597,7 @@ html.-loaded {
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
         }
 
-        
+
       }
     }
 
@@ -626,9 +623,11 @@ html.-loaded {
           h1 {
             max-width: 25rem;
           }
+
           .caption {
             max-width: 25rem;
           }
+
           form {
             width: 49.29577465%;
             margin-left: auto;
@@ -683,10 +682,8 @@ html.-loaded {
     }
 
     .blank {
-      margin-bottom: clamp(3rem,5%,5%);
+      margin-bottom: clamp(3rem, 5%, 5%);
     }
   }
 }
-
-
 </style>

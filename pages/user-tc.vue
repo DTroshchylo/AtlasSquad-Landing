@@ -1,5 +1,5 @@
 <template>
-  <main class="page tc-page" >
+  <main class="page tc-page">
     <section class="c-tc">
       <div class="-w">
         <div class="tc-content">
@@ -10,22 +10,25 @@
           </h1>
 
           <div class="body -a-p -split" data-string>
-            
+
             <span class="-up -b">
               <span data-string-split style="--l-delay: 0.6;">I want to</span>
             </span>
             <ul>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Have the willpower to start or stop doing anything I choose without stress or drama.</span>
+                <span data-string-split style="--l-modifier: 1;">Have the willpower to start or stop doing anything I
+                  choose without stress or drama.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Playfully control the arc of my story and eliminate deathbed regrets.</span>
+                <span data-string-split style="--l-modifier: 1;">Playfully control the arc of my story and eliminate
+                  deathbed regrets.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Forge deep and lasting relationships with others.</span>
+                <span data-string-split style="--l-modifier: 1;">Forge deep and lasting relationships with
+                  others.</span>
               </li>
             </ul>
-            
+
             <span class="-hl"></span>
 
             <span class="-up -b">
@@ -33,16 +36,19 @@
             </span>
             <ul>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Take on intense, challenging emotional, spiritual and physical work.</span>
+                <span data-string-split style="--l-modifier: 1;">Take on intense, challenging emotional, spiritual and
+                  physical work.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Actively contribute to a society exploring the frontiers of human mental ability.</span>
+                <span data-string-split style="--l-modifier: 1;">Actively contribute to a society exploring the
+                  frontiers of human mental ability.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Mentor others on their journey and do so with utmost integrity.</span>
+                <span data-string-split style="--l-modifier: 1;">Mentor others on their journey and do so with utmost
+                  integrity.</span>
               </li>
             </ul>
-            
+
             <span class="-hl"></span>
 
             <span class="-up -b">
@@ -50,16 +56,18 @@
             </span>
             <ul>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Three examples of past achievements that required strong willpower.</span>
+                <span data-string-split style="--l-modifier: 1;">Three examples of past achievements that required
+                  strong willpower.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">A vague impulse inside me pulling towards more truth and authenticity.</span>
+                <span data-string-split style="--l-modifier: 1;">A vague impulse inside me pulling towards more truth
+                  and authenticity.</span>
               </li>
               <li>
                 <span data-string-split style="--l-modifier: 1;">A sense of humor.</span>
               </li>
             </ul>
-            
+
           </div>
 
           <div class="submition -a-to-bottom" data-string>
@@ -73,10 +81,12 @@
 
               <label for="tc-agreement">agree to Terms of Service</label>
             </span>
-  
+
             <!-- <NuxtLink to="/registration">Submit / go to registration / go to platform, actually</NuxtLink> -->
             <Transition name="-t-submit">
-              <a class="-up -b -red" :href="`https://atlas-squad.fiddle.digital/registration?email=${email}`" v-if="checkedTerms">Go to my Dashoboard</a>
+              <a class="-up -b -red"
+                :href="`https://atlas-squad.fiddle.digital/registration?email=${email}&invite=${invite}`"
+                v-if="checkedTerms">Go to my Dashoboard</a>
             </Transition>
           </div>
 
@@ -97,8 +107,10 @@ const global = nuxtApp.$globalClass as GlobalClass
 
 const checkedTerms = ref(false);
 const email = ref('')
+const invite = ref('')
 onMounted(() => {
   email.value = StringStorage.getInstance().local.get('email')
+  invite.value = StringStorage.getInstance().local.get('invite')
 })
 onBeforeUnmount(() => {
   document.querySelectorAll('.-inview').forEach(element => {
@@ -125,19 +137,24 @@ onBeforeUnmount(() => {
 
         .body {
           >* {}
+
           .-h6 {
             margin-bottom: 1rem;
           }
+
           span {
             display: block;
             margin-bottom: 1rem;
           }
+
           span.-up {
             text-align: center;
           }
+
           p {
             margin-bottom: 1rem;
           }
+
           ul {
             li {
               list-style-type: decimal;
@@ -148,7 +165,7 @@ onBeforeUnmount(() => {
         .submition {
           position: relative;
           margin-top: 4rem;
-          
+
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
@@ -181,6 +198,7 @@ onBeforeUnmount(() => {
               opacity: 0.5;
               cursor: pointer;
             }
+
             .checkmark {
               flex-shrink: 0;
               position: relative;
@@ -210,6 +228,7 @@ onBeforeUnmount(() => {
               }
             }
           }
+
           .checking input:checked~.checkmark {
             svg {
               opacity: 1;
@@ -228,16 +247,18 @@ onBeforeUnmount(() => {
             padding: 1rem;
             display: block;
           }
+
           .-t-submit-leave-active,
           .-t-submit-enter-active {
             opacity: 1;
-            transform: translate(0,0);
+            transform: translate(0, 0);
             transition: all 0.3s var(--f-cubic);
           }
+
           .-t-submit-leave-to,
           .-t-submit-enter-from {
             opacity: 0;
-            transform: translate(0,1rem);
+            transform: translate(0, 1rem);
           }
         }
       }
@@ -249,7 +270,7 @@ onBeforeUnmount(() => {
     .c-tc {
       .-w {
         .tc-content {
-          margin-top: clamp(3rem,5%,5%);
+          margin-top: clamp(3rem, 5%, 5%);
 
           .body {
             width: 49.29577465%;
