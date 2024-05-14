@@ -102,8 +102,15 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .page {
+  padding-top: initial !important;
+  padding-bottom: initial !important;
+
+  
+
   .bg {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -130,18 +137,25 @@ onBeforeUnmount(() => {
   .c-form {
     position: relative;
 
+    
     .-w {
+      height: 100%;
+      min-height: 100vh;
+      min-height: calc(var(--vh, 1vh) * 100);
+      display: flex;
+      align-items: center;
+      
+
       form {
         .submition {
           position: relative;
-          margin-top: 4rem;
+          margin-top: 2rem;
+          // margin-top: 4rem;
           
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
           align-items: center;
-
-          margin-bottom: 2rem;
 
           .checking {
             position: relative;
@@ -242,9 +256,12 @@ onBeforeUnmount(() => {
       }
     }
     .c-form {
+      
       .-w {
         form {
-          margin-top: clamp(3rem,5%,5%);
+          padding-top: clamp(6rem,10%,10%);
+          padding-bottom: 4rem;
+          // margin-top: clamp(3rem,5%,5%);
 
           width: 49.29577465%;
           max-width: 35rem;

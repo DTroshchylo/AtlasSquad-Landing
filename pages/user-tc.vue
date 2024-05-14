@@ -16,16 +16,13 @@
             </span>
             <ul>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Have the willpower to start or stop doing anything I
-                  choose without stress or drama.</span>
+                <span data-string-split style="--l-modifier: 1;">Have the willpower to start or stop doing anything I choose without stress or drama.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Playfully control the arc of my story and eliminate
-                  deathbed regrets.</span>
+                <span data-string-split style="--l-modifier: 1;">Playfully control the arc of my story and eliminate deathbed regrets.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Forge deep and lasting relationships with
-                  others.</span>
+                <span data-string-split style="--l-modifier: 1;">Forge deep and lasting relationships with others.</span>
               </li>
             </ul>
 
@@ -36,16 +33,13 @@
             </span>
             <ul>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Take on intense, challenging emotional, spiritual and
-                  physical work.</span>
+                <span data-string-split style="--l-modifier: 1;">Take on intense, challenging emotional, spiritual and physical work.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Actively contribute to a society exploring the
-                  frontiers of human mental ability.</span>
+                <span data-string-split style="--l-modifier: 1;">Actively contribute to a society exploring the frontiers of human mental ability.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Mentor others on their journey and do so with utmost
-                  integrity.</span>
+                <span data-string-split style="--l-modifier: 1;">Mentor others on their journey and do so with utmost integrity.</span>
               </li>
             </ul>
 
@@ -56,12 +50,10 @@
             </span>
             <ul>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Three examples of past achievements that required
-                  strong willpower.</span>
+                <span data-string-split style="--l-modifier: 1;">Three examples of past achievements that required strong willpower.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">A vague impulse inside me pulling towards more truth
-                  and authenticity.</span>
+                <span data-string-split style="--l-modifier: 1;">A vague impulse inside me pulling towards more truth and authenticity.</span>
               </li>
               <li>
                 <span data-string-split style="--l-modifier: 1;">A sense of humor.</span>
