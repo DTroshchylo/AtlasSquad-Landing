@@ -147,6 +147,23 @@ onBeforeUnmount(() => {
       
 
       form {
+        padding-top: 8rem;
+        padding-bottom: 6rem;
+
+        .row {
+          position: relative;
+          margin-bottom: 1.5rem;
+
+          .-error {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            padding: 0.2rem;
+            background-color: var(--c-grey-2);
+            color: var(--c-red);
+          }
+        }
+
         .submition {
           position: relative;
           margin-top: 2rem;
@@ -223,22 +240,12 @@ onBeforeUnmount(() => {
             }
           }
 
-          a {
-            position: absolute;
-            top: 100%;
-            padding: 1rem;
-            display: block;
+          .checking {
+            margin-bottom: 0.5rem;
           }
-          .-t-submit-leave-active,
-          .-t-submit-enter-active {
-            opacity: 1;
-            transform: translate(0,0);
-            transition: all 0.3s var(--f-cubic);
-          }
-          .-t-submit-leave-to,
-          .-t-submit-enter-from {
-            opacity: 0;
-            transform: translate(0,1rem);
+
+          button {
+            margin-top: 1rem;
           }
         }
       }
@@ -269,32 +276,14 @@ onBeforeUnmount(() => {
           margin-right: auto;
 
 
-          .row {
-            position: relative;
-            margin-bottom: 1.5rem;
-
-            .-error {
-              position: absolute;
-              top: 100%;
-              right: 0;
-              padding: 0.2rem;
-              background-color: var(--c-grey-2);
-              color: var(--c-red);
-            }
-          }
+          
           .submition {
             width: 49.29577465%;
             max-width: 35rem;
             margin-left: auto;
             margin-right: auto;
 
-            .checking {
-              margin-bottom: 0.5rem;
-            }
-
-            button {
-              margin-top: 1rem;
-            }
+            
           }
         }
       }
