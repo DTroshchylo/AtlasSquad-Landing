@@ -57,30 +57,32 @@
     <section class="c-welcome">
       <div class="-w">
         <div class="form-email" :class="{
-          '-hidden': recruitedCap || joinCap
+          '-hidden': recruitedCap
         }">
           <h1 class="-tac -a-p -split" data-string>
             <span data-string-split style="--l-delay: 0.6;">What would you do with total willpower?</span>
           </h1>
           <p class="caption -a-p -split" data-string>
-            <span data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering journey</span>
+            <span class="-m-m" data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering journey</span>
           </p>
 
           <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
-            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email"
-              class="-focus-element -hover-element" />
+            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email" class="-focus-element -hover-element" />
+            
+            <button
+              @click.native="onSendEmail($event)"
+              @mouseenter="submitButtonEnter"
+              @mouseleave="submitButtonLeave"
+              class="-hover-element"
 
-            <!-- <button @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element">
-              <span class="holder -b -up" :data-text="submitTextBasic">
-                <span class="-b -up">{{ submitText }}</span>
-              </span>
-            </button> -->
-            <button @click.native="onSendEmail($event)" @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave"
-              class="-hover-element">
+              v-if="desktop"
+            >
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
             </button>
+
+            <button @click.native="onSendEmail($event)" v-if="mobile">Became a candidate ></button>
 
           </form>
         </div>
@@ -89,7 +91,7 @@
 
 
     <Transition name="-t-desc">
-      <div class="description -tac -a-p -split -split-random" data-string v-if="recruitedCap">
+      <div class="description -tac -a-p -split -split-random" data-string v-if="recruitedCap" @click="recruitedCap = false">
         <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas
           Squad experience is for a select group of achievers who want the very best in AI-driven, personalized
           self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
@@ -101,8 +103,14 @@
         <div class="get-recruited -a-p -split" data-string>
 
           <div class="-a-p" data-string>
-            <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter="recruitedCap = true"
-              @mouseleave="recruitedCap = false">
+            <NuxtLink
+              to="/influencer-tc"
+              class="-up -b -hover-element"
+              @mouseenter.native="recruitedCap = true"
+              @mouseleave.native="recruitedCap = false"
+
+              v-if="desktop"
+            >
               <span class="wrap">
                 <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
 
@@ -113,6 +121,14 @@
                 </svg>
               </span>
             </NuxtLink>
+
+            <span
+              class="-up -b -link"
+              v-if="mobile && !recruitedCap"
+              data-string-split
+              style="--l-delay: 0.9;"
+              @click="recruitedCap = true"
+            >Become our recruiter</span>
           </div>
         </div>
       </div>
@@ -206,24 +222,29 @@ function submitButtonLeave() {
 }
 
 
-// let formActive = ref(false)
-// let moveTo = ref(false)
-
-// function formIn() {
-//   formActive.value = true
-// }
-// function formOut() {
-//   formActive.value = false
-//   moveTo.value = true
-//   setTimeout(() => {
-//     moveTo.value = false
-//   }, 150);
-// }
-
 
 let storage: any
 let mouseX = 0, mouseY = 0, animationX = 0, animationY = 0
 let isFocusOnElement = ref(false), isHoverOnElement = ref(false)
+
+
+
+
+
+// query check
+let mobile = ref(false)
+let desktop = ref(false)
+let queryCheck = () => {
+  if (window.innerWidth >= 1024) {
+    mobile.value = false
+    desktop.value = true
+  } else {
+    mobile.value = true
+    desktop.value = false
+  }
+}
+
+
 onMounted(() => {
 
   storage = StringStorage.getInstance()
@@ -342,177 +363,23 @@ onMounted(() => {
   //   }, 100);
   // });
 
+
+  queryCheck()
+  window.addEventListener("resize", queryCheck)
+
 })
 onBeforeUnmount(() => {
+  window.removeEventListener("resize", queryCheck)
 })
 
 </script>
 
 <style lang="scss" scoped>
 .page {
-  padding-top: initial !important;
-  padding-bottom: initial !important;
   position: relative;
-  height: 100%;
-  min-height: 100vh;
-  min-height: calc(var(--vh, 1vh) * 100);
-  // flex-shrink: 0;
-  flex-grow: 1;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+  
   .bg {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    pointer-events: none;
-
-    .bg-ray {
-      position: absolute;
-      display: block;
-      width: 100%;
-      height: 100%;
-      background-image: url(/images/logo-bg.jpg);
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: contain;
-
-      animation: logo-bg 12s infinite ease-in-out;
-    }
-
-    // .ray-1 {}
-    // .ray-2 {
-    //   scale: -1 -1;
-
-    //   animation-duration: 15s;
-    //   animation-delay: -3s;
-    // }
-    div {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      // perspective: calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem + 90rem);
-      perspective: 100rem;
-
-      transform: perspective 0.6s var(--f-swoosh);
-
-      figure {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        will-change: transform;
-
-        // transition: scale 0.3s var(--f-cubic);
-
-        svg {
-          fill: rgba(var(--c-black-rgb), 0);
-          stroke: var(--c-grey-4);
-          // stroke: blue;
-          stroke-width: 0.1px;
-          filter: drop-shadow(0 0 1rem var(--c-white));
-
-          scale: 1;
-          transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.9s var(--f-back);
-        }
-      }
-
-      .deep-1 {
-        transform:
-          translate3d(calc(var(--gX) * -0.75px),
-            calc(var(--gY) * -0.5px),
-            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 20rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
-
-        svg {
-          animation: blinking 0.3s ease infinite;
-
-          transition-delay: 0.15s;
-        }
-      }
-
-      .deep-2 {
-        transform:
-          translate3d(calc(var(--gX) * -0.75px),
-            calc(var(--gY) * -0.5px),
-            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -50rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
-
-
-        svg {
-          animation: blinking 0.45s ease infinite;
-
-          transition-delay: 0.225s;
-        }
-      }
-
-      .deep-3 {
-        transform:
-          translate3d(calc(var(--gX) * -1.125px),
-            calc(var(--gY) * -0.75px),
-            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -30rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
-
-
-        svg {
-          animation: blinking 0.6s ease infinite;
-
-          transition-delay: 0.3s;
-        }
-      }
-
-      .deep-4 {
-        transform:
-          translate3d(calc(var(--gX) * -1.5px),
-            calc(var(--gY) * -1px),
-            calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
-
-
-        svg {
-          animation: blinking 0.75s ease infinite;
-
-          transition-delay: 0.45s;
-        }
-      }
-
-      .deep-ghost {
-        scale: 1.1;
-        opacity: 0.6;
-
-        svg {
-          filter: initial;
-          stroke: var(--c-grey-2);
-        }
-      }
-    }
-  }
-
-  .bg.-form-active {
-    div {
-      // perspective: 0rem;
-
-      figure {
-        svg {
-          fill: rgba(var(--c-black-rgb), 1);
-          scale: 0.8;
-          filter: drop-shadow(0 0 0rem var(--c-white));
-
-          transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.3s var(--f-cubic);
-        }
-      }
-    }
+    display: none;
   }
 
   .c-welcome {
@@ -520,18 +387,10 @@ onBeforeUnmount(() => {
     width: 100%;
     position: relative;
 
-    margin-top: auto;
-    margin-bottom: -5%;
-
+    margin-top: 5rem;
+    
     .-w {
       position: relative;
-
-      height: 100%;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
 
       .form-email {
         width: 100%;
@@ -539,30 +398,22 @@ onBeforeUnmount(() => {
         transition: opacity 0.6s var(--f-cubic);
 
         h1 {
-          max-width: 25rem;
+          margin-bottom: 0.5rem;
           margin-left: auto;
           margin-right: auto;
-          margin-bottom: 0.5rem;
         }
 
         .caption {
           text-align: center;
-          max-width: 25rem;
+          max-width: 90%;
           margin-left: auto;
           margin-right: auto;
         }
 
         form {
           margin-top: 1.25rem;
-          // width: 32.3943662%;
-          width: 49.29577465%;
-          margin-left: auto;
-          margin-right: auto;
-
           position: relative;
-          display: flex;
-
-          // border: 1px solid red;
+          
 
           &::after {
             content: '';
@@ -580,43 +431,9 @@ onBeforeUnmount(() => {
             transition-delay: 0.9s;
           }
 
-          .field {
-            margin-bottom: initial;
-            flex-grow: 1;
-          }
+          .field {}
 
-          button,
-          a {
-            position: absolute;
-            height: 100%;
-            right: 0;
-            border-left: 1px solid var(--c-grey-4);
-            color: var(--c-grey-3);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            .holder {
-              position: relative;
-              display: flex;
-              justify-content: flex-end;
-              align-items: center;
-              padding-right: 1rem;
-              padding-left: 1rem;
-
-              white-space: nowrap;
-
-              &::before {
-                content: attr(data-text);
-                visibility: hidden;
-              }
-
-              span {
-                position: absolute;
-                text-align: right;
-              }
-            }
-          }
+          
         }
       }
 
@@ -642,8 +459,6 @@ onBeforeUnmount(() => {
       div {
         width: 50%;
         text-align: center;
-
-        // border: 1px solid blue;
 
         a {
           padding: 1rem;
@@ -676,8 +491,8 @@ onBeforeUnmount(() => {
               left: 100%;
               bottom: 100%;
 
-              scale: 1;
-              opacity: 1;
+              // scale: 1;
+              // opacity: 1;
               transition: scale 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic), transform 0.9s var(--f-cubic);
             }
           }
@@ -750,6 +565,227 @@ html.-loaded {
 }
 
 @media (min-width: 1024px) {
-  .page {}
+  .page {
+    padding-top: initial !important;
+    padding-bottom: initial !important;
+    height: 100%;
+    min-height: 100vh;
+    min-height: calc(var(--vh, 1vh) * 100);
+
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      pointer-events: none;
+
+      .bg-ray {
+        position: absolute;
+        display: block;
+        width: 100%;
+        height: 100%;
+        background-image: url(/images/logo-bg.jpg);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+
+        animation: logo-bg 12s infinite ease-in-out;
+      }
+      div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        // perspective: calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem + 90rem);
+        perspective: 100rem;
+
+        transform: perspective 0.6s var(--f-swoosh);
+
+        figure {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          will-change: transform;
+
+          // transition: scale 0.3s var(--f-cubic);
+
+          svg {
+            fill: rgba(var(--c-black-rgb), 0);
+            stroke: var(--c-grey-4);
+            // stroke: blue;
+            stroke-width: 0.1px;
+            filter: drop-shadow(0 0 1rem var(--c-white));
+
+            scale: 1;
+            transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.9s var(--f-back);
+          }
+        }
+
+        .deep-1 {
+          transform:
+            translate3d(calc(var(--gX) * -0.75px),
+              calc(var(--gY) * -0.5px),
+              calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 20rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
+
+          svg {
+            animation: blinking 0.3s ease infinite;
+
+            transition-delay: 0.15s;
+          }
+        }
+
+        .deep-2 {
+          transform:
+            translate3d(calc(var(--gX) * -0.75px),
+              calc(var(--gY) * -0.5px),
+              calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -50rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
+
+
+          svg {
+            animation: blinking 0.45s ease infinite;
+
+            transition-delay: 0.225s;
+          }
+        }
+
+        .deep-3 {
+          transform:
+            translate3d(calc(var(--gX) * -1.125px),
+              calc(var(--gY) * -0.75px),
+              calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -30rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
+
+
+          svg {
+            animation: blinking 0.6s ease infinite;
+
+            transition-delay: 0.3s;
+          }
+        }
+
+        .deep-4 {
+          transform:
+            translate3d(calc(var(--gX) * -1.5px),
+              calc(var(--gY) * -1px),
+              calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
+
+
+          svg {
+            animation: blinking 0.75s ease infinite;
+
+            transition-delay: 0.45s;
+          }
+        }
+
+        .deep-ghost {
+          scale: 1.1;
+          opacity: 0.6;
+
+          svg {
+            filter: initial;
+            stroke: var(--c-grey-2);
+          }
+        }
+      }
+    }
+
+    .bg.-form-active {
+      div {
+        figure {
+          svg {
+            fill: rgba(var(--c-black-rgb), 1);
+            scale: 0.8;
+            filter: drop-shadow(0 0 0rem var(--c-white));
+
+            transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.3s var(--f-cubic);
+          }
+        }
+      }
+    }
+
+    .c-welcome {
+      margin-top: auto;
+      margin-bottom: -5%;
+
+      .-w {
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .form-email {
+          h1 {
+            max-width: 25rem;
+          }
+          .caption {
+            max-width: 25rem;
+          }
+          form {
+            width: 49.29577465%;
+            margin-left: auto;
+            margin-right: auto;
+            display: flex;
+
+            .field {
+              margin-bottom: initial;
+              flex-grow: 1;
+            }
+
+            button,
+            a {
+              position: absolute;
+              height: 100%;
+              right: 0;
+              border-left: 1px solid var(--c-grey-4);
+              color: var(--c-grey-3);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              .holder {
+                position: relative;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                padding-right: 1rem;
+                padding-left: 1rem;
+
+                white-space: nowrap;
+
+                &::before {
+                  content: attr(data-text);
+                  visibility: hidden;
+                }
+
+                span {
+                  position: absolute;
+                  text-align: right;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 </style>

@@ -98,7 +98,7 @@ h6,
   line-height: 1.78;
 }
 
-.-bm {
+.-mid {
   font-size: 0.8rem;
   line-height: 1.78;
 }
@@ -186,73 +186,18 @@ a,
 //   }
 // }
 
-// @media (max-width: 1024px) {
-//   .-m-h1 {
-//     font-family: 'PPMonument';
-//     text-transform: uppercase;
-//     font-size: 5.65rem;
-//     line-height: 0.88;
-//   }
-//   .-m-h2 {
-//     font-family: 'PPMonument';
-//     text-transform: uppercase;
-//     font-size: 5.65rem;
-//     line-height: 0.88;
-//   }
-//   .-m-h3 {
-//     font-family: 'PPMonument';
-//     text-transform: uppercase;
-//     font-size: 3.9975rem;
-//     line-height: 1;
-//   }
-//   .-m-h4 {
-//     font-family: 'PPMonument';
-//     text-transform: uppercase;
-//     font-size: 2.827rem;
-//     line-height: 1.05;
-//   }
-//   .-m-h5 {
-//     font-family: 'HelveticaNow', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-//     text-transform: initial;
-//     font-size: 2rem;
-//     line-height: 1.25;
-//   }
-//   .-m-h6 {
-//     font-family: 'HelveticaNow', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-//     text-transform: initial;
-//     font-size: 1.414rem;
-//     line-height: 1.25;
-//   }
-
-//   .-m-m {
-//     font-size: 0.8rem;
-//     line-height: 1.4;
-//   }
-//   .-m-mm {
-//     font-size: 0.6rem;
-//     line-height: 1.4;
-//   }
-//   .-m-p {
-//     display: block;
-//     font-size: 1rem;
-//     line-height: 1.4;
-//   }
-
-//   .-m-up {
-//     text-transform: uppercase;
-//   }
-//   .-m-nup {
-//     text-transform: initial;
-//   }
-
-//   .-m-basic {
-//     font-family: 'HelveticaNow', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-//   }
-//   .-m-pp {
-//     font-family: 'PPMonument';
-//     text-transform: uppercase;
-//   }
-//   .-h5.-m-pp {
-//     line-height: 1.05;
-//   }
-// }
+@media (max-width: 1024px) {
+  
+  .-m-mid {
+    font-size: 0.8rem;
+    line-height: 1.78;
+  }
+  .-m-m {
+    font-size: 0.7rem;
+    line-height: 1.78;
+  }
+  .-m-mm {
+    font-size: 0.6rem;
+    line-height: 1.2;
+  }
+}
