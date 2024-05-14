@@ -257,6 +257,7 @@ let queryCheck = () => {
 onMounted(() => {
 
   storage = StringStorage.getInstance()
+  storage.local.set('invite', '')
 
   let calculateAngle = function (clientX: number, clientY: number, item: any) {
     let x = Math.abs(item.getBoundingClientRect().x - clientX);
