@@ -68,6 +68,10 @@ const props = defineProps(
       type: String,
       default: ""
     },
+    typeEmail: {
+      type: Boolean,
+      default: false
+    },
     isError: {
       type: Boolean,
       default: false

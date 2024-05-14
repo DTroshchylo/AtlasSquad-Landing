@@ -112,22 +112,10 @@ onBeforeUnmount(() => {
 <style lang="scss" scoped>
 .page {
   .c-tc {
-    
     position: relative;
 
     .-w {
-      position: relative;
-
-
-      // &::after {
-      //   content: '';
-      //   display: block;
-      //   margin-bottom: clamp(6rem,10%,10%);
-      // }
-
       .tc-content {
-        margin-top: clamp(3rem,5%,5%);
-
         .title {
           margin-bottom: 3rem;
 
@@ -137,11 +125,6 @@ onBeforeUnmount(() => {
         }
 
         .body {
-          width: 49.29577465%;
-          max-width: 35rem;
-          margin-left: auto;
-          margin-right: auto;
-
           >* {}
           .-h6 {
             margin-bottom: 1rem;
@@ -157,8 +140,6 @@ onBeforeUnmount(() => {
             margin-bottom: 1rem;
           }
           ul {
-            margin-left: 10%;
-
             li {
               list-style-type: decimal;
             }
@@ -168,10 +149,7 @@ onBeforeUnmount(() => {
         .submition {
           position: relative;
           margin-top: 4rem;
-          width: 49.29577465%;
-          max-width: 35rem;
-          margin-left: auto;
-          margin-right: auto;
+          
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
@@ -269,24 +247,34 @@ onBeforeUnmount(() => {
 }
 
 
-html.-loaded {
+@media (min-width: 1024px) {
   .page {
-    .c-welcome {
+    .c-tc {
       .-w {
-        .form-email {
-          form.-inview {
-            &::after {
-              opacity: 0;
+        .tc-content {
+          margin-top: clamp(3rem,5%,5%);
+
+          .body {
+            width: 49.29577465%;
+            max-width: 35rem;
+            margin-left: auto;
+            margin-right: auto;
+
+            ul {
+              margin-left: 10%;
             }
+          }
+
+          .submition {
+            width: 49.29577465%;
+            max-width: 35rem;
+            margin-left: auto;
+            margin-right: auto;
           }
         }
       }
     }
   }
-}
-
-@media (min-width: 1024px) {
-  .page {}
 }
 
 
