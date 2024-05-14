@@ -63,10 +63,15 @@
             <span data-string-split style="--l-delay: 0.6;">What would you do with total willpower?</span>
           </h1>
           <p class="caption -a-p -split" data-string>
-            <span class="-m-m" data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering journey</span>
+            <span class="-m-m" data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering journey.</span>
           </p>
 
-          <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
+          <form
+            action=""
+            class="-a-clip-center "
+            data-string
+            style="--l-delay: -0.15;"
+          >
             <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email" class="-focus-element -hover-element" />
             
             <button
@@ -82,7 +87,7 @@
               </span>
             </button>
 
-            <button @click.native="onSendEmail($event)" v-if="mobile" class="-tac">
+            <button @click.native="onSendEmail($event)" v-if="mobile" class="-tac -a-to-top" data-string>
               <span class="-up -b -link">Became a candidate ></span>
             </button>
 
@@ -557,8 +562,10 @@ onBeforeUnmount(() => {
               text-align: center;
             }
           }
-          button {
+          button,
+          a {
             width: 100%;
+            display: block;
           }
         }
       }
@@ -696,6 +703,9 @@ html.-loaded {
         transform: perspective 0.6s var(--f-swoosh);
 
         figure {
+          width: 100%;
+          height: 100%;
+
           svg {
             // stroke-width: 0.1px;
             filter: drop-shadow(0 0 1rem var(--c-white));
@@ -772,7 +782,8 @@ html.-loaded {
               }
             }
 
-            button {
+            button,
+            a {
               width: initial;
               position: absolute;
               height: 100%;
