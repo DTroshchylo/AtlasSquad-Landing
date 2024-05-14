@@ -35,6 +35,9 @@ onMounted(() => {
 
 })
 onBeforeUnmount(() => {
+  document.querySelectorAll('.-inview').forEach(element => {
+    element.classList.remove('-inview')
+  });
 })
 
 </script>

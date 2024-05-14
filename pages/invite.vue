@@ -33,7 +33,9 @@
     }
   })
   onBeforeUnmount(() => {
-  
+    document.querySelectorAll('.-inview').forEach(element => {
+      element.classList.remove('-inview')
+    });
   })
   await useAsyncData('loadInviteInfluencer', () => storeInfluencer.loadInviteInfluencer(route.params.slug.toString()))
   </script>

@@ -76,7 +76,11 @@ const global = nuxtApp.$globalClass as GlobalClass
 
 
 // onMounted(() => {})
-// onBeforeUnmount(() => {})
+onBeforeUnmount(() => {
+  document.querySelectorAll('.-inview').forEach(element => {
+    element.classList.remove('-inview')
+  });
+})
 
 </script>
 
