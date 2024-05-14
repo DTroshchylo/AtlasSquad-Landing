@@ -113,16 +113,7 @@ onMounted(() => {
     storeAccount.setToken('')
   }
   
-  //VH
-  let vh = document.documentElement.clientHeight * 0.01;
-  document.documentElement.style.setProperty('--vh', `${vh}px`);
-
-  if (window.innerWidth > 1024) {
-    window.addEventListener("resize", () => {
-      let vh = document.documentElement.clientHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
-    });
-  }
+  
 
 
   // setTimeout(() => {
@@ -169,6 +160,18 @@ onMounted(() => {
 
   queryCheck()
   window.addEventListener("resize", queryCheck)
+
+  //VH
+  let vh = document.documentElement.clientHeight * 0.01;
+  document.documentElement.style.setProperty('--vh', `${vh}px`);
+
+
+  window.addEventListener("resize", () => {
+    // if (desktop.value == true) {
+      let vh = document.documentElement.clientHeight * 0.01;
+      document.documentElement.style.setProperty('--vh', `${vh}px`);
+    // }
+  });
 
   resizeIFrameToFitContent()
   window.addEventListener("resize", resizeIFrameToFitContent)

@@ -82,7 +82,9 @@
               </span>
             </button>
 
-            <button @click.native="onSendEmail($event)" v-if="mobile">Became a candidate ></button>
+            <button @click.native="onSendEmail($event)" v-if="mobile" class="-tac">
+              <span class="-up -b -link">Became a candidate ></span>
+            </button>
 
           </form>
         </div>
@@ -91,10 +93,8 @@
 
 
     <Transition name="-t-desc">
-      <div class="description -tac -a-p -split -split-random" data-string v-if="recruitedCap" @click="recruitedCap = false">
-        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas
-          Squad experience is for a select group of achievers who want the very best in AI-driven, personalized
-          self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
+      <div class="description -tac -a-p -split -split-random" data-string v-if="desktop && recruitedCap">
+        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas Squad experience is for a select group of achievers who want the very best in AI-driven, personalized self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
       </div>
     </Transition>
 
@@ -122,13 +122,24 @@
               </span>
             </NuxtLink>
 
-            <span
+            <NuxtLink
+              to="/influencer-tc"
+              class="-up -b"
+              v-if="mobile"
+            >
+              <span class="" style="--l-delay: 0.9;" data-string-split>Become our recruiter</span>
+            </NuxtLink>
+
+            <!-- <span
               class="-up -b -link"
-              v-if="mobile && !recruitedCap"
-              data-string-split
-              style="--l-delay: 0.9;"
+              :class="{ '-hidden': recruitedCap }"
+              v-if="mobile"
               @click="recruitedCap = true"
-            >Become our recruiter</span>
+            >
+              <span class="" style="--l-delay: 0.9;" data-string-split>Become our recruiter</span>
+            </span> -->
+
+
           </div>
         </div>
       </div>
@@ -272,8 +283,10 @@ onMounted(() => {
     item.style.setProperty('--gY', deltaY)
   }
   deep.value.addEventListener('mousemove', (e: any) => {
-    mouseX = e.clientX
-    mouseY = e.clientY
+    if(desktop.value == true) {
+      mouseX = e.clientX
+      mouseY = e.clientY
+    }
   });
   function lerp(start: any, end: any, amt: any) {
     return (1 - amt) * start + amt * end
@@ -294,12 +307,14 @@ onMounted(() => {
 
   hoverElements.forEach(element => {
     element.addEventListener('mouseover', () => {
-      // console.log(true)
-      isHoverOnElement.value = true
+      if(desktop.value == true) {
+        isHoverOnElement.value = true
+      }
     })
     element.addEventListener('mouseout', () => {
-      // console.log(false)
-      isHoverOnElement.value = false
+      if(desktop.value == true) {
+        isHoverOnElement.value = false
+      }
     })
   });
 
@@ -376,21 +391,128 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .page {
+  padding-top: initial !important;
+  padding-bottom: initial !important;
+
   position: relative;
+
+  height: 100%;
+  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
+
+  flex-grow: 1;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   
   .bg {
-    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+
+    .bg-ray {
+      position: absolute;
+      left: -50%;
+      top: -50%;
+      width: 200%;
+      height: 200%;
+      display: block;
+      background-image: url(/images/logo-bg.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+
+      animation: logo-bg 12s infinite ease-in-out;
+    }
+    div {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      figure {
+        position: absolute;
+        width: 200%;
+        height: 200%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        will-change: transform;
+
+        svg {
+          fill: rgba(var(--c-black-rgb), 0);
+          stroke: var(--c-grey-4);
+          stroke-width: 0.1px;
+          filter: drop-shadow(0 0 0.5rem var(--c-grey-3));
+
+          scale: 2;
+          transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.9s var(--f-back);
+        }
+      }
+      .deep-1 {
+        svg {
+          animation: blinking 0.3s ease infinite;
+          transition-delay: 0.15s;
+        }
+      }
+      .deep-2 {
+        svg {
+          animation: blinking 0.45s ease infinite;
+          transition-delay: 0.225s;
+        }
+      }
+      .deep-3 {
+        svg {
+          animation: blinking 0.6s ease infinite;
+          transition-delay: 0.3s;
+        }
+      }
+      .deep-4 {
+        svg {
+          animation: blinking 0.75s ease infinite;
+          transition-delay: 0.45s;
+        }
+      }
+      .deep-ghost {
+        scale: 1.1;
+        opacity: 0.6;
+
+        svg {
+          filter: initial;
+          stroke: var(--c-grey-2);
+        }
+      }
+    }
   }
+  
 
   .c-welcome {
     height: 100%;
     width: 100%;
     position: relative;
 
-    margin-top: 5rem;
+    // margin-top: 5rem;
+    margin-top: auto;
+    margin-bottom: -5rem;
     
     .-w {
       position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
 
       .form-email {
         width: 100%;
@@ -414,7 +536,6 @@ onBeforeUnmount(() => {
           margin-top: 1.25rem;
           position: relative;
           
-
           &::after {
             content: '';
             display: block;
@@ -431,9 +552,14 @@ onBeforeUnmount(() => {
             transition-delay: 0.9s;
           }
 
-          .field {}
-
-          
+          .field {
+            :deep(input) {
+              text-align: center;
+            }
+          }
+          button {
+            width: 100%;
+          }
         }
       }
 
@@ -448,18 +574,10 @@ onBeforeUnmount(() => {
     width: 100%;
 
     .get-recruited {
-      margin-bottom: clamp(3rem, 5%, 5%);
-      display: flex;
-      justify-content: center;
-      width: 49.29577465%;
-      margin-top: auto;
-      margin-left: auto;
-      margin-right: auto;
+      margin-bottom: 6rem;
+      text-align: center;
 
       div {
-        width: 50%;
-        text-align: center;
-
         a {
           padding: 1rem;
           display: flex;
@@ -498,27 +616,7 @@ onBeforeUnmount(() => {
           }
         }
 
-        a:hover {
-          animation: blinking 0.6s infinite step-end;
-
-          .wrap {
-
-            .-base {
-              opacity: 0;
-              transform: translate(0, -50%);
-            }
-
-            .-hover {
-              opacity: 1;
-              transform: translate(0, 0);
-            }
-
-            svg {
-              scale: 0;
-              opacity: 0;
-            }
-          }
-        }
+        
       }
     }
   }
@@ -526,7 +624,7 @@ onBeforeUnmount(() => {
 
   .description {
     position: absolute;
-    width: 49.29577465%;
+    width: 80%;
     margin-top: auto;
     margin-bottom: auto;
     margin-left: auto;
@@ -564,78 +662,44 @@ html.-loaded {
   }
 }
 
+@media (max-width: 1024px) {
+  .page {
+    .bg {
+    }
+    .bg.-form-active {
+      div {
+        figure {
+          svg {
+            fill: rgba(var(--c-black-rgb), 1);
+            scale: 0.8;
+            filter: drop-shadow(0 0 0rem var(--c-white));
+
+            transition: scale 1s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.3s var(--f-cubic);
+          }
+        }
+      }
+    }
+  }
+}
+
 @media (min-width: 1024px) {
   .page {
-    padding-top: initial !important;
-    padding-bottom: initial !important;
-    height: 100%;
-    min-height: 100vh;
-    min-height: calc(var(--vh, 1vh) * 100);
-
-    flex-grow: 1;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
     .bg {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      pointer-events: none;
-
       .bg-ray {
-        position: absolute;
-        display: block;
-        width: 100%;
-        height: 100%;
-        background-image: url(/images/logo-bg.jpg);
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: contain;
-
-        animation: logo-bg 12s infinite ease-in-out;
-      }
-      div {
-        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        // perspective: calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem + 90rem);
+      }
+      div {
         perspective: 100rem;
-
         transform: perspective 0.6s var(--f-swoosh);
 
         figure {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          will-change: transform;
-
-          // transition: scale 0.3s var(--f-cubic);
-
           svg {
-            fill: rgba(var(--c-black-rgb), 0);
-            stroke: var(--c-grey-4);
-            // stroke: blue;
-            stroke-width: 0.1px;
+            // stroke-width: 0.1px;
             filter: drop-shadow(0 0 1rem var(--c-white));
-
             scale: 1;
-            transition: scale 0.9s var(--f-cubic), fill 0.9s var(--f-cubic), filter 0.9s var(--f-back);
           }
         }
 
@@ -644,65 +708,27 @@ html.-loaded {
             translate3d(calc(var(--gX) * -0.75px),
               calc(var(--gY) * -0.5px),
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 20rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
-
-          svg {
-            animation: blinking 0.3s ease infinite;
-
-            transition-delay: 0.15s;
-          }
         }
-
         .deep-2 {
           transform:
             translate3d(calc(var(--gX) * -0.75px),
               calc(var(--gY) * -0.5px),
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -50rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
-
-
-          svg {
-            animation: blinking 0.45s ease infinite;
-
-            transition-delay: 0.225s;
-          }
         }
-
         .deep-3 {
           transform:
             translate3d(calc(var(--gX) * -1.125px),
               calc(var(--gY) * -0.75px),
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * -30rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
-
-
-          svg {
-            animation: blinking 0.6s ease infinite;
-
-            transition-delay: 0.3s;
-          }
         }
-
         .deep-4 {
           transform:
             translate3d(calc(var(--gX) * -1.5px),
               calc(var(--gY) * -1px),
               calc((var(--gXabs)/1000 + var(--gYabs)/1000) * 10rem)) rotateZ(calc(var(--angleX) / 600 * 30deg)) rotateX(calc(var(--angleY) / 200 * -15deg)) rotateY(calc(var(--angleX) / 600 * 30deg));
-
-
-          svg {
-            animation: blinking 0.75s ease infinite;
-
-            transition-delay: 0.45s;
-          }
         }
 
-        .deep-ghost {
-          scale: 1.1;
-          opacity: 0.6;
-
-          svg {
-            filter: initial;
-            stroke: var(--c-grey-2);
-          }
-        }
+        
       }
     }
 
@@ -721,17 +747,9 @@ html.-loaded {
     }
 
     .c-welcome {
-      margin-top: auto;
       margin-bottom: -5%;
 
       .-w {
-        height: 100%;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-
         .form-email {
           h1 {
             max-width: 25rem;
@@ -748,10 +766,14 @@ html.-loaded {
             .field {
               margin-bottom: initial;
               flex-grow: 1;
+
+              :deep(input) {
+                text-align: left;
+              }
             }
 
-            button,
-            a {
+            button {
+              width: initial;
               position: absolute;
               height: 100%;
               right: 0;
@@ -785,6 +807,49 @@ html.-loaded {
           }
         }
       }
+    }
+
+    .c-recruited {
+      .get-recruited {
+        margin-bottom: clamp(3rem, 5%, 5%);
+
+        display: flex;
+        justify-content: center;
+        width: 49.29577465%;
+        margin-top: auto;
+        margin-left: auto;
+        margin-right: auto;
+
+        div {
+          width: 50%;
+
+          a:hover {
+            animation: blinking 0.6s infinite step-end;
+
+            .wrap {
+
+              .-base {
+                opacity: 0;
+                transform: translate(0, -50%);
+              }
+
+              .-hover {
+                opacity: 1;
+                transform: translate(0, 0);
+              }
+
+              svg {
+                scale: 0;
+                opacity: 0;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    .description {
+      width: 49.29577465%;
     }
   }
 }
