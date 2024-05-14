@@ -53,8 +53,7 @@ class StringSplit {
     let charsCount = 0
     words.forEach((word, wordIndex) => {
       const randomizedWordIndices = config.mode == "random" ? this.createRandomIndices(word.length) : null;
-
-      let wordData = this.createWordSpan(word, wordIndex, globalCharIndex, randomizedIndices, randomizedWordIndices, config)
+      let wordData = this.createWordSpan(this.decodeHtmlEntity(word), wordIndex, globalCharIndex, randomizedIndices, randomizedWordIndices, config)
       const wordSpan = wordData.element;
       element.appendChild(wordSpan);
       charsCount += wordData.charCount
@@ -181,6 +180,10 @@ class StringSplit {
     }
     return indices;
   }
+
+  private decodeHtmlEntity(str: string) {
+    return str.replace(/&amp;/g, '&')
+  };
 }
 
 export default StringSplit
