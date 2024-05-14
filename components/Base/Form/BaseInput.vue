@@ -7,35 +7,14 @@
 
     <label class="-m -up" :for="forID" v-if="name">{{ name }}</label>
 
-    <input
-      v-if="isTextarea == false && options.length == 0"
-      :id="forID"
-      ref="inputElement"
-      :type='typePassword ? `password` : `text`'
-      :name="inputName"
-      :placeholder="itsPlaceholder"
-      v-model="value"
-      @focus="onInputFocus"
-      @blur="onInputBlur"
-      @keyup="onInputChange"
-      @input="formatInput"
-      required
-    />
-      <!-- title="error" -->
+    <input v-if="isTextarea == false && options.length == 0" :id="forID" ref="inputElement"
+      :type='type == "" ? `text` : type' :name="inputName" :placeholder="itsPlaceholder" v-model="value"
+      @focus="onInputFocus" @blur="onInputBlur" @keyup="onInputChange" @input="formatInput" required />
+    <!-- title="error" -->
 
-    <textarea
-      v-if="isTextarea == true && options.length == 0" rows="4"
-      :id="forID"
-      ref="inputElement"
-      type="text"
-      :name="inputName"
-      :placeholder="itsPlaceholder"
-      v-model="value"
-      @focus="onInputFocus"
-      @blur="onInputBlur"
-      @keyup="onInputChange"
-      required
-    ></textarea>
+    <textarea v-if="isTextarea == true && options.length == 0" rows="4" :id="forID" ref="inputElement" type="text"
+      :name="inputName" :placeholder="itsPlaceholder" v-model="value" @focus="onInputFocus" @blur="onInputBlur"
+      @keyup="onInputChange" required></textarea>
 
     <select class="" :id="forID" v-if="options.length > 0" name="role" @change="onInputSelectChange($event)">
       <option v-for="option in options" :value="option">{{ option }}</option>
@@ -85,9 +64,9 @@ const props = defineProps(
       type: Boolean,
       default: false
     },
-    typePassword: {
-      type: Boolean,
-      default: false
+    type: {
+      type: String,
+      default: ""
     },
     isError: {
       type: Boolean,
