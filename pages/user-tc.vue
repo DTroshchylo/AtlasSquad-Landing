@@ -2,7 +2,6 @@
   <main class="page tc-page" >
     <section class="c-tc">
       <div class="-w">
-
         <div class="tc-content">
 
           <h1 class="-tac -a-p -split title" data-string>
@@ -245,8 +244,6 @@ onBeforeUnmount(() => {
     }
   }
 }
-
-
 @media (min-width: 1024px) {
   .page {
     .c-tc {
@@ -276,6 +273,4 @@ onBeforeUnmount(() => {
     }
   }
 }
-
-
 </style>

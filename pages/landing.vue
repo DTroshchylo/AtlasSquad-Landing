@@ -236,8 +236,10 @@ onMounted(() => {
     item.style.setProperty('--gY', deltaY)
   }
   deep.value.addEventListener('mousemove', (e: any) => {
-    mouseX = e.clientX
-    mouseY = e.clientY
+    if(desktop.value == true) {
+      mouseX = e.clientX
+      mouseY = e.clientY
+    }
   });
   function lerp (start: any, end: any, amt: any){
     return (1-amt)*start+amt*end
@@ -257,13 +259,15 @@ onMounted(() => {
   });
 
   hoverElements.forEach(element => {
-    element.addEventListener('mouseover', ()=>{
-      // console.log(true)
-      isHoverOnElement.value = true
+    element.addEventListener('mouseover', () => {
+      if(desktop.value == true) {
+        isHoverOnElement.value = true
+      }
     })
-    element.addEventListener('mouseout', ()=>{
-      // console.log(false)
-      isHoverOnElement.value = false
+    element.addEventListener('mouseout', () => {
+      if(desktop.value == true) {
+        isHoverOnElement.value = false
+      }
     })
   });
 
