@@ -307,6 +307,10 @@ onMounted(() => {
 })
 onBeforeUnmount(() => {
   window.removeEventListener("resize", queryCheck)
+
+  document.querySelectorAll('.-inview').forEach(element => {
+    element.classList.remove('-inview')
+  });
 })
 await useAsyncData('loadInfluencer', () => storeInfluencer.loadInfluencer(route.params.slug.toString()))
 </script>
