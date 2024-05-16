@@ -1,0 +1,39 @@
+name: Deploy to atlas-squad.com
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [19.x]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      # Setup key
+      - run: set -eu
+      - run: mkdir "$HOME/.ssh"
+      - run: echo "${{ secrets.atlas }}" > "$HOME/.ssh/key"
+      - run: chmod 600 "$HOME/.ssh/key"
+      # Build
+      - run: npm i --legacy-peer-deps
+      # - run: npm test
+      - run: npm run build
+      # Deploy
+      - run: |
+          rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
+          ./.nuxt ./.output ./public ./nuxt.config.ts \
+          ./ecosystem.master.config.js ./package.json ./package-lock.json \
+          root@64.23.162.141:/var/www/atlas-squad.com \
+          && ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no root@64.23.162.141 " \
+          cd /var/www/atlas-squad.com \
+          && npm i --legacy-peer-deps \
+          && chown -R root:root ./* \
+          && pm2 restart ecosystem.master.config.js"
+
