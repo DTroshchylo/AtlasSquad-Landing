@@ -4,7 +4,7 @@
       <div class="-w">
         <div class="tc-content">
 
-          <h1 class="-tac -a-p -split title" data-string>
+          <h1 class="-tac -a-p -split title -h6" data-string>
             <span data-string-split style="--l-delay: 0.6;">The Atlas Squad boot camp is not for everyone.</span>
             <span data-string-split style="--l-delay: 0.9;">Is this you?</span>
           </h1>
@@ -121,6 +121,7 @@ onBeforeUnmount(() => {
       .tc-content {
         .title {
           margin-bottom: 3rem;
+          color: var(--c-grey-0);
 
           >span {
             display: block;
@@ -271,7 +272,7 @@ onBeforeUnmount(() => {
             margin-right: auto;
 
             ul {
-              margin-left: 10%;
+              margin-left: 5%;
             }
           }
 
