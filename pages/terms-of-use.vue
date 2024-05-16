@@ -6,7 +6,7 @@
           <h1 class="-h5" >
             <span data-string-split style="--l-delay: 0.6;">Atlas Squad Sync Terms of Use</span>
           </h1>
-          <p class="-m -a-to-top">Effective Date: [7 May 2024]</p>
+          <p class="-m -a-to-top">Effective Date: 7 May 2024</p>
         </div>
         <div class="tou-content -a-to-top" style="--l-delay: 0.15" data-string>
           
@@ -197,7 +197,7 @@ onBeforeUnmount(() => {
 .page {
   .c-tou {
     position: relative;
-    
+
     .-w {
       .title {
         margin-bottom: 2rem;
