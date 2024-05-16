@@ -67,9 +67,9 @@
               journey.</span>
           </p>
 
-          <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
+          <form onsubmit="return false" class="-a-clip-center " data-string style="--l-delay: -0.15;">
             <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email"
-              class="-focus-element -hover-element" />
+              class="-focus-element -hover-element" type="email" />
 
             <button type="submit" @click.native="onSendEmail($event)" @mouseenter="submitButtonEnter"
               @mouseleave="submitButtonLeave" class="-hover-element" v-if="desktop">

@@ -11,17 +11,20 @@
           data-string-storage="registration">
           <div class="row -a-scale-out" style="--l-delay: 0;">
             <label for="form-email">Email *</label>
-            <input id="form-email" class="-tac" v-model="email" type="text" data-string-id="email" data-string-validation="email|Email not formated;required|Field is required">
+            <input id="form-email" class="-tac" v-model="email" type="text" data-string-id="email"
+              data-string-validation="email|Email not formated;required|Field is required">
             <div class="-error -m-mm" data-string-validation-error="email"></div>
           </div>
           <div class="row -a-scale-out" style="--l-delay: 0.075;">
             <label for="form-name">Name *</label>
-            <input id="form-name" v-model="name" type="text" data-string-id="name" data-string-validation="required|Field is required">
+            <input id="form-name" v-model="name" type="text" data-string-id="name"
+              data-string-validation="required|Field is required">
             <div class="-error -m-mm" data-string-validation-error="name"></div>
           </div>
           <div class="row -a-scale-out" style="--l-delay: 0.15;">
             <label for="form-channel-link">Link to channel *</label>
-            <input id="form-channel-link" v-model="socialLink" type="text" data-string-id="socialLink" data-string-validation="required|Field is required">
+            <input id="form-channel-link" v-model="socialLink" type="text" data-string-id="socialLink"
+              data-string-validation="required|Field is required">
             <div class="-error -m-mm" data-string-validation-error="socialLink"></div>
           </div>
           <div class="row -a-scale-out" style="--l-delay: 0.225;">
@@ -91,7 +94,6 @@ onMounted(() => {
   let stringForm = StringValidation.getInstance()
 
   registrationForm.value?.addEventListener('submit', async (event: Event) => {
-    console.log('submit')
     event.preventDefault();
     axios.get(`https://atlas-squad-landing.fiddle.digital/api/send-influencer?name=${name.value}&email=${email.value}&message=${socialLink.value}&why=${why.value}`)
   })
