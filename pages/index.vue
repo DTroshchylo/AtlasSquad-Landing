@@ -297,31 +297,37 @@ onMounted(() => {
     return (1 - amt) * start + amt * end
   }
 
-  let hoverElements = document.querySelectorAll('.-hover-element')
-  let focusElements = document.querySelectorAll('.-focus-element')
 
 
-  focusElements.forEach(element => {
-    element.querySelector('input')?.addEventListener('focus', () => {
-      isFocusOnElement.value = true
-    })
-    element.querySelector('input')?.addEventListener('blur', () => {
-      isFocusOnElement.value = false
-    })
-  });
+  nextTick(() => {
+    let hoverElements = document.querySelectorAll('.-hover-element')
+    let focusElements = document.querySelectorAll('.-focus-element')
 
-  hoverElements.forEach(element => {
-    element.addEventListener('mouseover', () => {
-      if (desktop.value == true) {
-        isHoverOnElement.value = true
-      }
-    })
-    element.addEventListener('mouseout', () => {
-      if (desktop.value == true) {
-        isHoverOnElement.value = false
-      }
-    })
-  });
+    focusElements.forEach(element => {
+      element.querySelector('input')?.addEventListener('focus', () => {
+        isFocusOnElement.value = true
+      })
+      element.querySelector('input')?.addEventListener('blur', () => {
+        isFocusOnElement.value = false
+      })
+    });
+
+    hoverElements.forEach(element => {
+      element.addEventListener('mouseover', () => {
+        //console.log(desktop.value)
+        if (desktop.value == true) {
+          isHoverOnElement.value = true
+        }
+      })
+      element.addEventListener('mouseout', () => {
+        if (desktop.value == true) {
+          isHoverOnElement.value = false
+        }
+      })
+    });
+  })
+
+
 
 
 
@@ -333,6 +339,7 @@ onMounted(() => {
     elapsed = now - then;
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
+      //console.log(isFocusOnElement.value || isHoverOnElement.value)
       if (isFocusOnElement.value || isHoverOnElement.value) {
         mouseX = window.innerWidth / 2
         mouseY = window.innerHeight / 2
