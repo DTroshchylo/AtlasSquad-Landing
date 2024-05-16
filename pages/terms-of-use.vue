@@ -4,7 +4,7 @@
       <div class="-w">
         <div class="title -a-p -tac -split" data-string>
           <h1 class="-h5" >
-            <span data-string-split style="--l-delay: 0.6;">Atlas Squad Sync Terms of Use</span>
+            <span data-string-split style="--l-delay: 0.6;">Atlas Squad Terms of Use</span>
           </h1>
           <p class="-m -a-to-top">Effective Date: 7 May 2024</p>
         </div>
