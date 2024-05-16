@@ -11,7 +11,7 @@
           data-string-storage="registration">
           <div class="row -a-scale-out" style="--l-delay: 0;">
             <label for="form-email">Email *</label>
-            <input id="form-email" class="-tac" v-model="email" type="text" data-string-id="email"
+            <input id="form-email" v-model="email" type="text" data-string-id="email"
               data-string-validation="email|Email not formated;required|Field is required">
             <div class="-error -m-mm" data-string-validation-error="email"></div>
           </div>

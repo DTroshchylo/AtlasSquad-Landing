@@ -4,7 +4,7 @@
       <div class="-w">
         <div class="tc-content">
 
-          <h1 class="-tac -a-p -split title" data-string>
+          <h1 class="-tac -a-p -split title -h6" data-string>
             <span data-string-split style="--l-delay: 0.6;">Become our recruiter</span>
           </h1>
 
@@ -93,6 +93,7 @@ onBeforeUnmount(() => {
       .tc-content {
         .title {
           margin-bottom: 3rem;
+          color: var(--c-grey-0);
 
           >span {
             display: block;
