@@ -25,7 +25,7 @@ jobs:
       - run: npm i --legacy-peer-deps
       # - run: npm test
       - run: npm run build
-      # Deploy
+      # Deploy 
       - run: |
           rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
           ./.nuxt ./.output ./public ./nuxt.config.ts \
