@@ -17,8 +17,8 @@
                 <div>{{ item.title }}</div>
                 <div>{{ item.description }}</div>
             </div>
-            
-            
+
+
         </div>
 
         <div v-if="user == null || user.status == 404">404</div>
@@ -43,7 +43,7 @@ const user = computed(() => {
 })
 
 onMounted(async () => {
-    //http://devnode1.palemiya.com/public/user/7
+    //http://node.atlas-squad.com/public/user/7
 
 })
 onBeforeUnmount(() => {

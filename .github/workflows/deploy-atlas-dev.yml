@@ -1,4 +1,4 @@
-name: Deploy to dev-landing.atlas-squad.com
+name: Deploy to dev.atlas-squad.com
 
 on:
   push:
