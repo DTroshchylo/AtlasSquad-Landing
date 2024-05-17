@@ -222,7 +222,7 @@ onMounted(() => {
     item.style.setProperty('--gY', deltaY)
   }
   deep.value.addEventListener('mousemove', (e: any) => {
-    if(desktop.value == true) {
+    if (desktop.value == true) {
       mouseX = e.clientX
       mouseY = e.clientY
     }
@@ -231,31 +231,33 @@ onMounted(() => {
     return (1 - amt) * start + amt * end
   }
 
-  let hoverElements = document.querySelectorAll('.-hover-element')
-  let focusElements = document.querySelectorAll('.-focus-element')
+  nextTick(() => {
+    let hoverElements = document.querySelectorAll('.-hover-element')
+    let focusElements = document.querySelectorAll('.-focus-element')
 
+    focusElements.forEach(element => {
+      element.querySelector('input')?.addEventListener('focus', () => {
+        isFocusOnElement.value = true
+      })
+      element.querySelector('input')?.addEventListener('blur', () => {
+        isFocusOnElement.value = false
+      })
+    });
 
-  focusElements.forEach(element => {
-    element.querySelector('input')?.addEventListener('focus', () => {
-      isFocusOnElement.value = true
-    })
-    element.querySelector('input')?.addEventListener('blur', () => {
-      isFocusOnElement.value = false
-    })
-  });
-
-  hoverElements.forEach(element => {
-    element.addEventListener('mouseover', () => {
-      if(desktop.value == true) {
-        isHoverOnElement.value = true
-      }
-    })
-    element.addEventListener('mouseout', () => {
-      if(desktop.value == true) {
-        isHoverOnElement.value = false
-      }
-    })
-  });
+    hoverElements.forEach(element => {
+      element.addEventListener('mouseover', () => {
+        //console.log(desktop.value)
+        if (desktop.value == true) {
+          isHoverOnElement.value = true
+        }
+      })
+      element.addEventListener('mouseout', () => {
+        if (desktop.value == true) {
+          isHoverOnElement.value = false
+        }
+      })
+    });
+  })
 
 
 

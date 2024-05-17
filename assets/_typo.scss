@@ -53,26 +53,53 @@ h6 {
 
 
 h1,
-.-h1,
+.-h1 {
+  font-family: 'Raleway-Bold';
+  text-transform: uppercase;
+  font-size: 7.993rem;
+  line-height: 1.25;
+  letter-spacing: 1.99rem;
+}
 h2,
-.-h2,
+.-h2 {
+  font-family: 'Raleway-Bold';
+  text-transform: uppercase;
+  font-size: 5.6525rem;
+  line-height: 1.25;
+  letter-spacing: 1.4rem;
+}
 h3,
-.-h3,
+.-h3 {
+  font-family: 'Raleway-Bold';
+  text-transform: uppercase;
+  font-size: 3.9975rem;
+  line-height: 1.25;
+  letter-spacing: 0.99rem;
+}
 h4,
-.-h4,
+.-h4 {
+  font-family: 'Raleway-Bold';
+  text-transform: uppercase;
+  font-size: 2.832rem;
+  line-height: 1.25;
+  letter-spacing: 0.708rem;
+}
 h5,
-.-h5,
+.-h5 {
+  font-family: 'Raleway-Bold';
+  text-transform: uppercase;
+  font-size: 2rem;
+  line-height: 1.25;
+  letter-spacing: 0.5rem;
+}
 h6,
 .-h6 {
   font-family: 'Raleway-Bold';
   text-transform: uppercase;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.25;
   letter-spacing: 0.35rem;
 }
-
-
-
 
 
 .-up {
@@ -109,6 +136,11 @@ h6,
 .-mm {
   font-size: 0.6rem;
   line-height: 1.2;
+}
+
+.-note {
+  padding: 1rem 2rem;
+  border-left: 2px solid var(--c-grey-4);
 }
 
 

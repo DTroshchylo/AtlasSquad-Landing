@@ -4,7 +4,7 @@
       <div class="-w">
         <div class="tc-content">
 
-          <h1 class="-tac -a-p -split title" data-string>
+          <h1 class="-tac -a-p -split title -h6" data-string>
             <span data-string-split style="--l-delay: 0.6;">The Atlas Squad boot camp is not for everyone.</span>
             <span data-string-split style="--l-delay: 0.9;">Is this you?</span>
           </h1>
@@ -16,13 +16,16 @@
             </span>
             <ul>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Have the willpower to start or stop doing anything I choose without stress or drama.</span>
+                <span data-string-split style="--l-modifier: 1;">Have the willpower to start or stop doing anything I
+                  choose without stress or drama.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Playfully control the arc of my story and eliminate deathbed regrets.</span>
+                <span data-string-split style="--l-modifier: 1;">Playfully control the arc of my story and eliminate
+                  deathbed regrets.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Forge deep and lasting relationships with others.</span>
+                <span data-string-split style="--l-modifier: 1;">Forge deep and lasting relationships with
+                  others.</span>
               </li>
             </ul>
 
@@ -33,13 +36,16 @@
             </span>
             <ul>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Take on intense, challenging emotional, spiritual and physical work.</span>
+                <span data-string-split style="--l-modifier: 1;">Take on intense, challenging emotional, spiritual and
+                  physical work.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Actively contribute to a society exploring the frontiers of human mental ability.</span>
+                <span data-string-split style="--l-modifier: 1;">Actively contribute to a society exploring the
+                  frontiers of human mental ability.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Mentor others on their journey and do so with utmost integrity.</span>
+                <span data-string-split style="--l-modifier: 1;">Mentor others on their journey and do so with utmost
+                  integrity.</span>
               </li>
             </ul>
 
@@ -50,10 +56,12 @@
             </span>
             <ul>
               <li>
-                <span data-string-split style="--l-modifier: 1;">Three examples of past achievements that required strong willpower.</span>
+                <span data-string-split style="--l-modifier: 1;">Three examples of past achievements that required
+                  strong willpower.</span>
               </li>
               <li>
-                <span data-string-split style="--l-modifier: 1;">A vague impulse inside me pulling towards more truth and authenticity.</span>
+                <span data-string-split style="--l-modifier: 1;">A vague impulse inside me pulling towards more truth
+                  and authenticity.</span>
               </li>
               <li>
                 <span data-string-split style="--l-modifier: 1;">A sense of humor.</span>
@@ -101,8 +109,15 @@ const checkedTerms = ref(false);
 const email = ref('')
 const invite = ref('')
 onMounted(() => {
-  email.value = StringStorage.getInstance().local.get('email')
-  invite.value = StringStorage.getInstance().local.get('invite')
+
+  if (StringStorage.getInstance().local.has('email')) {
+    email.value = StringStorage.getInstance().local.get('email')
+    invite.value = StringStorage.getInstance().local.get('invite')
+  } else {
+    navigateTo('/')
+  }
+
+
 })
 onBeforeUnmount(() => {
   document.querySelectorAll('.-inview').forEach(element => {
@@ -121,6 +136,7 @@ onBeforeUnmount(() => {
       .tc-content {
         .title {
           margin-bottom: 3rem;
+          color: var(--c-grey-0);
 
           >span {
             display: block;
@@ -257,6 +273,7 @@ onBeforeUnmount(() => {
     }
   }
 }
+
 @media (min-width: 1024px) {
   .page {
     .c-tc {
@@ -271,7 +288,7 @@ onBeforeUnmount(() => {
             margin-right: auto;
 
             ul {
-              margin-left: 10%;
+              margin-left: 5%;
             }
           }
 

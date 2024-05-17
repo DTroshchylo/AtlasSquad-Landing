@@ -4,8 +4,6 @@
       '-form-active': isFocusOnElement || isHoverOnElement
     }]">
       <span class="bg-ray"></span>
-      <!-- <span class="bg-ray ray-1"></span> -->
-      <!-- <span class="bg-ray ray-2"></span> -->
 
       <div class="-a-scale-in" ref="bglogo" data-string style="--l-delay: -0.15; --l-modifier: 1.5">
         <figure class="deep-1">
@@ -59,7 +57,7 @@
         <div class="form-email" :class="{
           '-hidden': recruitedCap
         }">
-          <h1 class="-tac -a-p -split" data-string>
+          <h1 class="-tac -a-p -split -h6" data-string>
             <span data-string-split style="--l-delay: 0.6;">What would you do with total willpower?</span>
           </h1>
           <p class="caption -a-p -split" data-string>
@@ -546,6 +544,7 @@ onBeforeUnmount(() => {
           margin-bottom: 0.5rem;
           margin-left: auto;
           margin-right: auto;
+          color: var(--c-grey-0);
         }
 
         .caption {
@@ -785,11 +784,11 @@ html.-loaded {
       .-w {
         .form-email {
           h1 {
-            max-width: 25rem;
+            max-width: 28rem;
           }
 
           .caption {
-            max-width: 25rem;
+            max-width: 28rem;
           }
 
           form {
