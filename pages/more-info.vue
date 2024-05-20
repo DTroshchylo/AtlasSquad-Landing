@@ -1,6 +1,9 @@
 <template>
-  <main class="page info-page" >
-
+  <main class="page info-page" data-string-progress data-string-lerp data-string-start="top top" data-string-end="bottom bottom">
+  <!-- data-string-offset="" -->
+    <div class="bg">
+      <span class="bg-ray"></span>
+    </div>
     <section class="c-welcome -a-p" data-string data-string-progress data-string-start="top top">
       <div class="-w">
         <div class="l">
@@ -258,10 +261,39 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
 .page {
+  position: relative;
   padding-top: initial !important;
   background-color: #171717;
   min-height: calc(var(--vh, 1vh) * 100);
-  contain: paint;
+  // contain: paint;
+
+  .bg {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: calc(var(--vh, 1vh) * 100);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    pointer-events: none;
+
+    .bg-ray {
+      position: absolute;
+      top: 0%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      display: block;
+      background-image: url(/images/logo-bg-17.jpg);
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+
+      transform: translate3d(0,calc(-50% + var(--string-progress) * 50%),0);
+      animation: logo-bg 12s infinite ease-in-out;
+    }
+  }
 
   .special-h {
     font-family: 'Raleway-Regular';
@@ -446,6 +478,9 @@ onBeforeUnmount(() => {
       }
       .r {}
     }
+  }
+  .c-personalization {
+    z-index: 10;
   }
   .c-mentoring {
     .bg {

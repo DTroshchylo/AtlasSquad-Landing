@@ -441,7 +441,7 @@ onBeforeUnmount(() => {
       background-image: url(/images/logo-bg.jpg);
       background-position: center;
       background-repeat: no-repeat;
-      background-size: contain;
+      background-size: cover;
 
       animation: logo-bg 12s infinite ease-in-out;
     }

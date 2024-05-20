@@ -52,8 +52,7 @@ onBeforeUnmount(() => {
   align-items: center;
   min-height: 4rem;
   transform: translate(0,-100%);
-  transition: transform 0.3s var(--f-cubic);
-  transition-delay: 0.3s;
+  
 
   .bg {
     position: absolute;
@@ -93,6 +92,8 @@ onBeforeUnmount(() => {
 html.-ready.-loaded {
   .header {
     transform: translate(0,0);
+    transition: transform 0.3s var(--f-cubic);
+    transition-delay: 0.3s;
   }
 }
 
