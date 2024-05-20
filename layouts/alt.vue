@@ -3,8 +3,7 @@
   
 
   <div class="page-wrap">
-    <TheHeader v-if="path != '/more-info'" />
-    <TheHeaderAlt v-if="path == '/more-info'" />
+    <TheHeaderAlt />
     <NuxtPage />
     <TheFooter />
   </div>
@@ -32,12 +31,6 @@ const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
 
 
-
-
-
-
-
-
 // query check
 let mobile = ref(false)
 let desktop = ref(false)
@@ -56,7 +49,6 @@ const splash = ref(true)
 const pageTransition = ref(false)
 
 const route = useRoute();
-const path = computed(() => route.path)
 watch(
   () => route.path,
   () => {

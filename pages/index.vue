@@ -79,7 +79,6 @@
             <button type="submit" @click.native="onSendEmail($event)" v-if="mobile" class="-tac -a-to-top" data-string>
               <span class="-up -b -link">Became a candidate ></span>
             </button>
-
           </form>
 
 
