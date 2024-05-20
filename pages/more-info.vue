@@ -1,14 +1,13 @@
 <template>
   <main class="page info-page" >
 
-    <section class="c-welcome" data-string-progress data-string-start="top top">
+    <section class="c-welcome -a-p" data-string data-string-progress data-string-start="top top">
       <div class="-w">
         <div class="l">
-          <p class="special-h">The Atlas Squad’s boot camp is a neuroscience-based self-engineering program for a select group of people who feel that their missions deserve nothing less.</p>
-
-          <span class="-link">Enter email to start the journey /</span>
+          <p class="special-h -a-to-top" style="--l-delay: 0;">The Atlas Squad’s boot camp is a neuroscience-based self-engineering program for a select group of people who feel that their missions deserve nothing less.</p>
+          <span class="-link -a-to-top" style="--l-delay: 0.15;">Enter email to start the journey /</span>
         </div>
-        <div class="r graphics">
+        <div class="r graphics -a-scale-in">
           <div class="fig-wrap">
             <figure>
               <img data-not-lazy src="/images/more-info/brain-01.jpg" alt="Atlas Squad">
@@ -18,91 +17,91 @@
       </div>
     </section>
 
-    <section class="c-personalization" data-string-progress>
+    <section class="c-personalization -a-p" data-string data-string-progress>
       <div class="-w">
-        <div class="l graphics">
+        <div class="l graphics -a-scale-in">
           <div class="fig-wrap">
             <figure>
-              <img data-not-lazy src="/images/more-info/brain-01.jpg" alt="Atlas Squad">
+              <img data-not-lazy src="/images/more-info/dashboard.jpg" alt="Atlas Squad">
             </figure>
           </div>
         </div>
         <div class="r tt">
           <div class="description">
-            <div class="route" style="--active: 1;">
+            <div class="route -a-to-top" style="--l-delay: 0; --active: 1;">
               <div class="step" v-for="item in 4"></div>
             </div>
-            <span class="-up -m -b -red">Total personalization /</span>
-            <p class="-mid">The program is a completely personalized, thoroughly gamified and AI-informed journey towards achieving the most demanding personal goals.</p>
+            <span class="-up -m -b -red -a-to-top" style="--l-delay: 0.15;">Total personalization /</span>
+            <p class="-mid -a-to-top" style="--l-delay: 0.3;">The program is a completely personalized, thoroughly gamified and AI-informed journey towards achieving the most demanding personal goals.</p>
           </div>
         </div>
       </div>
     </section>
 
 
-    <section class="c-mentoring" data-string-progress>
+    <section class="c-mentoring -a-p" data-string data-string-progress>
       <span class="bg"></span>
       <div class="-w">
         
         <div class="l tt">
           <div class="description">
-            <div class="route" style="--active: 2;">
+            <div class="route -a-to-top" style="--l-delay: 0; --active: 2;">
               <div class="step" v-for="item in 4"></div>
             </div>
-            <span class="-up -m -b -red">Next level mentoring / </span>
-            <p class="-mid">Atlas Squad recruits enjoy constant one on one support from mentors — accomplished entrepreneurs and athletes with thorough training in mental conditioning.</p>
+            <span class="-up -m -b -red -a-to-top" style="--l-delay: 0.15;">Next level mentoring / </span>
+            <p class="-mid -a-to-top" style="--l-delay: 0.3;">Atlas Squad recruits enjoy constant one on one support from mentors — accomplished entrepreneurs and athletes with thorough training in mental conditioning.</p>
           </div>
         </div>
 
-        <div class="r graphics">
+        <div class="r graphics -a-scale-in">
           <div class="fig-wrap">
             <figure>
-              <img data-not-lazy src="/images/more-info/brain-01.jpg" alt="Atlas Squad">
+              <img data-not-lazy src="/images/more-info/letter.jpg" alt="Atlas Squad">
             </figure>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="c-journey" data-string-progress>
+    <section class="c-journey -a-p" data-string data-string-progress>
       <div class="-w">
-        <div class="l graphics">
+        <div class="l graphics -a-scale-in">
           <div class="fig-wrap">
             <figure>
-              <img data-not-lazy src="/images/more-info/brain-01.jpg" alt="Atlas Squad">
+              <img data-not-lazy src="/images/more-info/tags.webp" alt="Atlas Squad">
             </figure>
           </div>
         </div>
         <div class="r tt">
           <div class="description">
-            <div class="route" style="--active: 3;">
+            <div class="route -a-to-top" style="--l-delay: 0; --active: 3;">
               <div class="step" v-for="item in 4"></div>
             </div>
-            <span class="-up -m -b -red">A transformational journey /</span>
-            <p class="-mid">The 25-task journey of the boot camp involves intense emotional, spiritual, and physical work, and is unique for each recruit. Many tasks require collaboration with their buddy and their team.</p>
+            <span class="-up -m -b -red -a-to-top" style="--l-delay: 0.15;">A transformational journey /</span>
+            <p class="-mid -a-to-top" style="--l-delay: 0.3;">The 25-task journey of the boot camp involves intense emotional, spiritual, and physical work, and is unique for each recruit. Many tasks require collaboration with their buddy and their team.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="c-club" data-string-progress>
+    <section class="c-club -a-p" data-string data-string-progress>
       <span class="bg"></span>
       <div class="-w">
         
         <div class="l tt">
           <div class="description">
-            <div class="route" style="--active: 2;">
+            <div class="route -a-to-top" style="--l-delay: 0; --active: 4;">
               <div class="step" v-for="item in 4"></div>
             </div>
-            <span class="-up -m -b -red">An elite club / </span>
-            <p class="-mid">Those who complete the camp are asked to become Squad members. They have demonstrated the willpower to start or stop doing anything they choose without stress or drama, playfully control the arc of their story so as to eliminate deathbed regrets, and forge deep and lasting relationships with others.</p>
+            <span class="-up -m -b -red -a-to-top" style="--l-delay: 0.15;">An elite club / </span>
+            <p class="-mid -a-to-top" style="--l-delay: 0.3;">Those who complete the camp are asked to become Squad members. They have demonstrated the willpower to start or stop doing anything they choose without stress or drama, playfully control the arc of their story so as to eliminate deathbed regrets, and forge deep and lasting relationships with others.</p>
           </div>
         </div>
 
-        <div class="r graphics">
+        <div class="r graphics -a-scale-in">
           <div class="fig-wrap">
             <figure>
-              <img data-not-lazy src="/images/more-info/brain-01.jpg" alt="Atlas Squad">
+              <img data-not-lazy src="/images/more-info/public.jpg" alt="Atlas Squad">
             </figure>
           </div>
         </div>
@@ -110,13 +109,13 @@
     </section>
 
 
-    <section class="c-cta" data-string-progress>
+    <section class="c-cta -a-p" data-string>
       <div class="-w -tac">
-        <p class="special-h">The Atlas Squad is a meritocracy devoted to nurturing elite performers who redefine what human willpower can do.</p>
-        <p class="-mid">Anyone can start our boot camp — the first module is free. Not everyone has what it takes to complete the program. Very few do it in a way that qualifies them to guide others — only they get to be mentors.</p>
+        <p class="special-h -a-to-top" style="--l-delay: 0.0;">The Atlas Squad is a meritocracy devoted to nurturing elite performers who redefine what human willpower can do.</p>
+        <p class="-mid -a-to-top" style="--l-delay: 0.15;">Anyone can start our boot camp — the first module is free. Not everyone has what it takes to complete the program. Very few do it in a way that qualifies them to guide others — only they get to be mentors.</p>
 
-        <label for="" class="-red -mid">Enter email to start the journey /</label>
-        <form onsubmit="return false">
+        <label for="" class="-red -mid -a-to-top" style="--l-delay: 0.3;">Enter email to start the journey /</label>
+        <form onsubmit="return false" class="-a-to-top" style="--l-delay: 0.45;">
             <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email"
               class="-focus-element -hover-element" type="email" />
 
@@ -307,8 +306,10 @@ onBeforeUnmount(() => {
             width: 100%;
             height: 100%;
             border-radius: 1rem;
-            background-color: #1A1A1A;
+            // background-color: #1A1A1A;
+            background-color: var(--c-grey-4);
             will-change: transform;
+            box-shadow: inset 0 0 1rem 0 #1A1A1A;
           }
           figure {
             position: relative;
@@ -320,7 +321,7 @@ onBeforeUnmount(() => {
       }
       .l.graphics {
         .fig-wrap {
-          transform: translate3d(0,calc(var(--string-progress) * -50%),0);
+          transform: translate3d(0,calc(25% + var(--string-progress) * -50%),0);
 
           &::before {
             transform:
@@ -438,7 +439,10 @@ onBeforeUnmount(() => {
         margin-left: 8.450704225%;
         width: 40.84507042%;
 
-        
+        p {}
+        span {
+          display: inline-block;
+        }
       }
       .r {}
     }
@@ -475,6 +479,44 @@ onBeforeUnmount(() => {
                 background-color: #C4C1BC !important;
               }
             }
+          }
+        }
+      }
+      .graphics {
+        .fig-wrap {
+          width: 60%;
+          margin-top: -10%;
+          margin-bottom: -10%;
+          margin-left: auto;
+          margin-right: auto;
+
+          &::before {
+            content: none !important;
+          }
+          figure {
+            border-radius: 0 !important;
+
+            box-shadow: 2rem 1rem 4rem rgba(var(--c-grey-2-rgb),0.4);
+          }
+        }
+      }
+    }
+  }
+  .c-journey {
+    .-w {
+      .graphics {
+        .fig-wrap {
+          width: 60%;
+          margin-top: -10%;
+          margin-bottom: -10%;
+          margin-left: auto;
+          margin-right: auto;
+
+          &::before {
+            content: none !important;
+          }
+          figure {
+            transform: initial !important;
           }
         }
       }

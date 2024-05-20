@@ -51,6 +51,9 @@ onBeforeUnmount(() => {
   justify-content: center;
   align-items: center;
   min-height: 4rem;
+  transform: translate(0,-100%);
+  transition: transform 0.3s var(--f-cubic);
+  transition-delay: 0.3s;
 
   .bg {
     position: absolute;
@@ -84,6 +87,12 @@ onBeforeUnmount(() => {
 
       animation: blinking 1.2s infinite step-end;
     }
+  }
+}
+
+html.-ready.-loaded {
+  .header {
+    transform: translate(0,0);
   }
 }
 
