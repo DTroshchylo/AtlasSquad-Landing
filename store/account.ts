@@ -294,7 +294,7 @@ export const useAccount = defineStore(key, {
 
     },
     async loadChat(token: string) {
-      let responce = await axios.get(`http://node.atlas-squad.com/user/chat?token=${token}`)
+      let responce = await axios.get(`https://node.atlas-squad.com/user/chat?token=${token}`)
       this.chat = new Array<any>()
       let chatBuffer = new Array<any>()
       responce.data.forEach((element: any) => {
