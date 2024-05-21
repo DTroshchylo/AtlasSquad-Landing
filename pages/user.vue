@@ -3,8 +3,8 @@
     <div class="bg">
       <span class="bg-ray"></span>
     </div>
-    <div class="-w">
-      <div class="user-content">
+    <div class="-w -a-p" data-string>
+      <div class="user-content -a-to-top">
         <span class="bg"></span>
 
 
@@ -16,7 +16,7 @@
             <div class="rank">
               <span class="-m -up -b">{{ user.role }}</span>
             </div>
-            <h1 class="-shoulders-l">AS-061432{{ user.id }}</h1>
+            <h1 class="-shoulders-l -m-h2 -m-shoulders-l">AS-061432{{ user.id }}</h1>
 
             <figure class="achivements">
               <svg v-for="item in user.strengths">
@@ -30,7 +30,7 @@
         <div class="body">
           <div class="wp-score">
             <span class="-m">Willpower score /</span>
-            <span class="-h2 -shoulders-r">108.6</span>
+            <span class="-h2 -shoulders-r -m-h3 -m-shoulders-r">108.6</span>
             <!-- <div>percentageTopTotal: {{ user.placeInRating.percentageTopTotal }}</div>
             <div>percentageBehindProgress: {{ user.placeInRating.percentageBehindProgress }}</div> -->
           </div>
@@ -127,10 +127,10 @@ await useAsyncData('user', () => userStore.load(route.params.id))
   // min-height: calc(var(--vh, 1vh) * 100);
 
   >.bg {
-    position: fixed;
+    position: absolute;
     top: 0;
     width: 100%;
-    height: calc(var(--vh, 1vh) * 100);
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,27 +140,24 @@ await useAsyncData('user', () => userStore.load(route.params.id))
     .bg-ray {
       position: absolute;
       top: 0%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
+      left: 00%;
+      width: 100%;
+      height: 100%;
       display: block;
       background-image: url(/images/logo-bg.jpg);
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
-
-      transform: translate3d(0,calc(-50% + var(--string-progress) * 50%),0);
       animation: logo-bg 12s infinite ease-in-out;
     }
   }
   .-w {
-    padding-top: calc(5% + 8rem);
+    padding-top: 6rem;
 
     .user-content {
       position: relative;
-      width: 65.27777778%;
-      margin-left: auto;
-      margin-right: auto;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
 
       .bg {
         display: block;
@@ -172,26 +169,22 @@ await useAsyncData('user', () => userStore.load(route.params.id))
         background-color: var(--c-grey-2);
 
         clip-path: polygon(
-          36.17021277% 0%,
-          100% 0%,
+          0% 0%,
+          calc(100% - 4rem) 0%,
+          100% 4rem,
           100% 100%,
-          0 100%,
-          0% 8rem,
-          calc(36.17021277% - 8rem) 8rem
+          0% 100%
         );
       }
       .c-header {
+        padding-top: 1rem;
         position: relative;
-        display: flex;
 
-        .title {
-          width: 38.29787234%;
-        }
+        .title {}
         .id-wrap {
           position: relative;
-          padding-top: 1.5rem;
-          width: 61.70212766%;
-
+          padding-top: 0.5rem;
+          
           .rank {
             span {
               display: inline-block;
@@ -215,7 +208,7 @@ await useAsyncData('user', () => userStore.load(route.params.id))
 
           .achivements {
             position: absolute;
-            top: 1.5rem;
+            top: 0.75rem;
             right: 1rem;
             display: flex;
 
@@ -228,39 +221,41 @@ await useAsyncData('user', () => userStore.load(route.params.id))
       }
       .body {
         position: relative;
-        display: flex;
-
+        padding-bottom: 2rem;
+        
         .wp-score {
-          width: 38.29787234%;
-
           display: flex;
-          justify-content: flex-start;
+          justify-content: space-between;
+          gap: 1rem;
           align-items: flex-start;
           color: var(--c-grey-3);
 
-          span {
-            margin-left: 1rem;
-          }
+          span {}
           span:last-child {
             line-height: 0.9;
             color: var(--c-red);
+            margin-right: 1rem;
           }
         }
         .about {
-          width: 61.70212766%;
+          margin-top: 1rem;
 
           .description {
             .update {
               margin-bottom: 0.5rem;
+              margin-right: 2rem;
               color: var(--c-grey-3);
               
               span:first-child {
                 color: var(--c-red);
               }
             }
+            p {
+              margin-right: 2rem;
+            }
           }
           .distinctions {
-            margin-top: 3rem;
+            margin-top: 1.5rem;
 
             >span {
               color: var(--c-grey-3);
@@ -284,8 +279,11 @@ await useAsyncData('user', () => userStore.load(route.params.id))
                 span {
                   display: block;
                   margin-bottom: 0.5rem;
+                  margin-right: 2rem;
                 }
-                p {}
+                p {
+                  margin-right: 2rem;
+                }
               }
             }
           }
@@ -294,4 +292,110 @@ await useAsyncData('user', () => userStore.load(route.params.id))
     }
   }
 }
+
+@media (min-width: 1024px) {
+  .page {
+    >.bg {
+      position: fixed;
+      height: calc(var(--vh, 1vh) * 100);
+
+      .bg-ray {
+        left: -50%;
+        width: 200%;
+        height: 200%;
+
+        transform: translate3d(0,calc(-50% + var(--string-progress) * 50%),0);
+      }
+    }
+    .-w {
+      padding-top: calc(5% + 8rem);
+
+      .user-content {
+        padding-left: initial;
+        padding-right: initial;
+
+        .bg {
+          clip-path: polygon(
+            36.17021277% 0%,
+            100% 0%,
+            100% 100%,
+            0 100%,
+            0% 8rem,
+            calc(36.17021277% - 8rem) 8rem
+          );
+        }
+        .c-header {
+          padding-top: initial;
+          display: flex;
+          justify-content: space-between;
+
+          .title {
+            width: 36.17021277%;
+          }
+          .id-wrap {
+            padding-top: 1.5rem;
+            width: 61.70212766%;
+
+            .achivements {
+              top: 1.5rem;
+            }
+          }
+        }
+        .body {
+          display: flex;
+          justify-content: space-between;
+
+          .wp-score {
+            gap: initial;
+            justify-content: flex-start;
+            // width: 38.29787234%;
+            width: 36.17021277%;
+
+
+            span {
+              margin-left: 1rem;
+            }
+            span:last-child {
+              margin-right: initial;
+            }
+          }
+          .about {
+            margin-top: initial;
+            width: 61.70212766%;
+
+            .description {
+
+            }
+            .distinctions {
+              margin-top: 3rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 1440px) {
+  .page {
+    .-w {
+      .user-content {
+        width: 83.09859155%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+}
+
+@media (min-width: 1920px) {
+  .page {
+    .-w {
+      .user-content {
+        width: 65.27777778%;
+      }
+    }
+  }
+}
+
 </style>
