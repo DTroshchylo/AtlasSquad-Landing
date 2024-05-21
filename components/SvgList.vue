@@ -101,6 +101,9 @@
       <!-- 80x80 -->
 
       <!-- 40x40 -->
+      <symbol id="icon-40_achivement" viewBox="0 0 40 40">
+        <path class="st0" d="M20,0v11.8h1.8l6.3,6.3v1.6H33V13L20,0z M11.4,21.9v-1.6H6.5V27l13,13V28.2h-1.8L11.4,21.9z M19.5,13.3V4.5H15 L6.5,13v6.8h6.3L19.5,13.3z M20,26.7v8.8h4.5L33,27v-6.8h-6.3L20,26.7z"/>
+      </symbol>
     
       <!-- 20x20 -->
       <symbol id="icon-20_info" viewBox="0 0 20 20">

@@ -144,9 +144,9 @@ import GlobalClass from '@/src/globalClass'
 import StringStorage from '~/src/string-storage';
 import axios from 'axios';
 
-// definePageMeta({
-//   layout: 'alt'
-// })
+definePageMeta({
+  layout: 'alt'
+})
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
