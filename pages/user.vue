@@ -140,11 +140,7 @@ const formatDate = (date: any) => {
 }
 
 onMounted(async () => {
-<<<<<<< HEAD
-  //http://node.atlas-squad.com/public/user/7
-=======
   //http://devnode1.palemiya.com/public/user/7
->>>>>>> main
 
 })
 onBeforeUnmount(() => {
