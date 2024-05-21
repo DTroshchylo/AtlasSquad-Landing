@@ -20,7 +20,7 @@ export const useUser = defineStore(key, {
     actions: {
         async load(id: string) {
             try {
-                let responce = await axios.get(`http://devnode1.palemiya.com/api/public/user/${id.toUpperCase()}`)
+                let responce = await axios.get(`https://node.atlas-squad.com/api/public/user/${id.toUpperCase()}`)
                 if (responce.data.status == 404 || responce.data.status == 500) {
                     return responce.data.status
                 } else {
