@@ -20,7 +20,7 @@
             <h1 class="-shoulders-l -m-h2 -m-shoulders-l">{{ user.id }}</h1>
 
             <figure class="achivements">
-              <svg v-for="item in user.strengths">
+              <svg v-for="item in user.userDistinctions">
                 <use href="#icon-40_achivement"></use>
               </svg>
             </figure>
@@ -334,10 +334,10 @@ await useAsyncData('user', () => userStore.load(route.params.id))
 @media (min-width: 1024px) {
   .page {
     >.bg {
-      
+
 
       .bg-ray {
-        transform: translate3d(0,calc(-50% + var(--string-progress) * 50%),0);
+        transform: translate3d(0, calc(-50% + var(--string-progress) * 50%), 0);
       }
     }
 
