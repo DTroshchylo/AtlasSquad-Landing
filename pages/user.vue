@@ -127,10 +127,10 @@ await useAsyncData('user', () => userStore.load(route.params.id))
   // min-height: calc(var(--vh, 1vh) * 100);
 
   >.bg {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: calc(var(--vh, 1vh) * 100);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,9 +140,9 @@ await useAsyncData('user', () => userStore.load(route.params.id))
     .bg-ray {
       position: absolute;
       top: 0%;
-      left: 00%;
-      width: 100%;
-      height: 100%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
       display: block;
       background-image: url(/images/logo-bg.jpg);
       background-position: center;
@@ -296,14 +296,9 @@ await useAsyncData('user', () => userStore.load(route.params.id))
 @media (min-width: 1024px) {
   .page {
     >.bg {
-      position: fixed;
-      height: calc(var(--vh, 1vh) * 100);
+      
 
       .bg-ray {
-        left: -50%;
-        width: 200%;
-        height: 200%;
-
         transform: translate3d(0,calc(-50% + var(--string-progress) * 50%),0);
       }
     }

@@ -8,7 +8,20 @@
       <div class="-w">
         <div class="l">
           <p class="special-h -a-to-top" style="--l-delay: 0;">The Atlas Squad’s boot camp is a neuroscience-based self-engineering program for a select group of people who feel that their missions deserve nothing less.</p>
-          <span class="-link -a-to-top" style="--l-delay: 0.15;">Enter email to start the journey /</span>
+          <label class="-link -a-to-top" style="--l-delay: 0.15;">Enter email to start the journey /</label>
+          <form onsubmit="return false" class="-a-to-top" style="--l-delay: 0.3;">
+            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email" class="-focus-element -hover-element" type="email" />
+
+            <button type="submit" @click.native="onSendEmail($event)" @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" v-if="desktop">
+              <span class="holder -b -up" :data-text="submitTextBasic">
+                <span class="-b -up">{{ submitText }}</span>
+              </span>
+            </button>
+
+            <button type="submit" @click.native="onSendEmail($event)" v-if="mobile" class="-tac">
+              <span class="-up -b -link">Became a candidate ></span>
+            </button>
+          </form>
         </div>
         <div class="r graphics -a-scale-in">
           <div class="fig-wrap">
@@ -264,10 +277,10 @@ onBeforeUnmount(() => {
   position: relative;
   padding-top: initial !important;
   background-color: #171717;
-  min-height: calc(var(--vh, 1vh) * 100);
+  // min-height: calc(var(--vh, 1vh) * 100);
   // contain: paint;
 
-  .bg {
+  >.bg {
     position: fixed;
     top: 0;
     width: 100%;
@@ -289,8 +302,6 @@ onBeforeUnmount(() => {
       background-position: center;
       background-repeat: no-repeat;
       background-size: contain;
-
-      transform: translate3d(0,calc(-50% + var(--string-progress) * 50%),0);
       animation: logo-bg 12s infinite ease-in-out;
     }
   }
@@ -301,14 +312,13 @@ onBeforeUnmount(() => {
     line-height: 2.41;
     letter-spacing: 0.05rem;
     text-transform: uppercase;
-    width: 80%;
     margin-bottom: 2rem;
   }
 
   section {
     position: relative;
-    padding-top: 5%;
-    padding-bottom: 5%;
+    padding-top: 1.5rem;
+    padding-bottom: 6rem;
 
     .-w {
       position: relative;
@@ -317,87 +327,27 @@ onBeforeUnmount(() => {
   section:not(.c-cta) {
     .-w {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
 
       .graphics {
-        width: 49.29577465%;
-        perspective: 100rem;
+        width: 100%;
 
         .fig-wrap {
           position: relative;
-          will-change: transform;
-          transform-style: preserve-3d;
-
-          &::before {
-            content: '';
-            display: block;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            border-radius: 1rem;
-            // background-color: #1A1A1A;
-            background-color: var(--c-grey-4);
-            will-change: transform;
-            box-shadow: inset 0 0 1rem 0 #1A1A1A;
-          }
+          
           figure {
             position: relative;
             border-radius: 1rem;
             overflow: hidden;
-            will-change: transform;
           }
         }
       }
-      .l.graphics {
-        .fig-wrap {
-          transform: translate3d(0,calc(25% + var(--string-progress) * -50%),0);
-
-          &::before {
-            transform:
-            rotateY(calc(30deg + var(--string-progress) * 30deg ))
-              rotateX(calc(15deg + var(--string-progress) * 15deg ))
-              rotateZ(calc(-15deg - var(--string-progress) * 0deg ))
-              translateZ(-2rem)
-            ;
-          }
-          figure {
-            transform:
-              rotateY(calc(30deg + var(--string-progress) * 30deg ))
-              rotateX(calc(15deg + var(--string-progress) * 15deg ))
-              rotateZ(calc(-15deg - var(--string-progress) * 0deg ))
-            ;
-          }
-        }
-      }
-      .r.graphics {
-        .fig-wrap {
-          transform: translate3d(0,calc(var(--string-progress) * -50%),0);
-
-          &::before {
-            transform:
-              rotateY(calc(-30deg - var(--string-progress) * 30deg ))
-              rotateX(calc(30deg - var(--string-progress) * 15deg ))
-              rotateZ(calc(15deg + var(--string-progress) * 0deg ))
-              translateZ(-2rem)
-            ;
-          }
-          figure {
-            transform:
-              rotateY(calc(-30deg - var(--string-progress) * 30deg ))
-              rotateX(calc(30deg - var(--string-progress) * 15deg ))
-              rotateZ(calc(15deg + var(--string-progress) * 0deg ))
-            ;
-          }
-        }
-      }
+      
       .tt {
-        width: 49.29577465%;
+        width: 100%;
 
         .description {
-          width: 65.71428571%;
+          width: 80%;
           margin-left: auto;
           margin-right: auto;
 
@@ -464,16 +414,39 @@ onBeforeUnmount(() => {
     }
   }
   .c-welcome {
-    padding-top: calc(5% + 8rem);
+    padding-top: 6rem;
 
     .-w {
       .l {
-        margin-left: 8.450704225%;
-        width: 40.84507042%;
+        text-align: center;
+        // width: 80%;
+        // margin-left: auto;
+        // margin-right: auto;
 
-        p {}
-        span {
-          display: inline-block;
+        p {
+          // width: 80%;
+          // margin-left: auto;
+          // margin-right: auto;
+        }
+        label {
+          display: block;
+          margin-bottom: 0.5rem !important;
+        }
+        form {
+          width: 100%;
+          position: relative;
+
+          .field {
+            :deep(input) {
+              text-align: center;
+            }
+          }
+
+          button,
+          a {
+            width: 100%;
+            display: block;
+          }
         }
       }
       .r {}
@@ -519,9 +492,7 @@ onBeforeUnmount(() => {
       }
       .graphics {
         .fig-wrap {
-          width: 60%;
-          margin-top: -10%;
-          margin-bottom: -10%;
+          width: 40%;
           margin-left: auto;
           margin-right: auto;
 
@@ -582,7 +553,7 @@ onBeforeUnmount(() => {
       >p,
       >label,
       form {
-        width: 49.29577465%;
+        width: 80%;
         margin-left: auto;
         margin-right: auto;
       }
@@ -593,14 +564,12 @@ onBeforeUnmount(() => {
         margin-bottom: 2rem;
       }
       >label {
-        text-align: left;
         display: block;
         margin-bottom: 0.5rem !important;
       }
       form {
-        text-align: left;
+        width: 100%;
         position: relative;
-        display: flex;
 
         .field {
           :deep(input) {
@@ -613,56 +582,261 @@ onBeforeUnmount(() => {
           width: 100%;
           display: block;
         }
+      }
+    }
+  }
+}
 
-        .field {
-          margin-bottom: initial;
-          flex-grow: 1;
+@media (max-width: 1024px) {
+  .page {
+    section:not(.c-cta) {
+      .-w {
+        .graphics {
+          margin-bottom: 2rem;
+        }
+      }
+    }
+    .c-welcome,
+    .c-mentoring,
+    .c-club {
+      .-w {
+        flex-direction: column-reverse !important;
+      }
+    }
+  }
+}
+@media (min-width: 1024px) {
+  .page {
+    >.bg {
+      .bg-ray {
+        transform: translate3d(0,calc(-50% + var(--string-progress) * 50%),0);
+      }
+    }
+    .special-h {
+      width: 80%;
+    }
+    section {
+      padding-top: 5%;
+      padding-bottom: 5%;
+    }
+    section:not(.c-cta) {
+      .-w {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
 
-          :deep(input) {
-            text-align: left;
+        .graphics {
+          width: 49.29577465%;
+          perspective: 100rem;
+
+          .fig-wrap {
+            will-change: transform;
+            transform-style: preserve-3d;
+
+            &::before {
+              content: '';
+              display: block;
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              border-radius: 1rem;
+              // background-color: #1A1A1A;
+              background-color: var(--c-grey-4);
+              will-change: transform;
+              box-shadow: inset 0 0 1rem 0 #1A1A1A;
+            }
+            figure {
+              will-change: transform;
+            }
+          }
+        }
+        .l.graphics {
+          .fig-wrap {
+            transform: translate3d(0,calc(25% + var(--string-progress) * -50%),0);
+
+            &::before {
+              transform:
+              rotateY(calc(30deg + var(--string-progress) * 30deg ))
+                rotateX(calc(15deg + var(--string-progress) * 15deg ))
+                rotateZ(calc(-15deg - var(--string-progress) * 0deg ))
+                translateZ(-2rem)
+              ;
+            }
+            figure {
+              transform:
+                rotateY(calc(30deg + var(--string-progress) * 30deg ))
+                rotateX(calc(15deg + var(--string-progress) * 15deg ))
+                rotateZ(calc(-15deg - var(--string-progress) * 0deg ))
+              ;
+            }
+          }
+        }
+        .r.graphics {
+          .fig-wrap {
+            transform: translate3d(0,calc(var(--string-progress) * -50%),0);
+
+            &::before {
+              transform:
+                rotateY(calc(-30deg - var(--string-progress) * 30deg ))
+                rotateX(calc(30deg - var(--string-progress) * 15deg ))
+                rotateZ(calc(15deg + var(--string-progress) * 0deg ))
+                translateZ(-2rem)
+              ;
+            }
+            figure {
+              transform:
+                rotateY(calc(-30deg - var(--string-progress) * 30deg ))
+                rotateX(calc(30deg - var(--string-progress) * 15deg ))
+                rotateZ(calc(15deg + var(--string-progress) * 0deg ))
+              ;
+            }
           }
         }
 
-        button,
-        a {
-          width: initial;
-          position: absolute;
-          height: 100%;
-          right: 0;
-          border-left: 1px solid var(--c-grey-4);
-          color: var(--c-grey-3);
-          display: flex;
-          justify-content: center;
-          align-items: center;
+        .tt {
+          width: 49.29577465%;
 
-          .holder {
-            position: relative;
+          .description {
+            width: 65.71428571%;
+            margin-left: auto;
+            margin-right: auto;
+          }
+        }
+      }
+    }
+    .c-welcome {
+      padding-top: calc(5% + 8rem);
+
+      .-w {
+        .l {
+          margin-right: initial;
+          margin-left: 8.450704225%;
+          width: 40.84507042%;
+          text-align: left;
+
+          label {}
+          form {
+            text-align: left;
             display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            padding-right: 1rem;
-            padding-left: 1rem;
 
-            white-space: nowrap;
+            .field {
+              margin-bottom: initial;
+              flex-grow: 1;
 
-            &::before {
-              content: attr(data-text);
-              visibility: hidden;
+              :deep(input) {
+                text-align: left;
+              }
             }
 
-            span {
+            button,
+            a {
+              width: initial;
               position: absolute;
-              text-align: right;
+              height: 100%;
+              right: 0;
+              border-left: 1px solid var(--c-grey-4);
+              color: var(--c-grey-3);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+
+              .holder {
+                position: relative;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                padding-right: 1rem;
+                padding-left: 1rem;
+
+                white-space: nowrap;
+
+                &::before {
+                  content: attr(data-text);
+                  visibility: hidden;
+                }
+
+                span {
+                  position: absolute;
+                  text-align: right;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    .c-mentoring {
+      .-w {
+        .graphics {
+          width: 60%;
+          margin-top: -10%;
+          margin-bottom: -10%;
+        }
+      }
+    }
+    .c-cta {
+      .-w {
+        >p,
+        >label,
+        form {
+          width: 49.29577465%;
+        }
+        >label {
+          text-align: left;
+        }
+        form {
+          text-align: left;
+          display: flex;
+
+          .field {
+            margin-bottom: initial;
+            flex-grow: 1;
+
+            :deep(input) {
+              text-align: left;
+            }
+          }
+
+          button,
+          a {
+            width: initial;
+            position: absolute;
+            height: 100%;
+            right: 0;
+            border-left: 1px solid var(--c-grey-4);
+            color: var(--c-grey-3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .holder {
+              position: relative;
+              display: flex;
+              justify-content: flex-end;
+              align-items: center;
+              padding-right: 1rem;
+              padding-left: 1rem;
+
+              white-space: nowrap;
+
+              &::before {
+                content: attr(data-text);
+                visibility: hidden;
+              }
+
+              span {
+                position: absolute;
+                text-align: right;
+              }
             }
           }
         }
       }
     }
   }
-}
-
-@media (min-width: 1024px) {
-  .page {}
 }
 
 
