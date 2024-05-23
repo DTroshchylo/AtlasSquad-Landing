@@ -45,7 +45,7 @@ onUnmounted(() => {
   .the-footer {
     .-w {
       justify-content: initial;
-      display: block;
+      // display: block;
 
       a {}
     }
