@@ -2,6 +2,7 @@
   <footer class="the-footer">
     <div class="-w -a-p" data-string>
       <NuxtLink to="/terms-of-use" class="-grey -a-to-bottom" style="--l-delay: 0.3">Terms of Use</NuxtLink>
+      <NuxtLink to="/cookie-policy" class="-grey -a-to-bottom" style="--l-delay: 0.3">Cookie Policy</NuxtLink>
     </div>
   </footer>
 </template>
@@ -32,6 +33,7 @@ onUnmounted(() => {
   .-w {
     display: flex;
     justify-content: center;
+    gap: 1rem;
 
     a {
       display: inline-block;
