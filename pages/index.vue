@@ -166,7 +166,7 @@ const onSendEmail = async (e: any) => {
   errors.value = new Array<string>()
   if (/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\[\]\\.,;:\s@\"]+\.)+[^<>()\[\]\\.,;:\s@\"]{2,})$/.test(email.value)) {
 
-    let answer = await axios.post(`https://devnode1.palemiya.com/api/authorization/check-email`, {
+    let answer = await axios.post(`https://node.atlas-squad.com/api/authorization/check-email`, {
       email: email.value
     })
 

@@ -1,4 +1,4 @@
-name: Deploy to dev-landing.atlas-squad.com
+name: Deploy to dev.atlas-squad.com
 
 on:
   push:
@@ -25,14 +25,14 @@ jobs:
       - run: npm i --legacy-peer-deps
       # - run: npm test
       - run: npm run build
-      # Deploy
+      # Deploy 
       - run: |
           rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no" --archive --compress --delete \
           ./.nuxt ./.output ./public ./nuxt.config.ts \
           ./ecosystem.dev.config.js ./package.json ./package-lock.json \
-          root@64.23.162.141:/var/www/dev-landing.atlas-squad.com \
+          root@64.23.162.141:/var/www/dev.atlas-squad.com \
           && ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no root@64.23.162.141 " \
-          cd /var/www/dev-landing.atlas-squad.com \
+          cd /var/www/dev.atlas-squad.com \
           && npm i --legacy-peer-deps \
           && chown -R root:root ./* \
           && pm2 restart ecosystem.dev.config.js"

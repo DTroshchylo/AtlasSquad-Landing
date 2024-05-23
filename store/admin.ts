@@ -30,8 +30,8 @@ export const useAdmin = defineStore(key, {
   actions: {
 
     async loadUsers() {
-      // let responce = await axios.get('http://devnode1.palemiya.com/admin/users')
-      let responce = await axios.get('http://devnode1.palemiya.com/admin/users')
+      // let responce = await axios.get('http://node.atlas-squad.com/admin/users')
+      let responce = await axios.get('http://node.atlas-squad.com/admin/users')
       this.users = new Array<any>()
       let usersBuffer = new Array<any>()
       responce.data.forEach((element: any) => {
@@ -45,7 +45,7 @@ export const useAdmin = defineStore(key, {
     },
     async setActiveUser(user: any) {
       this.activeUser = user
-      let responce = await axios.get(`http://devnode1.palemiya.com/admin/chat?id=${this.activeUser.id}`)
+      let responce = await axios.get(`http://node.atlas-squad.com/admin/chat?id=${this.activeUser.id}`)
       this.activeChat = new Array<any>()
       let activeChatBuffer = new Array<any>()
       responce.data.forEach((element: any) => {

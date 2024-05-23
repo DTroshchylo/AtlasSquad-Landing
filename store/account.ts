@@ -160,9 +160,9 @@ export const useAccount = defineStore(key, {
     },
     async load(token: string) {
       try {
-        //let responce = await axios.get(`http://devnode1.palemiya.com/user?token=${token}`)
+        //let responce = await axios.get(`http://node.atlas-squad.com/user?token=${token}`)
         //let responce = await axios.get(`http: //localhost:3054/user?token=${token}`)
-        let responce = await axios.get(`http://devnode1.palemiya.com/user?token=${token}`)
+        let responce = await axios.get(`http://node.atlas-squad.com/user?token=${token}`)
 
 
         if (responce.data.status == 401 || responce.data.status == 500) {
