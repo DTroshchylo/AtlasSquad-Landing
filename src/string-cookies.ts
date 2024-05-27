@@ -142,6 +142,12 @@ class StringCookies {
       .sc-settings-item label {
         display: flex;
         align-items: center;
+        opacity: .75;
+      }
+      .sc-settings-item label.-active {
+        display: flex;
+        align-items: center;
+        opacity: 1;
       }
       .sc-settings-item .toggle-container {
         position: relative;
@@ -174,10 +180,17 @@ class StringCookies {
         transition: .3s var(--f-cubic, ease);
         border-radius: 50%;
       }
-      .sc-settings-item .toggle-container input:checked + .toggle {
+      .sc-settings-item label.-active .toggle-container input:checked + .toggle {
         background-color: var(--sc-toggle-bg-on, #a6c4dd);
       }
-      .sc-settings-item .toggle-container input:checked + .toggle:before {
+      .sc-settings-item label.-readonly .toggle-container input + .toggle {
+        background-color: var(--sc-toggle-bg-on, #a6c4dd);
+      }
+      .sc-settings-item label.-active .toggle-container input:checked + .toggle:before {
+        background-color: var(--sc-toggle-knob-bg, var(--sc-cookie-category-block-bg, #23272a));
+        transform: translateX(calc(var(--sc-toggle-height, 1rem) * var(--sc-toggle-width-percent, 1.85) - var(--sc-toggle-height, 1rem)));
+      }
+      .sc-settings-item label.-readonly .toggle-container .toggle:before {
         background-color: var(--sc-toggle-knob-bg, var(--sc-cookie-category-block-bg, #23272a));
         transform: translateX(calc(var(--sc-toggle-height, 1rem) * var(--sc-toggle-width-percent, 1.85) - var(--sc-toggle-height, 1rem)));
       }
@@ -468,7 +481,7 @@ class StringCookies {
     }
   }
 
-  use(name: string, config: { accept: Function, deny: Function, description: string }) {
+  use(name: string, config: { accept: Function, deny: Function, description: string, readOnly?: boolean }) {
     this.settings[name] = config;
   }
 
@@ -535,6 +548,11 @@ class StringCookies {
       });
 
       const label = document.createElement('label');
+      if (value.readOnly == null || value.readOnly == false) {
+        label.classList.add('-active');
+      } else {
+        label.classList.add('-readonly');
+      }
       const inputContainer = document.createElement('div');
       inputContainer.classList.add('toggle-container');
       const inputToggle = document.createElement('div');
@@ -544,9 +562,16 @@ class StringCookies {
       inputLabel.classList.add('toggle-label');
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
+      checkbox.readOnly = value.readOnly;
       checkbox.checked = true;
       checkbox.setAttribute('data-key', key);
       checkbox.onchange = (event) => {
+        if (value.readOnly == true) {
+          event.preventDefault()
+          return false;
+        }
+
+
         if ((event.target as HTMLInputElement).checked) {
           value.accept();
         } else {
