@@ -129,7 +129,7 @@ const onSendEmail = () => {
   storage.local.set('email', email.value)
   storage.local.set('invite', route.params.slug.toString())
 
-  axios.get(`https://atlas-squad-landing.fiddle.digital/api/send-emails?email=${email.value}&invite=${route.params.slug.toString()}`)
+  axios.get(`https://dev.atlas-squad.com//api/send-emails?email=${email.value}&invite=${route.params.slug.toString()}`)
 }
 
 
