@@ -174,7 +174,7 @@ const onSendEmail = async (e: any) => {
       error.value = 'Email reserv'
       errors.value.push('Email reserv')
     } else {
-      axios.get(`https://dev.atlas-squad.com//api/send-emails?email=${email.value}`)
+      axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}`)
       storage.local.set('email', email.value)
       navigateTo(`/user-tc`)
     }
