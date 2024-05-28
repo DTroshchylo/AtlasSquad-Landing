@@ -99,23 +99,29 @@ export default defineNuxtConfig({
         path: '/user-tc',
         file: '~/pages/user-tc.vue',
       }),
-      pages.push({
-        name: 'influencer-tc',
-        path: '/influencer-tc',
-        file: '~/pages/influencer-tc.vue',
-      }),
-      
-      pages.push({
-        name: 'invite-page',
-        path: '/invite/:slug',
-        file: '~/pages/invite.vue',
-      })
+        pages.push({
+          name: 'influencer-tc',
+          path: '/influencer-tc',
+          file: '~/pages/influencer-tc.vue',
+        }),
+
+        pages.push({
+          name: 'invite-page',
+          path: '/invite/:slug',
+          file: '~/pages/invite.vue',
+        })
       pages.push({
         name: 'landing-page',
         path: '/:slug',
         file: '~/pages/landing.vue',
       })
-      
+
+      // pages.push({
+      //   name: 'recruiter-page',
+      //   path: '/recruiter/:slug',
+      //   file: '~/pages/recruiter.vue',
+      // })
+
     },
   },
 })
