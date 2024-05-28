@@ -158,7 +158,7 @@ const onSendEmail = () => {
   storage.local.set('invite', route.params.slug.toString())
   storage.local.set('type', `recruiter`)
 
-  axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}&invite=${route.params.slug.toString()}`)
+  axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}&invite=${route.params.slug.toString()}&url=${encodeURIComponent(recruiter.value.googleApiLink)}`)
 }
 
 
