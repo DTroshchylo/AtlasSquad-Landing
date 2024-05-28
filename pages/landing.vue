@@ -1,10 +1,5 @@
 <template>
   <main class="page landing-page" ref="deep" v-if="influencer != null">
-    <!-- <div>
-      <h1>Influencer name: {{ influencer.name }}</h1>
-      <p>Form for registration</p>
-    </div> -->
-
     <div class="bg" :class="[{
       '-form-active': isFocusOnElement || isHoverOnElement
     }]">
@@ -61,18 +56,16 @@
 
     <section class="c-welcome">
       <div class="-w">
-        <div class="form-email">
-          <h1 class="-tac -a-p -split" data-string>
-            <span data-string-split style="--l-delay: 0.6;">{{ influencer.name }} is on his way to total
-              willpower</span>
+        <div class="form-email" :class="{ '-hidden': recruitedCap }">
+          <h1 class="-tac -a-p -split -h6" data-string>
+            <span data-string-split style="--l-delay: 0.6;">{{ influencer.name }} is on his way to total willpower</span>
           </h1>
           <p class="caption -a-p -split" data-string>
             <span data-string-split style="--l-delay: 0.6;">Start your own personalized self-engineering journey.</span>
           </p>
 
           <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
-            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email"
-              class="-focus-element -hover-element" />
+            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email" class="-focus-element -hover-element" type="email" />
 
             <NuxtLink to="/user-tc" @click.native="onSendEmail" @mouseenter="submitButtonEnter"
               @mouseleave="submitButtonLeave" class="-hover-element" v-if="desktop">
@@ -90,9 +83,37 @@
       </div>
     </section>
 
-    <div class="blank">
+    <Transition name="-t-desc">
+      <div class="description -tac -a-p -split -split-random" data-string v-if="desktop && recruitedCap">
+        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas Squad experience is for a select group of achievers who want the very best in AI-driven, personalized elf-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
+      </div>
+    </Transition>
 
-    </div>
+    <section class="c-recruited">
+      <div class="-w">
+        <div class="get-recruited -a-p -split" data-string>
+
+          <div class="-a-p" data-string>
+            <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter.native="recruitedCap = true"
+              @mouseleave.native="recruitedCap = false" v-if="desktop">
+              <span class="wrap">
+                <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
+
+                <span class="-hover">Become our recruiter</span>
+
+                <svg class="-a-to-top">
+                  <use href="#icon-20_info"></use>
+                </svg>
+              </span>
+            </NuxtLink>
+
+            <NuxtLink to="/influencer-tc" class="-up -b" v-if="mobile">
+              <span class="" style="--l-delay: 0.9;" data-string-split>Become our recruiter</span>
+            </NuxtLink>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 </template>
 
@@ -114,7 +135,7 @@ const personalSlug = ref('')
 
 
 
-
+const recruitedCap = ref(false)
 
 
 
@@ -506,10 +527,84 @@ await useAsyncData('loadInfluencer', () => storeInfluencer.loadInfluencer(route.
     }
   }
 
-  .blank {
+  // .blank {
+  //   margin-top: auto;
+  //   margin-bottom: 6rem;
+  //   height: 3rem;
+  // }
+  .c-recruited {
     margin-top: auto;
-    margin-bottom: 6rem;
-    height: 3rem;
+    width: 100%;
+
+    .get-recruited {
+      margin-bottom: 6rem;
+      text-align: center;
+
+      div {
+        a {
+          padding: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          .wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+
+            .-base {
+              opacity: 1;
+              transform: translate(0, 0);
+              transition: transform 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
+            }
+
+            .-hover {
+              position: absolute;
+              opacity: 0;
+              transform: translate(0, 100%);
+              transition: transform 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic);
+            }
+
+            svg {
+              width: 1rem;
+              position: absolute;
+              left: 100%;
+              bottom: 100%;
+
+              // scale: 1;
+              // opacity: 1;
+              transition: scale 0.3s var(--f-cubic), opacity 0.3s var(--f-cubic), transform 0.9s var(--f-cubic);
+            }
+          }
+        }
+
+
+      }
+    }
+  }
+
+
+  .description {
+    position: absolute;
+    width: 80%;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .-t-desc-enter-active,
+  .-t-desc-leave-active {
+    opacity: 1;
+    scale: 1;
+    transition: opacity 0.6s var(--f-cubic), scale 0.6s var(--f-cubic);
+  }
+
+  .-t-desc-enter-from,
+  .-t-desc-leave-to {
+    opacity: 0 !important;
+    scale: 1.2;
   }
 }
 
@@ -687,9 +782,51 @@ html.-loaded {
       }
     }
 
-    .blank {
-      margin-bottom: clamp(3rem, 5%, 5%);
+    .c-recruited {
+      .get-recruited {
+        margin-bottom: clamp(3rem, 5%, 5%);
+
+        display: flex;
+        justify-content: center;
+        width: 49.29577465%;
+        margin-top: auto;
+        margin-left: auto;
+        margin-right: auto;
+
+        div {
+          width: 50%;
+
+          a:hover {
+            animation: blinking 0.6s infinite step-end;
+
+            .wrap {
+
+              .-base {
+                opacity: 0;
+                transform: translate(0, -50%);
+              }
+
+              .-hover {
+                opacity: 1;
+                transform: translate(0, 0);
+              }
+
+              svg {
+                scale: 0;
+                opacity: 0;
+              }
+            }
+          }
+        }
+      }
     }
+
+    .description {
+      width: 49.29577465%;
+    }
+    // .blank {
+    //   margin-bottom: clamp(3rem, 5%, 5%);
+    // }
   }
 }
 </style>
