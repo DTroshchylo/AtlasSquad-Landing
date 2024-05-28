@@ -57,6 +57,9 @@
     <section class="c-welcome">
       <div class="-w">
         <div class="form-email" :class="{ '-hidden': recruitedCap }">
+
+          <!-- <img data-not-lazy :src="`https://admin.atlas-squad.com${influencer.media.data.attributes.url}`" alt=""> -->
+
           <h1 class="-tac -a-p -split -h6" data-string>
             <span data-string-split style="--l-delay: 0.6;">{{ influencer.name }} is on his way to total
               willpower</span>
