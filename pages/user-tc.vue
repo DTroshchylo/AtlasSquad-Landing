@@ -84,9 +84,10 @@
 
             <!-- <NuxtLink to="/registration">Submit / go to registration / go to platform, actually</NuxtLink> -->
             <Transition name="-t-submit">
-              <a class="-up -b -red"
+              <button @click="submit">Submit</button>
+              <!-- <a class="-up -b -red"
                 :href="`https://atlas-squad.fiddle.digital/registration?email=${email}&invite=${invite}`"
-                v-if="checkedTerms">Go to my Dashoboard</a>
+                v-if="checkedTerms">Go to my Dashoboard</a> -->
             </Transition>
           </div>
 
@@ -100,6 +101,7 @@
 import { ref, onMounted } from 'vue'
 import GlobalClass from '@/src/globalClass'
 import StringStorage from '~/src/string-storage';
+import { useAccount } from '~/store/account';
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
@@ -107,7 +109,37 @@ const global = nuxtApp.$globalClass as GlobalClass
 
 const checkedTerms = ref(false);
 const email = ref('')
+const password = ref('')
 const invite = ref('')
+const storeAccount = useAccount()
+
+function generatePassword(length: number = 12): string {
+  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let password = '';
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * characters.length);
+    password += characters[randomIndex];
+  }
+  return password;
+}
+
+const submit = async () => {
+  password.value = generatePassword()
+  let answer = await storeAccount.create({
+    email: email.value,
+    password: password.value,
+    firstName: 'AS user',
+    lastName: 'AS user',
+    acceptsMarketing: false,
+  }, invite.value)
+
+  if (answer.status == 301) {
+    //error.value = answer.text
+  } else {
+    await navigateTo('/success')
+  }
+}
+
 onMounted(() => {
 
   if (StringStorage.getInstance().local.has('email')) {
@@ -116,6 +148,8 @@ onMounted(() => {
   } else {
     navigateTo('/')
   }
+
+
 
 
 })

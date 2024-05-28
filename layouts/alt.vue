@@ -47,17 +47,12 @@ watch(
 );
 const storeAccount = useAccount()
 onMounted(() => {
-  const  scroll =  StringScroll.getInstance()
+  const scroll = StringScroll.getInstance()
   let stringScroll = StringSplit.getInstance()
   scroll.setDesktopMode("default")
   scroll.setMobileMode("default")
   let stringForm = StringValidation.getInstance()
   let stringStorage = StringStorage.getInstance()
-  if (stringStorage.local.has('token')) {
-    storeAccount.setToken(stringStorage.local.get('token'))
-  } else {
-    storeAccount.setToken('')
-  }
   setTimeout(() => {
     splash.value = false
     scroll.setDesktopMode("default")

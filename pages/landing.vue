@@ -122,6 +122,7 @@ import { ref, onMounted } from 'vue'
 import GlobalClass from '@/src/globalClass'
 import StringStorage from '~/src/string-storage';
 import { useInfluencer } from '~/store/influencer';
+import axios from 'axios';
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
@@ -148,6 +149,8 @@ const onEmailChange = (value: any) => {
 const onSendEmail = () => {
   storage.local.set('email', email.value)
   storage.local.set('invite', route.params.slug.toString())
+
+  axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}&invite=${route.params.slug.toString()}`)
 }
 
 
