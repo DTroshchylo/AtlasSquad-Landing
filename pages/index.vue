@@ -59,13 +59,16 @@
             <span data-string-split style="--l-delay: 0.6;">What would you do with total willpower?</span>
           </h1>
           <p class="caption -a-p -split" data-string>
-            <span class="-m-m" data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering journey.</span>
+            <span class="-m-m" data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering
+              journey.</span>
           </p>
 
           <form onsubmit="return false" class="-a-clip-center " data-string style="--l-delay: -0.15;">
-            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email" class="-focus-element -hover-element" type="email" />
+            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email"
+              class="-focus-element -hover-element" type="email" />
 
-            <button type="submit" @click.native="onSendEmail($event)" @mouseenter="submitButtonEnter" @mouseleave="submitButtonLeave" class="-hover-element" v-if="desktop">
+            <button type="submit" @click.native="onSendEmail($event)" @mouseenter="submitButtonEnter"
+              @mouseleave="submitButtonLeave" class="-hover-element" v-if="desktop">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
@@ -84,7 +87,9 @@
 
     <Transition name="-t-desc">
       <div class="description -tac -a-p -split -split-random" data-string v-if="desktop && recruitedCap">
-        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas Squad experience is for a select group of achievers who want the very best in AI-driven, personalized self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
+        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas
+          Squad experience is for a select group of achievers who want the very best in AI-driven, personalized
+          self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
       </div>
     </Transition>
 
@@ -169,6 +174,7 @@ const onSendEmail = async (e: any) => {
     } else {
       axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}`)
       storage.local.set('email', email.value)
+      storage.local.set('type', ``)
       navigateTo(`/user-tc`)
     }
 

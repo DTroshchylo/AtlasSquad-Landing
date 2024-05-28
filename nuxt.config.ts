@@ -116,11 +116,11 @@ export default defineNuxtConfig({
         file: '~/pages/landing.vue',
       })
 
-      // pages.push({
-      //   name: 'recruiter-page',
-      //   path: '/recruiter/:slug',
-      //   file: '~/pages/recruiter.vue',
-      // })
+      pages.push({
+        name: 'recruiter-page',
+        path: '/recruiter/:slug',
+        file: '~/pages/recruiter.vue',
+      })
 
     },
   },

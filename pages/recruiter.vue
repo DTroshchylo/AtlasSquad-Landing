@@ -1,5 +1,5 @@
 <template>
-  <main class="page landing-page" ref="deep" v-if="influencer != null">
+  <main class="page landing-page" ref="deep" v-if="recruiter != null">
     <div class="bg" :class="[{
       '-form-active': isFocusOnElement || isHoverOnElement
     }]">
@@ -58,11 +58,12 @@
       <div class="-w">
         <div class="form-email" :class="{ '-hidden': recruitedCap }">
           <h1 class="-tac -a-p -split -h6" data-string>
-            <span data-string-split style="--l-delay: 0.6;">{{ influencer.name }} is on his way to total
+            <span data-string-split style="--l-delay: 0.6;">{{ recruiter.name }} is on his way to total
               willpower</span>
           </h1>
           <p class="caption -a-p -split" data-string>
-            <span data-string-split style="--l-delay: 0.6;">Start your own personalized self-engineering journey.</span>
+            <span data-string-split style="--l-delay: 0.6;">Start your own personalized self-engineering
+              journey.</span>
           </p>
 
           <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
@@ -87,9 +88,10 @@
 
     <Transition name="-t-desc">
       <div class="description -tac -a-p -split -split-random" data-string v-if="desktop && recruitedCap">
-        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas
-          Squad experience is for a select group of achievers who want the very best in AI-driven, personalized
-          elf-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
+        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The
+          Atlas Squad experience is for a select group of achievers who want the very best in AI-driven,
+          personalized elf-improvement. Are you the kind of influencer who can bring such people to our
+          platform?</span>
       </div>
     </Transition>
 
@@ -101,7 +103,8 @@
             <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter.native="recruitedCap = true"
               @mouseleave.native="recruitedCap = false" v-if="desktop">
               <span class="wrap">
-                <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
+                <span class="-base" data-string-split style="--l-delay: 0.9;">Become our
+                  recruiter</span>
 
                 <span class="-hover">Become our recruiter</span>
 
@@ -131,8 +134,8 @@ import axios from 'axios';
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
 const storeInfluencer = useInfluencer()
-const influencer: any = computed(() => {
-  return storeInfluencer.getInfluencer
+const recruiter: any = computed(() => {
+  return storeInfluencer.getRecruiter
 })
 const router = useRouter()
 const route = useRoute();
@@ -153,7 +156,7 @@ const onEmailChange = (value: any) => {
 const onSendEmail = () => {
   storage.local.set('email', email.value)
   storage.local.set('invite', route.params.slug.toString())
-  storage.local.set('type', `influencer`)
+  storage.local.set('type', `recruiter`)
 
   axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}&invite=${route.params.slug.toString()}`)
 }
@@ -221,8 +224,9 @@ let queryCheck = () => {
 
 
 onMounted(() => {
-  if (influencer.value == null) {
-    navigateTo('/')
+  console.log(recruiter.value)
+  if (recruiter.value == null) {
+    //navigateTo('/')
   }
 
 
@@ -250,7 +254,7 @@ onMounted(() => {
     item.style.setProperty('--gX', deltaX)
     item.style.setProperty('--gY', deltaY)
   }
-  deep.value.addEventListener('mousemove', (e: any) => {
+  deep.value?.addEventListener('mousemove', (e: any) => {
     if (desktop.value == true) {
       mouseX = e.clientX
       mouseY = e.clientY
@@ -343,7 +347,7 @@ onBeforeUnmount(() => {
     element.classList.remove('-inview')
   });
 })
-await useAsyncData('loadInfluencer', () => storeInfluencer.loadInfluencer(route.params.slug.toString()))
+await useAsyncData('loadInfluencer', () => storeInfluencer.loadRecruiter(route.params.slug.toString()))
 </script>
 
 <style lang="scss" scoped>
