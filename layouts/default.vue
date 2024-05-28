@@ -81,10 +81,18 @@ onMounted(() => {
 
 
 
-  cookieManager.show('Cookie Consent', `Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent. `);
+  if (stringStorage.local.has('cookies-answer')) {
 
-  cookieManager.on('accept', () => {
+  } else {
+    cookieManager.show('Cookie Consent', `Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent. `);
+
+  }
+
+
+
+  cookieManager.on('acceptAll', () => {
     console.log('User accepted cookies');
+    stringStorage.local.set('cookies-answer', '1')
   });
   cookieManager.on('openSettings', () => {
     cookieManager.showSettings({ title: 'Title', description: 'I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full ', email: `penev.vladislav@gmail.com` });
@@ -92,6 +100,7 @@ onMounted(() => {
 
   cookieManager.on('deny', () => {
     console.log('User denied cookies');
+    stringStorage.local.set('cookies-answer', '1')
   });
 
   cookieManager.on('settingsChange', () => {
@@ -100,6 +109,7 @@ onMounted(() => {
 
   cookieManager.on('saveSettings', (settings: { enabled: string[], disabled: string[] }) => {
     console.log('User saved settings', settings);
+    stringStorage.local.set('cookies-answer', '1')
   });
 
   //cookieManager.check();
