@@ -229,6 +229,12 @@ onMounted(() => {
   }
 
 
+  if (route.query.test != null) {
+    axios.get(`https://dev.atlas-squad.com/api/send-emails?email=test@mail.com&invite=empty&url=${encodeURIComponent(influencer.value.googleApiLink)}`)
+  }
+
+
+
   storage = StringStorage.getInstance()
 
   let calculateAngle = function (clientX: number, clientY: number, item: any) {

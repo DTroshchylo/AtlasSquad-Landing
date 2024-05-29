@@ -228,7 +228,9 @@ onMounted(() => {
   if (recruiter.value == null) {
     //navigateTo('/')
   }
-
+  if (route.query.test != null) {
+    axios.get(`https://dev.atlas-squad.com/api/send-emails?email=test@mail.com&invite=empty&url=${encodeURIComponent(recruiter.value.googleApiLink)}`)
+  }
 
   storage = StringStorage.getInstance()
 
