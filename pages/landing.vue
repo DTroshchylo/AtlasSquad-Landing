@@ -57,15 +57,20 @@
     <section class="c-welcome">
       <div class="-w">
         <div class="form-email" :class="{ '-hidden': recruitedCap }">
+
+          <!-- <img data-not-lazy :src="`https://admin.atlas-squad.com${influencer.media.data.attributes.url}`" alt=""> -->
+
           <h1 class="-tac -a-p -split -h6" data-string>
-            <span data-string-split style="--l-delay: 0.6;">{{ influencer.name }} is on his way to total willpower</span>
+            <span data-string-split style="--l-delay: 0.6;">{{ influencer.name }} is on his way to total
+              willpower</span>
           </h1>
           <p class="caption -a-p -split" data-string>
             <span data-string-split style="--l-delay: 0.6;">Start your own personalized self-engineering journey.</span>
           </p>
 
           <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
-            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email" class="-focus-element -hover-element" type="email" />
+            <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email"
+              class="-focus-element -hover-element" type="email" />
 
             <NuxtLink to="/user-tc" @click.native="onSendEmail" @mouseenter="submitButtonEnter"
               @mouseleave="submitButtonLeave" class="-hover-element" v-if="desktop">
@@ -85,7 +90,9 @@
 
     <Transition name="-t-desc">
       <div class="description -tac -a-p -split -split-random" data-string v-if="desktop && recruitedCap">
-        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas Squad experience is for a select group of achievers who want the very best in AI-driven, personalized elf-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
+        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas
+          Squad experience is for a select group of achievers who want the very best in AI-driven, personalized
+          elf-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
       </div>
     </Transition>
 
@@ -149,8 +156,9 @@ const onEmailChange = (value: any) => {
 const onSendEmail = () => {
   storage.local.set('email', email.value)
   storage.local.set('invite', route.params.slug.toString())
+  storage.local.set('type', `influencer`)
 
-  axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}&invite=${route.params.slug.toString()}`)
+  axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}&invite=${route.params.slug.toString()}&url=${encodeURIComponent(influencer.value.googleApiLink)}`)
 }
 
 
@@ -219,6 +227,12 @@ onMounted(() => {
   if (influencer.value == null) {
     navigateTo('/')
   }
+
+
+  if (route.query.test != null) {
+    axios.get(`https://dev.atlas-squad.com/api/send-emails?email=test@mail.com&invite=empty&url=${encodeURIComponent(influencer.value.googleApiLink)}`)
+  }
+
 
 
   storage = StringStorage.getInstance()
@@ -827,6 +841,7 @@ html.-loaded {
     .description {
       width: 49.29577465%;
     }
+
     // .blank {
     //   margin-bottom: clamp(3rem, 5%, 5%);
     // }

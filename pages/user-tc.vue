@@ -110,6 +110,7 @@ const global = nuxtApp.$globalClass as GlobalClass
 const checkedTerms = ref(false);
 const email = ref('')
 const password = ref('')
+const type = ref('')
 const invite = ref('')
 const storeAccount = useAccount()
 
@@ -128,6 +129,7 @@ const submit = async () => {
   let answer = await storeAccount.create({
     email: email.value,
     password: password.value,
+    type: type.value,
     firstName: 'AS user',
     lastName: 'AS user',
     acceptsMarketing: false,
@@ -145,6 +147,7 @@ onMounted(() => {
   if (StringStorage.getInstance().local.has('email')) {
     email.value = StringStorage.getInstance().local.get('email')
     invite.value = StringStorage.getInstance().local.get('invite')
+    type.value = StringStorage.getInstance().local.get('type')
   } else {
     navigateTo('/')
   }

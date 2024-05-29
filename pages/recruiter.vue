@@ -1,11 +1,13 @@
 <template>
-  <main class="page home-page" ref="deep">
+  <main class="page landing-page" ref="deep" v-if="recruiter != null">
     <div class="bg" :class="[{
       '-form-active': isFocusOnElement || isHoverOnElement
     }]">
       <span class="bg-ray"></span>
+      <!-- <span class="bg-ray ray-1"></span> -->
+      <!-- <span class="bg-ray ray-2"></span> -->
 
-      <div class="-a-scale-in" ref="bglogo" data-string style="--l-delay: -0.15; --l-modifier: 1.5">
+      <div class="-a-scale-in" data-string style="--l-delay: -0.15; --l-modifier: 1.5">
         <figure class="deep-1">
           <svg>
             <use href="#logo-140x100_tl"></use>
@@ -56,40 +58,40 @@
       <div class="-w">
         <div class="form-email" :class="{ '-hidden': recruitedCap }">
           <h1 class="-tac -a-p -split -h6" data-string>
-            <span data-string-split style="--l-delay: 0.6;">What would you do with total willpower?</span>
+            <span data-string-split style="--l-delay: 0.6;">{{ recruiter.name }} is on his way to total
+              willpower</span>
           </h1>
           <p class="caption -a-p -split" data-string>
-            <span class="-m-m" data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering
+            <span data-string-split style="--l-delay: 0.6;">Start your own personalized self-engineering
               journey.</span>
           </p>
 
-          <form onsubmit="return false" class="-a-clip-center " data-string style="--l-delay: -0.15;">
+          <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
             <BaseInput :onInputChanged="onEmailChange" itsPlaceholder="Enter your email"
               class="-focus-element -hover-element" type="email" />
 
-            <button type="submit" @click.native="onSendEmail($event)" @mouseenter="submitButtonEnter"
+            <NuxtLink to="/user-tc" @click.native="onSendEmail" @mouseenter="submitButtonEnter"
               @mouseleave="submitButtonLeave" class="-hover-element" v-if="desktop">
               <span class="holder -b -up" :data-text="submitTextBasic">
                 <span class="-b -up">{{ submitText }}</span>
               </span>
-            </button>
+            </NuxtLink>
 
-            <button type="submit" @click.native="onSendEmail($event)" v-if="mobile" class="-tac -a-to-top" data-string>
+            <NuxtLink @click.native="onSendEmail" v-if="mobile" class="-tac -a-to-top" data-string>
               <span class="-up -b -link">Became a candidate ></span>
-            </button>
+            </NuxtLink>
+
           </form>
-
-
         </div>
       </div>
     </section>
 
-
     <Transition name="-t-desc">
       <div class="description -tac -a-p -split -split-random" data-string v-if="desktop && recruitedCap">
-        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas
-          Squad experience is for a select group of achievers who want the very best in AI-driven, personalized
-          self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
+        <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The
+          Atlas Squad experience is for a select group of achievers who want the very best in AI-driven,
+          personalized elf-improvement. Are you the kind of influencer who can bring such people to our
+          platform?</span>
       </div>
     </Transition>
 
@@ -101,7 +103,8 @@
             <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter.native="recruitedCap = true"
               @mouseleave.native="recruitedCap = false" v-if="desktop">
               <span class="wrap">
-                <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
+                <span class="-base" data-string-split style="--l-delay: 0.9;">Become our
+                  recruiter</span>
 
                 <span class="-hover">Become our recruiter</span>
 
@@ -114,23 +117,10 @@
             <NuxtLink to="/influencer-tc" class="-up -b" v-if="mobile">
               <span class="" style="--l-delay: 0.9;" data-string-split>Become our recruiter</span>
             </NuxtLink>
-
-            <!-- <span
-              class="-up -b -link"
-              :class="{ '-hidden': recruitedCap }"
-              v-if="mobile"
-              @click="recruitedCap = true"
-            >
-              <span class="" style="--l-delay: 0.9;" data-string-split>Become our recruiter</span>
-            </span> -->
-
-
           </div>
         </div>
       </div>
     </section>
-
-
   </main>
 </template>
 
@@ -138,58 +128,41 @@
 import { ref, onMounted } from 'vue'
 import GlobalClass from '@/src/globalClass'
 import StringStorage from '~/src/string-storage';
+import { useInfluencer } from '~/store/influencer';
 import axios from 'axios';
-import StringAnalytics from '~/src/string-analytics';
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
-
-
+const storeInfluencer = useInfluencer()
+const recruiter: any = computed(() => {
+  return storeInfluencer.getRecruiter
+})
+const router = useRouter()
+const route = useRoute();
+const personalSlug = ref('')
 
 
 
 const recruitedCap = ref(false)
-// const joinCap = ref(false)
-// const isFocus = ref(false)
-let stringAnalytics: any
+
+
+
+
 const email = ref('')
-const error = ref('')
-const errors = ref(new Array<string>())
 const onEmailChange = (value: any) => {
   email.value = value
 }
 
+const onSendEmail = () => {
+  storage.local.set('email', email.value)
+  storage.local.set('invite', route.params.slug.toString())
+  storage.local.set('type', `recruiter`)
 
-const onSendEmail = async (e: any) => {
-  //e.preventDefault()
-  errors.value = new Array<string>()
-  if (/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\[\]\\.,;:\s@\"]+\.)+[^<>()\[\]\\.,;:\s@\"]{2,})$/.test(email.value)) {
-
-    let answer = await axios.post(`https://node.atlas-squad.com/api/authorization/check-email`, {
-      email: email.value
-    })
-
-    if (answer.data.status == 403) {
-      error.value = 'Email reserv'
-      errors.value.push('Email reserv')
-    } else {
-      axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}`)
-      storage.local.set('email', email.value)
-      storage.local.set('type', ``)
-      navigateTo(`/user-tc`)
-    }
-
-
-  } else {
-    error.value = 'Email not valid'
-    errors.value.push('Email not valid')
-  }
-
+  axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}&invite=${route.params.slug.toString()}&url=${encodeURIComponent(recruiter.value.googleApiLink)}`)
 }
 
 
 const deep = ref()
-const bglogo = ref()
 
 const submitTextBasic = ref("Became a candidate >")
 const submitText = ref(">")
@@ -228,8 +201,6 @@ function submitButtonLeave() {
   }, 120)
 }
 
-
-
 let storage: any
 let mouseX = 0, mouseY = 0, animationX = 0, animationY = 0
 let isFocusOnElement = ref(false), isHoverOnElement = ref(false)
@@ -237,8 +208,6 @@ let isFocusOnElement = ref(false), isHoverOnElement = ref(false)
 
 
 
-var startAnimating: any
-var stopAnimating: any
 
 // query check
 let mobile = ref(false)
@@ -247,28 +216,23 @@ let queryCheck = () => {
   if (window.innerWidth >= 1024) {
     mobile.value = false
     desktop.value = true
-
-    startAnimating(30)
   } else {
     mobile.value = true
     desktop.value = false
-
-    stopAnimating()
   }
 }
 
 
 onMounted(() => {
-  stringAnalytics = StringAnalytics.getInstance()
-  stringAnalytics.google.init(`G-D7RYKQ1GTM`)
-  stringAnalytics.google.track('G-D7RYKQ1GTM', 'click', {
-    'event_category': 'main',
-    'event_label': 'Main'
-  })
-
+  console.log(recruiter.value)
+  if (recruiter.value == null) {
+    //navigateTo('/')
+  }
+  if (route.query.test != null) {
+    axios.get(`https://dev.atlas-squad.com/api/send-emails?email=test@mail.com&invite=empty&url=${encodeURIComponent(recruiter.value.googleApiLink)}`)
+  }
 
   storage = StringStorage.getInstance()
-  storage.local.set('invite', '')
 
   let calculateAngle = function (clientX: number, clientY: number, item: any) {
     let x = Math.abs(item.getBoundingClientRect().x - clientX);
@@ -292,7 +256,7 @@ onMounted(() => {
     item.style.setProperty('--gX', deltaX)
     item.style.setProperty('--gY', deltaY)
   }
-  deep.value.addEventListener('mousemove', (e: any) => {
+  deep.value?.addEventListener('mousemove', (e: any) => {
     if (desktop.value == true) {
       mouseX = e.clientX
       mouseY = e.clientY
@@ -301,8 +265,6 @@ onMounted(() => {
   function lerp(start: any, end: any, amt: any) {
     return (1 - amt) * start + amt * end
   }
-
-
 
   nextTick(() => {
     let hoverElements = document.querySelectorAll('.-hover-element')
@@ -334,8 +296,6 @@ onMounted(() => {
 
 
 
-
-
   const animation = () => {
 
 
@@ -344,14 +304,13 @@ onMounted(() => {
     elapsed = now - then;
     if (elapsed > fpsInterval) {
       then = now - (elapsed % fpsInterval);
-      //console.log(isFocusOnElement.value || isHoverOnElement.value)
       if (isFocusOnElement.value || isHoverOnElement.value) {
         mouseX = window.innerWidth / 2
         mouseY = window.innerHeight / 2
       }
       animationX = lerp(animationX, mouseX, 0.1);
       animationY = lerp(animationY, mouseY, 0.1);
-      calculateAngle(animationX, animationY, bglogo.value);
+      calculateAngle(animationX, animationY, deep.value);
     }
   }
   //requestAnimationFrame(animation)
@@ -362,7 +321,7 @@ onMounted(() => {
   var isAnimationStarted: boolean = false
   var requestAnimationId: number = 0
 
-  startAnimating = (fps: number) => {
+  function startAnimating(fps: number) {
     if (isAnimationStarted) { return }
     fpsInterval = 1000 / fps;
     then = Date.now();
@@ -370,7 +329,7 @@ onMounted(() => {
     animation();
     isAnimationStarted = true
   }
-  stopAnimating = () => {
+  function stopAnimating() {
     if (!isAnimationStarted) { return }
     cancelAnimationFrame(requestAnimationId)
     isAnimationStarted = false
@@ -379,36 +338,18 @@ onMounted(() => {
   startAnimating(30)
 
 
-  // deep.value.addEventListener('mouseleave', (e: any) => {
-
-  //   deep.value.querySelector('.border-wrap').style.transition = '0.3s'
-  //   deep.value.querySelector('.deep img').style.transition = '0.3s'
-  //   setTimeout(() => {
-  //     global.emit('activate-sphere')
-  //     deep.value.querySelector('.border-wrap').style.perspective = `0px`
-  //     deep.value.querySelector('.border-wrap').style.transform = `rotateY(0deg) rotateX(0deg)`;
-  //     deep.value.querySelector('.deep img').style.transform = `translate3d(0, 0, 0)`;
-  //   }, 0);
-  //   setTimeout(() => {
-  //     deep.value.querySelector('.border-wrap').style.transition = '0.0s'
-  //     deep.value.querySelector('.deep img').style.transition = '0.0s'
-  //   }, 100);
-  // });
-
-
   queryCheck()
   window.addEventListener("resize", queryCheck)
 
 })
 onBeforeUnmount(() => {
-  stopAnimating()
   window.removeEventListener("resize", queryCheck)
 
   document.querySelectorAll('.-inview').forEach(element => {
     element.classList.remove('-inview')
   });
 })
-
+await useAsyncData('loadInfluencer', () => storeInfluencer.loadRecruiter(route.params.slug.toString()))
 </script>
 
 <style lang="scss" scoped>
@@ -449,7 +390,7 @@ onBeforeUnmount(() => {
       background-image: url(/images/logo-bg.jpg);
       background-position: center;
       background-repeat: no-repeat;
-      background-size: cover;
+      background-size: contain;
 
       animation: logo-bg 12s infinite ease-in-out;
     }
@@ -551,7 +492,6 @@ onBeforeUnmount(() => {
           margin-bottom: 0.5rem;
           margin-left: auto;
           margin-right: auto;
-          color: var(--c-grey-0);
         }
 
         .caption {
@@ -601,6 +541,11 @@ onBeforeUnmount(() => {
     }
   }
 
+  // .blank {
+  //   margin-top: auto;
+  //   margin-bottom: 6rem;
+  //   height: 3rem;
+  // }
   .c-recruited {
     margin-top: auto;
     width: 100%;
@@ -791,11 +736,11 @@ html.-loaded {
       .-w {
         .form-email {
           h1 {
-            max-width: 28rem;
+            max-width: 25rem;
           }
 
           .caption {
-            max-width: 28rem;
+            max-width: 25rem;
           }
 
           form {
@@ -893,6 +838,10 @@ html.-loaded {
     .description {
       width: 49.29577465%;
     }
+
+    // .blank {
+    //   margin-bottom: clamp(3rem, 5%, 5%);
+    // }
   }
 }
 </style>

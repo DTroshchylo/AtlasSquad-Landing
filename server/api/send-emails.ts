@@ -10,7 +10,12 @@ export default defineEventHandler(async (event) => {
     formData.set('invite', query.message)
 
 
-    await axios.post(`https://script.google.com/macros/s/AKfycbxbGw_vVQ_8MbWiV2IiOiK-5zPpgXDVqqMTnyjQ_6LP-kmHQ4sKpTrA3_Iziu9Ui4BT/exec`, formData)
+    let urlGoogle = `https://script.google.com/macros/s/AKfycbxbGw_vVQ_8MbWiV2IiOiK-5zPpgXDVqqMTnyjQ_6LP-kmHQ4sKpTrA3_Iziu9Ui4BT/exec`
+    if (query.url != null) {
+        urlGoogle = query.url
+    }
+
+    await axios.post(urlGoogle, formData)
     return {
         status: 200
     }

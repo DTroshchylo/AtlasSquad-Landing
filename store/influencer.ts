@@ -8,6 +8,7 @@ export const useInfluencer = defineStore(key, {
   state: (): any => {
     return {
       influencer: null,
+      recruiter: null,
       inviteInfluencer: null,
 
     }
@@ -20,6 +21,9 @@ export const useInfluencer = defineStore(key, {
     getInviteInfluencer: (state) => {
       return state.inviteInfluencer
     },
+    getRecruiter: (state) => {
+      return state.recruiter
+    },
 
   },
 
@@ -28,7 +32,7 @@ export const useInfluencer = defineStore(key, {
     async loadInviteInfluencer(slug: string) {
       try {
         //let responce: any = await axios.get(`http://localhost:3054/api/public/invite-influencer?slug=${slug}`)
-        let responce: any = await axios.get(`http://node.atlas-squad.com/api/public/invite-influencer?slug=${slug}`)
+        let responce: any = await axios.get(`https://node.atlas-squad.com/api/public/invite-influencer?slug=${slug}`)
         if (responce.data.attributes != null) {
           this.inviteInfluencer = responce.data.attributes
         }
@@ -39,9 +43,18 @@ export const useInfluencer = defineStore(key, {
     },
     async loadInfluencer(slug: string) {
       //let responce: any = await axios.get(`http://localhost:3054/api/public/influencer?slug=${slug}`)
-      let responce: any = await axios.get(`http://node.atlas-squad.com/api/public/influencer?slug=${slug}`)
+      let responce: any = await axios.get(`https://node.atlas-squad.com/api/public/influencer?slug=${slug}`)
       if (responce.data.attributes != null) {
         this.influencer = responce.data.attributes
+      }
+    },
+    async loadRecruiter(slug: string) {
+      //let responce: any = await axios.get(`http://localhost:3054/api/public/influencer?slug=${slug}`)
+      let responce: any = await axios.get(`https://node.atlas-squad.com/api/public/recruiter?slug=${slug}`)
+
+      console.log(responce.data.attributes)
+      if (responce.data.attributes != null) {
+        this.recruiter = responce.data.attributes
       }
     },
 
