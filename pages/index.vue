@@ -261,6 +261,10 @@ let queryCheck = () => {
 onMounted(() => {
   stringAnalytics = StringAnalytics.getInstance()
   stringAnalytics.google.init(`G-D7RYKQ1GTM`)
+  stringAnalytics.google.track('436300142247366', 'click', {
+    'event_category': 'main',
+    'event_label': 'Main'
+  })
 
 
   storage = StringStorage.getInstance()
