@@ -84,7 +84,7 @@
 
             <!-- <NuxtLink to="/registration">Submit / go to registration / go to platform, actually</NuxtLink> -->
             <Transition name="-t-submit">
-              <button @click="submit">Submit</button>
+              <button class="-up -b -red" @click="submit">Submit</button>
               <!-- <a class="-up -b -red"
                 :href="`https://atlas-squad.fiddle.digital/registration?email=${email}&invite=${invite}`"
                 v-if="checkedTerms">Go to my Dashoboard</a> -->
@@ -286,7 +286,8 @@ onBeforeUnmount(() => {
             }
           }
 
-          a {
+          a,
+          button {
             position: absolute;
             top: 100%;
             padding: 1rem;
