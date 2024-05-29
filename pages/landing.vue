@@ -61,11 +61,10 @@
           <!-- <img data-not-lazy :src="`https://admin.atlas-squad.com${influencer.media.data.attributes.url}`" alt=""> -->
 
           <h1 class="-tac -a-p -split -h6" data-string>
-            <span data-string-split style="--l-delay: 0.6;">{{ influencer.name }} is on his way to total
-              willpower</span>
+            <span data-string-split style="--l-delay: 0.6;">{{ influencersAndRecruiterPage.title }}</span>
           </h1>
           <p class="caption -a-p -split" data-string>
-            <span data-string-split style="--l-delay: 0.6;">Start your own personalized self-engineering journey.</span>
+            <span data-string-split style="--l-delay: 0.6;">{{ influencersAndRecruiterPage.subtitle }}</span>
           </p>
 
           <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
@@ -136,6 +135,12 @@ const global = nuxtApp.$globalClass as GlobalClass
 const storeInfluencer = useInfluencer()
 const influencer: any = computed(() => {
   return storeInfluencer.getInfluencer
+})
+const influencersAndRecruiterPage: any = computed(() => {
+  return {
+    title: storeInfluencer.getInfluencersAndRecruiterPage.influencersTitle.replace(/{{name}}/g, influencer.value.name),
+    subtitle: storeInfluencer.getInfluencersAndRecruiterPage.influencersSubtitle.replace(/{{name}}/g, influencer.value.name),
+  }
 })
 const router = useRouter()
 const route = useRoute();
@@ -353,6 +358,7 @@ onBeforeUnmount(() => {
   });
 })
 await useAsyncData('loadInfluencer', () => storeInfluencer.loadInfluencer(route.params.slug.toString()))
+await useAsyncData('loadInfluencerPage', () => storeInfluencer.loadInfluencersAndRecruiterPage())
 </script>
 
 <style lang="scss" scoped>

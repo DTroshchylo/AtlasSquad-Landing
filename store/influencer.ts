@@ -10,6 +10,9 @@ export const useInfluencer = defineStore(key, {
       influencer: null,
       recruiter: null,
       inviteInfluencer: null,
+      homePage: null,
+      influencersAndRecruiterPage: null,
+
 
     }
   },
@@ -23,6 +26,12 @@ export const useInfluencer = defineStore(key, {
     },
     getRecruiter: (state) => {
       return state.recruiter
+    },
+    getHomePage: (state) => {
+      return state.homePage
+    },
+    getInfluencersAndRecruiterPage: (state) => {
+      return state.influencersAndRecruiterPage
     },
 
   },
@@ -49,12 +58,21 @@ export const useInfluencer = defineStore(key, {
       }
     },
     async loadRecruiter(slug: string) {
-      //let responce: any = await axios.get(`http://localhost:3054/api/public/influencer?slug=${slug}`)
       let responce: any = await axios.get(`https://node.atlas-squad.com/api/public/recruiter?slug=${slug}`)
-
-      console.log(responce.data.attributes)
       if (responce.data.attributes != null) {
         this.recruiter = responce.data.attributes
+      }
+    },
+    async loadHomePage() {
+      let responce: any = await axios.get(`https://node.atlas-squad.com/api/public/home-page`)
+      if (responce.data != null) {
+        this.homePage = responce.data
+      }
+    },
+    async loadInfluencersAndRecruiterPage() {
+      let responce: any = await axios.get(`https://node.atlas-squad.com/api/public/influencers-and-recruiter`)
+      if (responce.data != null) {
+        this.influencersAndRecruiterPage = responce.data
       }
     },
 

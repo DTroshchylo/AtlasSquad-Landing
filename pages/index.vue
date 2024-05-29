@@ -52,15 +52,14 @@
     </div>
 
 
-    <section class="c-welcome">
+    <section class="c-welcome" v-if="homePage != null">
       <div class="-w">
         <div class="form-email" :class="{ '-hidden': recruitedCap }">
           <h1 class="-tac -a-p -split -h6" data-string>
-            <span data-string-split style="--l-delay: 0.6;">What would you do with total willpower?</span>
+            <span data-string-split style="--l-delay: 0.6;">{{ homePage.title }}</span>
           </h1>
           <p class="caption -a-p -split" data-string>
-            <span class="-m-m" data-string-split style="--l-delay: 0.6;">Start your personalized self-engineering
-              journey.</span>
+            <span class="-m-m" data-string-split style="--l-delay: 0.6;">{{ homePage.subtitle }}</span>
           </p>
 
           <form onsubmit="return false" class="-a-clip-center " data-string style="--l-delay: -0.15;">
@@ -140,12 +139,15 @@ import GlobalClass from '@/src/globalClass'
 import StringStorage from '~/src/string-storage';
 import axios from 'axios';
 import StringAnalytics from '~/src/string-analytics';
+import { useInfluencer } from '~/store/influencer';
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
 
-
-
+const storeInfluencer = useInfluencer()
+const homePage: any = computed(() => {
+  return storeInfluencer.getHomePage
+})
 
 
 const recruitedCap = ref(false)
@@ -408,6 +410,13 @@ onBeforeUnmount(() => {
     element.classList.remove('-inview')
   });
 })
+
+// loadHomePage
+// loadInfluencersAndRecruiterPage
+
+// getHomePage
+// getInfluencersAndRecruiterPage
+await useAsyncData('loadInfluencer', () => storeInfluencer.loadHomePage())
 
 </script>
 

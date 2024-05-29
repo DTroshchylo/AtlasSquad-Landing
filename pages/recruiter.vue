@@ -58,12 +58,10 @@
       <div class="-w">
         <div class="form-email" :class="{ '-hidden': recruitedCap }">
           <h1 class="-tac -a-p -split -h6" data-string>
-            <span data-string-split style="--l-delay: 0.6;">{{ recruiter.name }} is on his way to total
-              willpower</span>
+            <span data-string-split style="--l-delay: 0.6;">{{ influencersAndRecruiterPage.title }}</span>
           </h1>
           <p class="caption -a-p -split" data-string>
-            <span data-string-split style="--l-delay: 0.6;">Start your own personalized self-engineering
-              journey.</span>
+            <span data-string-split style="--l-delay: 0.6;">{{ influencersAndRecruiterPage.subtitle }}</span>
           </p>
 
           <form action="" class="-a-clip-center " data-string style="--l-delay: -0.15;">
@@ -136,6 +134,12 @@ const global = nuxtApp.$globalClass as GlobalClass
 const storeInfluencer = useInfluencer()
 const recruiter: any = computed(() => {
   return storeInfluencer.getRecruiter
+})
+const influencersAndRecruiterPage: any = computed(() => {
+  return {
+    title: storeInfluencer.getInfluencersAndRecruiterPage.influencersTitle.replace(/{{name}}/g, recruiter.value.name),
+    subtitle: storeInfluencer.getInfluencersAndRecruiterPage.influencersSubtitle.replace(/{{name}}/g, recruiter.value.name),
+  }
 })
 const router = useRouter()
 const route = useRoute();
@@ -349,7 +353,13 @@ onBeforeUnmount(() => {
     element.classList.remove('-inview')
   });
 })
+// loadHomePage
+// loadInfluencersAndRecruiterPage
+
+// getHomePage
+// getInfluencersAndRecruiterPage
 await useAsyncData('loadInfluencer', () => storeInfluencer.loadRecruiter(route.params.slug.toString()))
+await useAsyncData('loadInfluencerPage', () => storeInfluencer.loadInfluencersAndRecruiterPage())
 </script>
 
 <style lang="scss" scoped>
