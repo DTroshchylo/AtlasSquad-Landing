@@ -139,6 +139,7 @@ import { ref, onMounted } from 'vue'
 import GlobalClass from '@/src/globalClass'
 import StringStorage from '~/src/string-storage';
 import axios from 'axios';
+import StringAnalytics from '~/src/string-analytics';
 
 const nuxtApp = useNuxtApp()
 const global = nuxtApp.$globalClass as GlobalClass
@@ -150,7 +151,7 @@ const global = nuxtApp.$globalClass as GlobalClass
 const recruitedCap = ref(false)
 // const joinCap = ref(false)
 // const isFocus = ref(false)
-
+let stringAnalytics: any
 const email = ref('')
 const error = ref('')
 const errors = ref(new Array<string>())
@@ -258,6 +259,9 @@ let queryCheck = () => {
 
 
 onMounted(() => {
+  stringAnalytics = StringAnalytics.getInstance()
+  stringAnalytics.google.init(`G-D7RYKQ1GTM`)
+
 
   storage = StringStorage.getInstance()
   storage.local.set('invite', '')
