@@ -47,23 +47,24 @@ class StringCookies {
         font-family: "Manrope", sans-serif;
         font-optical-sizing: auto;
       }
-      .sc-container {
+      .sc-setting-container {
         position: relative;
-        padding-bottom: 4rem;
-        padding-top: 4rem;
-        background-color: var(--sc-bg, #181b1d);
-        box-shadow: var(--sc-consent-modal-box-shadow, 0 0.625rem 1.875rem rgba(2, 2, 3, .28));
-        border-radius: var(--sc-border-radius, .45rem);
+        padding-bottom: 4em;
+        padding-top: 4em;
+        background-color: var(--sc-bg, #101214);
+        border-radius: var(--sc-border-radius, .6em);
         box-sizing: border-box;
         overflow: hidden;
         max-width: 720px;
+
+        font-size: 1rem;
       }
       .sc-header {
-        background-color: var(--sc-bg, #181b1d);
-        border-bottom: 1px solid var(--sc-section-border, #292d31);
+        background-color: var(--sc-bg, #101214);
+        border-bottom: 1px solid var(--sc-section-border, #1E1D21);
         display: table;
-        height: 4rem;
-        padding: 0 1.6rem;
+        height: 4em;
+        padding: 0 1em;
         position: absolute;
         top: 0;
         width: 100%;
@@ -75,21 +76,16 @@ class StringCookies {
       }
       .sc-c-btn-cont .sc-c-btn {
         position: relative;
-        width: 1.7rem;
-        height: 1.7rem;
-        background: var(--sc-btn-secondary-bg, #33383c);
-        border-radius: var(--sc-btn-border-radius, 0.375rem);
+        width: 2em;
+        height: 2em;
       }
-      .sc-m-main-action {
+      .sc-main-action {
         display: flex;
+        margin-top: 1.25em;
+        gap: 0.5em;
       }
-      .sc-m-main-action .sc-btn{
+      .sc-main-action .sc-button {
         flex: 1;
-        margin-top: 1rem;
-      }
-      .sc-m-main-action .sc-btn:nth-child(1){
-        float: left;
-        margin-right: .5rem;
       }
       .sc-c-btn-cont .sc-c-btn:after,
       .sc-c-btn-cont .sc-c-btn:before {
@@ -97,12 +93,12 @@ class StringCookies {
         margin: 0 auto;
         position: absolute;
         transform: rotate(45deg);
-        background: var(--sc-btn-secondary-text, #d8e5ea);
-        border-radius: 1rem;
-        height: .6rem;
-        left: .82rem;
-        top: .58rem;
-        width: 1.5px;
+        background: var(--sc-button-primary-bg, #B8A5B8);
+        border-radius: 1em;
+        height: 0.8em;
+        left: 0.9em;
+        top: 0.6em;
+        width: 2px;
       }
       .sc-c-btn-cont .sc-c-btn:after {
         transform: rotate(-45deg);
@@ -113,47 +109,41 @@ class StringCookies {
       }
       .sc-body-scroll {
         box-sizing: border-box;
-        padding: 1.3rem 1.6rem;
+        padding: 1.5em 1em;
       }
       .sc-settings {
-        margin-top: 1rem;
-      }
-      .sc-settings-item {
-        margin-bottom: 1rem;
+        margin-top: 1em;
       }
       .sc-settings-item .label-container {
         cursor: pointer;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding: .75rem 1.5rem;
+        padding: 0.5em;
         position: relative;
         width: 100%;
         box-sizing: border-box;
-        border-radius: var(--sc-border-radius, .45rem);
-        background: var(--sc-cookie-category-block-bg, #23272a);
-        color: var(--sc-btn-secondary-text, #d8e5ea);
-        font-size: 1.05em;
+        background: var(--sc-cookie-category-block-bg, #101214);
+        color: var(--sc-button-secondary-text, #BDAEB9);
+
+        border-bottom: 1px solid var(--sc-cookie-category-block-bg-hover, #1E1D21);
+        font-size: 0.9em;
         font-weight: 600;
       }
       .sc-settings-item .label-container:hover {
-        background: var(--sc-cookie-category-block-bg-hover, #2b3035);
+        border-radius: var(--sc-border-radius, .3em);
+        background: var(--sc-cookie-category-block-bg-hover, #1E1D21);
+        border-bottom: 1px solid transparent;
       }
       .sc-settings-item label {
         display: flex;
         align-items: center;
-        opacity: .75;
-      }
-      .sc-settings-item label.-active {
-        display: flex;
-        align-items: center;
-        opacity: 1;
       }
       .sc-settings-item .toggle-container {
         position: relative;
         display: inline-block;
-        width: calc(var(--sc-toggle-height, 1rem) * var(--sc-toggle-width-percent, 1.85));
-        height: calc(var(--sc-toggle-height, 1rem));
+        width: calc(var(--sc-toggle-height, 1em) * var(--sc-toggle-width-percent, 1.85));
+        height: calc(var(--sc-toggle-height, 1em));
       }
       .sc-settings-item .toggle-container input {
         display: none;
@@ -165,40 +155,33 @@ class StringCookies {
         left: 0;
         right: 0;
         bottom: 0;
-        background-color: var(--sc-toggle-bg-off, #667481);
+        background-color: var(--sc-toggle-bg-off, #544D56);
         transition: .4s;
         border-radius: 34px;
       }
       .sc-settings-item .toggle:before {
         position: absolute;
         content: "";
-        height: calc(var(--sc-toggle-height, 1rem) - var(--sc-toggle-padding, .15rem) * 2);
-        width: calc(var(--sc-toggle-height, 1rem) - var(--sc-toggle-padding, .15rem) * 2);
-        left: var(--sc-toggle-padding, .15rem);
-        bottom: var(--sc-toggle-padding, .15rem);
-        background-color: var(--sc-toggle-knob-bg, var(--sc-cookie-category-block-bg, #23272a));
+        height: calc(var(--sc-toggle-height, 1em) - var(--sc-toggle-padding, .15em) * 2);
+        width: calc(var(--sc-toggle-height, 1em) - var(--sc-toggle-padding, .15em) * 2);
+        left: var(--sc-toggle-padding, .15em);
+        bottom: var(--sc-toggle-padding, .15em);
+        background-color: var(--sc-toggle-knob-bg, var(--sc-cookie-category-block-bg, #101214));
         transition: .3s var(--f-cubic, ease);
         border-radius: 50%;
       }
-      .sc-settings-item label.-active .toggle-container input:checked + .toggle {
-        background-color: var(--sc-toggle-bg-on, #a6c4dd);
+      .sc-settings-item .toggle-container input:checked + .toggle {
+        background-color: var(--sc-toggle-bg-on, #B8A5B8);
       }
-      .sc-settings-item label.-readonly .toggle-container input + .toggle {
-        background-color: var(--sc-toggle-bg-on, #a6c4dd);
-      }
-      .sc-settings-item label.-active .toggle-container input:checked + .toggle:before {
-        background-color: var(--sc-toggle-knob-bg, var(--sc-cookie-category-block-bg, #23272a));
-        transform: translateX(calc(var(--sc-toggle-height, 1rem) * var(--sc-toggle-width-percent, 1.85) - var(--sc-toggle-height, 1rem)));
-      }
-      .sc-settings-item label.-readonly .toggle-container .toggle:before {
-        background-color: var(--sc-toggle-knob-bg, var(--sc-cookie-category-block-bg, #23272a));
-        transform: translateX(calc(var(--sc-toggle-height, 1rem) * var(--sc-toggle-width-percent, 1.85) - var(--sc-toggle-height, 1rem)));
+      .sc-settings-item .toggle-container input:checked + .toggle:before {
+        background-color: var(--sc-toggle-knob-bg, var(--sc-cookie-category-block-bg, #101214));
+        transform: translateX(calc(var(--sc-toggle-height, 1em) * var(--sc-toggle-width-percent, 1.85) - var(--sc-toggle-height, 1em)));
       }
       .sc-settings-item .toggle-label {
-        margin-left: .5rem;
+        margin-left: .5em;
       }
       .sc-settings-item .sc-dd-a {
-        border: solid var(--sc-btn-secondary-text, #d8e5ea);
+        border: solid var(--sc-button-secondary-bg, #544D56);
         border-width: 0 2px 2px 0;
         content: "";
         display: inline-block;
@@ -207,147 +190,174 @@ class StringCookies {
         transform: rotate(45deg);
       }
       .sc-settings-item.-opened .label-container {
+        background: var(--sc-cookie-category-block-bg-hover, #1E1D21);
+        border-top-left-radius: var(--sc-border-radius, .3em);
+        border-top-right-radius: var(--sc-border-radius, .3em);
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
       }
-      .sc-settings-item.-opened .sc-dd-a {
+      .sc-settings-item .label-container:hover .sc-dd-a {
+        border-color: var(--sc-button-secondary-hover-bg, #625C64);
+      }
+      .sc-settings-item.-opened .label-container .sc-dd-a {
+        border-color: var(--sc-button-primary-bg, #B8A5B8);
         transform: rotate(225deg);
       }
       .sc-settings-item.-opened p {
         display: flex;
       }
       .sc-settings-item p {
-        padding: .75rem 1.5rem;
-        border-radius: var(--sc-border-radius, .45rem);
+        padding: 0em 1em 0.75em;
+        border-radius: var(--sc-border-radius, .45em);
         border-top-left-radius: 0;
         border-top-right-radius: 0;
-        background: var(--sc-cookie-category-block-bg, #23272a);
+        background: var(--sc-cookie-category-block-bg, #1E1D21);
         display: none;
         box-sizing: border-box;
+
+        font-size: 0.7em;
+        color: var(--sc-block-text, #BDAEB9);
       }
       .sc-contact {
-        border-radius: var(--sc-border-radius, .45rem);
-        border: 1px solid var(--sc-section-border, #292d31);
-        padding: .75rem;
+        margin-top: 1.5em;
+        // padding: 1.25em 0.5em;
+        // border-radius: var(--sc-border-radius, .3em);
+        // border: 1px solid var(--sc-section-border, #1E1D21);
+        // padding: 0.5em rem 0.75em;
+        width: 50%;
+        margin-left: auto;
+        // background: var(--sc-cookie-category-block-bg, #1E1D21);
+        // opacity: 0.5;
       }
-      .sc-contact:hover {
-        background: var(--sc-cookie-category-block-bg, #23272a);
-      }
+      // .sc-contact:hover {
+      //   opacity: 1;
+      // }
       .sc-actions {
         display: flex;
         align-items: center;
-        background-color: var(--sc-bg, #181b1d);
-        border-top: 1px solid var(--sc-section-border, #292d31);
+        background-color: var(--sc-bg, #101214);
+        border-top: 1px solid var(--sc-section-border, #1E1D21);
         bottom: 0;
-        height: 4rem;
+        height: 4em;
         left: 0;
-        padding: 1em 1.6rem;
+        padding: 1em;
         position: absolute;
         right: 0;
         box-sizing: border-box;
         z-index: 2;
+
+        gap: 0.5em
       }
-      .sc-actions .sc-btn.-prm {
-        float: left;
-        margin-right: .5rem;
-      }
-      .sc-actions .sc-btn:nth-child(3) {
+      // .sc-actions .sc-button.-primary {
+      //   float: left;
+      //   margin-right: .5em;
+      // }
+      .sc-actions .sc-button:nth-child(3) {
         margin-left: auto;
       }
-      .sc-m-container {
+
+      .sc-container {
         position: fixed;
         left: var(--scm-position-left, initial);
-        right: var(--scm-position-right, 1rem);
+        right: var(--scm-position-right, 1em);
         top: var(--scm-position-top, initial);
-        bottom: var(--scm-position-bottom, 1rem);
-        background-color: var(--sc-bg, #181b1d);
-        padding: 1rem 1.4rem 1.3rem;
-        box-shadow: var(--sc-consent-modal-box-shadow, 0 0.625rem 1.875rem rgba(2, 2, 3, .28));
-        border-radius: var(--sc-border-radius, .45rem);
-        max-width: 360px;
+        bottom: var(--scm-position-bottom, 1em);
+        background-color: var(--sc-bg, #101214);
+        padding: 0.8rem 1rem 1rem 1rem;
+        border-radius: var(--sc-border-radius, .6rem);
+        max-width: 540px;
         font-family: "Manrope", sans-serif;
+        font-size: 1rem;
       }
       
-      .sc-ttl {
-        color: var(--sc-btn-secondary-text, #d8e5ea);
-        font-size: 1.05em;
+      .sc-title {
+        color: var(--sc-button-secondary-text, #E6DFE4);
+        font-size: 0.9em;
         font-weight: 600;
       }
-      .sc-lnk {
-        border-bottom: 1px solid var(--sc-btn-primary-bg, #a6c4dd);
-        color: var(--sc-btn-primary-bg, #a6c4dd);
+      .sc-link {
+        // border-bottom: 1px solid var(--sc-button-primary-bg, #E6DFE4);
+        color: var(--sc-button-primary-bg, #E6DFE4);
         cursor: pointer;
-        display: inline;
+        display: inline-block;
         font-weight: 600;
         padding-bottom: 0;
+        // text-decoration: none;
+        text-decoration: underline;
+      }
+      .sc-link:hover {
+        color: var(--sc-button-primary-bg, #E6DFE4);
+        // border-bottom: 1px solid transparent;
         text-decoration: none;
       }
-      .sc-lnk:hover {
-        color: var(--sc-btn-primary-bg, #a6c4dd);
-        border-bottom: 0px solid var(--sc-btn-primary-bg, #a6c4dd);
-      }
-      .sc-txt {
-        font-size: .9em;
+      .sc-description {
+        font-size: .7em;
         line-height: 1.5em;
-        color: var(--sc-block-text, #b3bfc5);
+        color: var(--sc-block-text, #BDAEB9);
       }
-      .sc-btn {
-        background: var(--sc-btn-secondary-bg, #33383c);
-        color: var(--sc-btn-secondary-text, #d8e5ea);
-        border-radius: var(--sc-btn-border-radius, 0.375rem);
-        padding: 12px 20px;
+      .sc-button {
+        background: var(--sc-button-secondary-bg, #544D56);
+        color: var(--sc-button-secondary-text, #E6DFE4);
+        border-radius: var(--sc-button-border-radius, 0.3em);
+        padding: 1em 1em;
         font-weight: 600;
+        font-size: .7em;
+
+        // transition: background-color 0.15s ease-out;
       }
-      .sc-btn:hover {
-        background: var(--sc-btn-secondary-hover-bg, #3e454a);
-        color: var(--sc-btn-secondary-hover-text, #d8e5ea);
+      .sc-button:hover {
+        background: var(--sc-button-secondary-hover-bg, #625C64);
+        color: var(--sc-button-secondary-hover-text, #E6DFE4);
       }
-      .sc-btn.-prm {
-        background: var(--sc-btn-primary-bg, #a6c4dd);
-        color: var(--sc-btn-primary-text, #000);
+      .sc-button.-primary {
+        background: var(--sc-button-primary-bg, #B8A5B8);
+        color: var(--sc-button-primary-text, #101214);
       }
-      .sc-btn.-prm:hover {
-        background: var(--sc-btn-primary-hover-bg, #c2dff7);
-        color: var(--sc-btn-primary-hover-text, #000);
+      .sc-button.-primary:hover {
+        background: var(--sc-button-primary-hover-bg, #CABCC9);
+        color: var(--sc-button-primary-hover-text, #101214);
       }
       @media (max-width: 1024px) {
-        .sc-body{
+        .sc-body {
           max-height: 100%;
         }
-        .sc-header{
-          padding: 0 1rem;
+        .sc-header {
+          height: 3em;
+          padding: 0 0.5em;
         }
-        .sc-m-container {
-          left: var(--scm-position-left, 1rem);
-          right: var(--scm-position-right, 1rem);
-          bottom: var(--scm-position-bottom, 1rem);
+        .sc-container {
+          font-size: 16px;
+          left: var(--scm-position-left, 1em);
+          right: var(--scm-position-right, 1em);
+          bottom: var(--scm-position-bottom, 1em);
         }
-        .sc-container{
+        .sc-setting-container {
           height: 100%;
-          padding-bottom: 8.5rem;
+          padding-bottom: 10em;
+
+          font-size: 16px;
         }
-        .sc-actions{
-          height: 8.5rem;
-          padding: 1em 1rem;
+        .sc-contact {
+          width: initial;
+        }
+        .sc-actions {
+          height: 10em;
+          padding: 1em;
           flex-direction: column;
-          justify-content: space-between;
+          justify-content: flex-end;
         }
-        .sc-body-scroll{
-          padding: 1.3rem 1rem;
+        .sc-body-scroll {
+          padding: 1.2em 1em;
         }
-        .scs-main-action{
+        .scs-main-action {
           display: flex;
           flex-direction: column;
         }
-        .sc-actions .sc-btn{
-          margin: 0 !important;
+        .sc-button {
           width: 100%;
         }
-        .sc-settings-item .label-container{
-          padding: .75rem .75rem .75rem 1rem;
-        }
-        .sc-settings-item p{
-          padding: .75rem 1rem;
+        .sc-settings-item .label-container {
+          padding: 0.5em;
         }
       }
     `;
@@ -481,7 +491,7 @@ class StringCookies {
     }
   }
 
-  use(name: string, config: { accept: Function, deny: Function, description: string, readOnly?: boolean }) {
+  use(name: string, config: { accept: Function, deny: Function, description: string }) {
     this.settings[name] = config;
   }
 
@@ -492,13 +502,13 @@ class StringCookies {
 
     const container = document.createElement('div');
     container.id = 'cookie-settings-container';
-    container.className = 'sc-container';
+    container.className = 'sc-setting-container';
 
     const headerEl = document.createElement('div');
     headerEl.classList.add('sc-header');
 
     const titleEl = document.createElement('div');
-    titleEl.classList.add('sc-ttl');
+    titleEl.classList.add('sc-title');
     titleEl.innerHTML = title || 'Cookie Settings';
 
     const closeButtonContainerEl = document.createElement('div');
@@ -514,11 +524,11 @@ class StringCookies {
     container.appendChild(headerEl);
 
     const subtitleEl = document.createElement('div');
-    subtitleEl.className = 'sc-ttl';
+    subtitleEl.className = 'sc-title';
     subtitleEl.innerHTML = subtitle || 'Subtitle';
 
     const descEl = document.createElement('div');
-    descEl.className = 'sc-txt';
+    descEl.className = 'sc-description';
     descEl.innerHTML = description || 'We use cookies to improve your experience on our site. Please review and accept cookies.';
     if (privacyLink) {
       const link = document.createElement('a');
@@ -548,11 +558,6 @@ class StringCookies {
       });
 
       const label = document.createElement('label');
-      if (value.readOnly == null || value.readOnly == false) {
-        label.classList.add('-active');
-      } else {
-        label.classList.add('-readonly');
-      }
       const inputContainer = document.createElement('div');
       inputContainer.classList.add('toggle-container');
       const inputToggle = document.createElement('div');
@@ -562,16 +567,9 @@ class StringCookies {
       inputLabel.classList.add('toggle-label');
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
-      checkbox.readOnly = value.readOnly;
       checkbox.checked = true;
       checkbox.setAttribute('data-key', key);
       checkbox.onchange = (event) => {
-        if (value.readOnly == true) {
-          event.preventDefault()
-          return false;
-        }
-
-
         if ((event.target as HTMLInputElement).checked) {
           value.accept();
         } else {
@@ -602,18 +600,18 @@ class StringCookies {
 
     const contactContainer = document.createElement('div');
     contactContainer.className = 'sc-contact';
-    const contactTitle = document.createElement('div');
-    contactTitle.className = 'sc-ttl';
-    contactTitle.innerHTML = contact?.title || 'Contact title';
-    contactContainer.appendChild(contactTitle);
+    // const contactTitle = document.createElement('div');
+    // contactTitle.className = 'sc-title';
+    // contactTitle.innerHTML = contact?.title || 'Contact title';
+    // contactContainer.appendChild(contactTitle);
     const contactDescription = document.createElement('div');
-    contactDescription.className = 'sc-txt';
+    contactDescription.className = 'sc-description';
     contactDescription.innerHTML = contact?.description || 'For any queries in relation to our policy on cookies and your choices, please ';
     if (email) {
       const link = document.createElement('a');
       link.href = `mailto:${email}`;
       link.innerHTML = 'contact us';
-      link.className = 'sc-lnk';
+      link.className = 'sc-link';
       contactDescription.appendChild(link);
     }
     contactContainer.appendChild(contactDescription);
@@ -631,7 +629,7 @@ class StringCookies {
 
     const acceptButton = document.createElement('button');
     acceptButton.innerHTML = 'Accept All';
-    acceptButton.className = 'sc-btn -prm';
+    acceptButton.className = 'sc-button -primary';
     acceptButton.onclick = () => {
       this.acceptAll();
       document.body.removeChild(d.getElementById('cookie-consent-container'));
@@ -640,7 +638,7 @@ class StringCookies {
 
     const denyButton = document.createElement('button');
     denyButton.innerHTML = 'Reject all';
-    denyButton.className = 'sc-btn';
+    denyButton.className = 'sc-button';
     denyButton.onclick = () => {
       this.deny();
       document.body.removeChild(d.getElementById('cookie-consent-container'));
@@ -649,7 +647,7 @@ class StringCookies {
 
     const saveButton = document.createElement('button');
     saveButton.innerHTML = 'Save Settings';
-    saveButton.className = 'sc-btn';
+    saveButton.className = 'sc-button';
     saveButton.onclick = () => {
       const enabledSettings = Object.keys(this.settings).filter(key => {
         const checkbox = settingsContainer.querySelector(`input[type="checkbox"][data-key="${key}"]`) as HTMLInputElement;
@@ -679,20 +677,20 @@ class StringCookies {
   show(title: string, description: string) {
     const container = document.createElement('div');
     container.id = 'cookie-consent-container';
-    container.className = 'sc-m-container';
+    container.className = 'sc-container';
 
     const header = document.createElement('div');
-    header.classList.add('sc-ttl');
+    header.classList.add('sc-title');
     header.innerHTML = title || 'Cookie Consent';
     container.appendChild(header);
 
     const desc = document.createElement('div');
-    desc.className = 'sc-txt';
+    desc.className = 'sc-description';
     desc.innerHTML = description || 'We use cookies to improve your experience on our site. ';
 
     const advancedSettingsButton = document.createElement('button');
     advancedSettingsButton.id = 'sc-m-open-advanced';
-    advancedSettingsButton.className = 'sc-lnk';
+    advancedSettingsButton.className = 'sc-link';
     advancedSettingsButton.innerHTML = 'Customize Settings';
     advancedSettingsButton.onclick = () => {
       this.onOpenSettingsEvents.forEach((event: Function) => {
@@ -706,11 +704,11 @@ class StringCookies {
     const actionsContainer = document.createElement('div');
     actionsContainer.className = 'sc-m-actions';
     const mainActionsContainer = document.createElement('div');
-    mainActionsContainer.className = 'sc-m-main-action';
+    mainActionsContainer.className = 'sc-main-action';
 
     const acceptButton = document.createElement('button');
     acceptButton.innerHTML = 'Accept All';
-    acceptButton.className = 'sc-m-accept-all sc-btn -prm';
+    acceptButton.className = 'sc-m-accept-all sc-button -primary';
     acceptButton.onclick = () => {
       this.acceptAll();
       document.body.removeChild(container);
@@ -718,7 +716,7 @@ class StringCookies {
 
     const denyButton = document.createElement('button');
     denyButton.innerHTML = 'Reject all';
-    denyButton.className = 'sc-m-deny-all sc-btn';
+    denyButton.className = 'sc-m-deny-all sc-button';
     denyButton.onclick = () => {
       this.deny();
       document.body.removeChild(container);
@@ -734,3 +732,4 @@ class StringCookies {
 }
 
 export default StringCookies;
+""
