@@ -84,7 +84,7 @@
 
             <!-- <NuxtLink to="/registration">Submit / go to registration / go to platform, actually</NuxtLink> -->
             <Transition name="-t-submit">
-              <button class="-up -b -red" @click="submit">Submit</button>
+              <button v-if="checkedTerms" class="-up -b -red" @click="submit">Submit</button>
               <!-- <a class="-up -b -red"
                 :href="`https://atlas-squad.fiddle.digital/registration?email=${email}&invite=${invite}`"
                 v-if="checkedTerms">Go to my Dashoboard</a> -->
