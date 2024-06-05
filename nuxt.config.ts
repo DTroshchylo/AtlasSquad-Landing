@@ -60,12 +60,12 @@ export default defineNuxtConfig({
   apollo: {
     clients: {
       default: {
-        httpEndpoint: 'https://atlas-squad-test.myshopify.com/api/2024-01/graphql.json',
+        httpEndpoint: 'https://1abd10-4e.myshopify.com/api/2024-01/graphql.json',
         httpLinkOptions: {
           headers: {
             "Content-Type": "application/json",
             "X-Shopify-Storefront-Access-Token":
-              "917f74a8cdb1b5ba7cddf3a8587f7457"
+              "5b5b7b1ace0134d44ca9a8311ff32acd"
           }
         },
       }
