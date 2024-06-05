@@ -1,5 +1,8 @@
 <template>
   <main class="page home-page" ref="deep">
+
+    <div class="noty-message" v-if="isShowMessage">{{ message }}</div>
+
     <div class="bg" :class="[{
       '-form-active': isFocusOnElement || isHoverOnElement
     }]">
@@ -258,9 +261,27 @@ let queryCheck = () => {
     stopAnimating()
   }
 }
+const router = useRouter()
+const route = useRoute();
+const path = computed(() => route.path)
 
+const message = ref('')
+const isShowMessage = ref(false)
 
 onMounted(() => {
+
+
+  var messageData = route.query.message?.toString()
+
+  if (messageData != null) {
+    message.value = messageData
+    isShowMessage.value = true
+    setTimeout(() => {
+      isShowMessage.value = false
+    }, 3200);
+  }
+  router.push('/')
+
   stringAnalytics = StringAnalytics.getInstance()
   stringAnalytics.google.init(`G-D7RYKQ1GTM`)
   stringAnalytics.google.track('G-D7RYKQ1GTM', 'click', {
@@ -903,5 +924,13 @@ html.-loaded {
       width: 49.29577465%;
     }
   }
+}
+
+.noty-message {
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--c-sblack);
 }
 </style>

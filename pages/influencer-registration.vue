@@ -92,7 +92,7 @@ const registrationForm = ref()
 
 onMounted(() => {
   let stringForm = StringValidation.getInstance()
-
+  navigateTo('/?message=Data sent successfully')
   registrationForm.value?.addEventListener('submit', async (event: Event) => {
     event.preventDefault();
     await axios.get(`https://dev.atlas-squad.com/api/send-influencer?name=${name.value}&email=${email.value}&message=${socialLink.value}&why=${why.value}`)
@@ -100,6 +100,7 @@ onMounted(() => {
     email.value = ''
     why.value = ''
     socialLink.value = ''
+
   })
 })
 onBeforeUnmount(() => {
