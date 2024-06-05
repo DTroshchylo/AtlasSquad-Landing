@@ -95,7 +95,11 @@ onMounted(() => {
 
   registrationForm.value?.addEventListener('submit', async (event: Event) => {
     event.preventDefault();
-    axios.get(`https://dev.atlas-squad.com/api/send-influencer?name=${name.value}&email=${email.value}&message=${socialLink.value}&why=${why.value}`)
+    await axios.get(`https://dev.atlas-squad.com/api/send-influencer?name=${name.value}&email=${email.value}&message=${socialLink.value}&why=${why.value}`)
+    name.value = ''
+    email.value = ''
+    why.value = ''
+    socialLink.value = ''
   })
 })
 onBeforeUnmount(() => {
