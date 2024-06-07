@@ -59,22 +59,28 @@ onMounted(() => {
 
   cookieManager.use('Shopify', {
     accept: () => {
+      StringStorage.getInstance().local.set('shopify-cookies', "1")
       console.log('Marketing cookies accepted');
     },
     deny: () => {
+      StringStorage.getInstance().local.set('shopify-cookies', "0")
       console.log('Marketing cookies denied');
     },
+    value: true,
     readOnly: true,
     description: 'Shopify cookies are essential for the functioning of our online store. These cookies manage various aspects of the shopping experience, such as keeping track of items in your cart, remembering your login status, and storing your preferences. Additionally, Shopify cookies help ensure the security and performance of our site, enabling features like secure checkout and fraud prevention. They are crucial for providing a seamless and secure shopping experience on our website.'
   });
 
   cookieManager.use('Google Analytics', {
     accept: () => {
+      StringStorage.getInstance().local.set('google-analytics-cookies', "1")
       console.log('Analytics cookies accepted');
     },
     deny: () => {
+      StringStorage.getInstance().local.set('google-analytics-cookies', "0")
       console.log('Analytics cookies denied');
     },
+    value: true,
     description: 'Google Analytics cookies are used to collect information about how visitors interact with our website. These cookies track data such as the number of visitors, the pages they visit, and the sources that referred them to our site. The data gathered is aggregated and anonymized, helping us understand website usage patterns and improve user experience. These cookies do not identify individual users and all information is used for statistical analysis only.'
   });
 

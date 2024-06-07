@@ -491,7 +491,7 @@ class StringCookies {
     }
   }
 
-  use(name: string, config: { accept: Function, deny: Function, description: string }) {
+  use(name: string, config: { accept: Function, deny: Function, description: string, value?: boolean, readOnly?: boolean }) {
     this.settings[name] = config;
   }
 
@@ -567,7 +567,7 @@ class StringCookies {
       inputLabel.classList.add('toggle-label');
       const checkbox = document.createElement('input');
       checkbox.type = 'checkbox';
-      checkbox.checked = true;
+      checkbox.checked = value.value;
       checkbox.setAttribute('data-key', key);
       checkbox.onchange = (event) => {
         if ((event.target as HTMLInputElement).checked) {
@@ -660,7 +660,10 @@ class StringCookies {
       this.onSaveSettingsEvents.forEach((event: Function) => {
         event({ enabled: enabledSettings, disabled: disabledSettings });
       });
-      document.body.removeChild(d.getElementById('cookie-consent-container'));
+      if (d.getElementById('cookie-consent-container') != null) {
+        document.body.removeChild(d.getElementById('cookie-consent-container'));
+      }
+
       document.body.removeChild(overlay);
     };
 
