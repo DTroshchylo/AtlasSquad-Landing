@@ -225,7 +225,7 @@ const cookiesSettings = () => {
     value: StringStorage.getInstance().local.get('google-analytics-cookies') == "1" ? true : false,
     description: 'Google Analytics cookies are used to collect information about how visitors interact with our website. These cookies track data such as the number of visitors, the pages they visit, and the sources that referred them to our site. The data gathered is aggregated and anonymized, helping us understand website usage patterns and improve user experience. These cookies do not identify individual users and all information is used for statistical analysis only.'
   });
-  StringCookies.getInstance().showSettings({ title: 'Title', description: 'I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full ', email: `penev.vladislav@gmail.com` });
+  StringCookies.getInstance().showSettings({ title: 'Cookies settings', description: 'I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full ', email: `privacy@atlas-squad.com` });
 
 }
 
