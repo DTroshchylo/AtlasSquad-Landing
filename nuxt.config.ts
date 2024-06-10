@@ -112,7 +112,7 @@ export default defineNuxtConfig({
         })
       pages.push({
         name: 'landing-page',
-        path: '/:slug',
+        path: '/influencer/:slug',
         file: '~/pages/landing.vue',
       })
 
