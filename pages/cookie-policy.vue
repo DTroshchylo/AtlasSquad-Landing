@@ -198,7 +198,7 @@ const checkedTerms = ref(false);
 
 const cookiesSettings = () => {
 
-  console.log(StringStorage.getInstance().local.get('shopify-cookies') == "1" ? true : false)
+
   StringCookies.getInstance().use('Shopify', {
     accept: () => {
       StringStorage.getInstance().local.set('shopify-cookies', "1")
@@ -227,6 +227,14 @@ const cookiesSettings = () => {
   });
   StringCookies.getInstance().showSettings({ title: 'Cookies settings', description: 'I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full ', email: `privacy@atlas-squad.com` });
 
+  StringCookies.getInstance().on('acceptAll', () => {
+    StringStorage.getInstance().local.set('google-analytics-cookies', "1")
+    StringStorage.getInstance().local.set('shopify-cookies', "1")
+  });
+  StringCookies.getInstance().on('deny', () => {
+    StringStorage.getInstance().local.set('google-analytics-cookies', "0")
+    StringStorage.getInstance().local.set('shopify-cookies', "0")
+  });
 }
 
 onMounted(() => {

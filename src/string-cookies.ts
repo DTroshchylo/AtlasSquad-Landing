@@ -632,8 +632,13 @@ class StringCookies {
     acceptButton.className = 'sc-button -primary';
     acceptButton.onclick = () => {
       this.acceptAll();
-      document.body.removeChild(d.getElementById('cookie-consent-container'));
-      document.body.removeChild(overlay);
+      if (d.getElementById('cookie-consent-container') != null) {
+        document.body.removeChild(d.getElementById('cookie-consent-container'));
+      }
+      if (overlay != null) {
+        document.body.removeChild(overlay);
+      }
+
     };
 
     const denyButton = document.createElement('button');
