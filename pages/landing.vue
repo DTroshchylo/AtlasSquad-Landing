@@ -58,7 +58,9 @@
       <div class="-w">
         <div class="form-email" :class="{ '-hidden': recruitedCap }">
 
-          <!-- <img data-not-lazy :src="`https://admin.atlas-squad.com${influencer.media.data.attributes.url}`" alt=""> -->
+          <figure>
+            <img data-not-lazy :src="`https://admin.atlas-squad.com${influencer.media.data.attributes.url}`" alt="">
+          </figure>
 
           <h1 class="-tac -a-p -split -h6" data-string>
             <span data-string-split style="--l-delay: 0.6;">{{ influencersAndRecruiterPage.title }}</span>
@@ -497,6 +499,24 @@ await useAsyncData('loadInfluencerPage', () => storeInfluencer.loadInfluencersAn
         opacity: 1;
         transition: opacity 0.6s var(--f-cubic);
 
+        >figure {
+          width: 60%;
+          max-width: 20rem;
+          margin-left: auto;
+          margin-right: auto;
+          background-color: var(--c-grey-2);
+
+          // margin-top: 3rem;
+          margin-bottom: 1.5rem;
+
+          clip-path: polygon(
+            2rem 0%, 100% 0%, 100% 100%, 0% 100%, 0% 2rem
+          );
+
+          img {
+            aspect-ratio: 640/480;
+          }
+        }
         h1 {
           margin-bottom: 0.5rem;
           margin-left: auto;
@@ -670,6 +690,8 @@ html.-loaded {
 
 @media (min-width: 1024px) {
   .page {
+    min-height: clamp(640px,calc(var(--vh, 1vh) * 100),calc(var(--vh, 1vh) * 100));
+
     .bg {
       .bg-ray {
         top: 0;
@@ -744,6 +766,12 @@ html.-loaded {
 
       .-w {
         .form-email {
+          >figure {
+            width: 32.3943662%;
+            max-width: 11rem;
+            
+            margin-top: 2rem;
+          }
           h1 {
             max-width: 25rem;
           }
