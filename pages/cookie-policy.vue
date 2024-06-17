@@ -208,7 +208,7 @@ const cookiesSettings = () => {
       StringStorage.getInstance().local.set('shopify-cookies', "0")
       console.log('Marketing cookies denied');
     },
-    value: StringStorage.getInstance().local.get('shopify-cookies') == "1" ? true : false,
+    value: StringStorage.getInstance().local.has('shopify-cookies') ? (StringStorage.getInstance().local.get('shopify-cookies') == "1" ? true : false) : true,
     readOnly: true,
     description: 'Shopify cookies are essential for the functioning of our online store. These cookies manage various aspects of the shopping experience, such as keeping track of items in your cart, remembering your login status, and storing your preferences. Additionally, Shopify cookies help ensure the security and performance of our site, enabling features like secure checkout and fraud prevention. They are crucial for providing a seamless and secure shopping experience on our website.'
   });
@@ -222,7 +222,7 @@ const cookiesSettings = () => {
       StringStorage.getInstance().local.set('google-analytics-cookies', "0")
       console.log('Analytics cookies denied');
     },
-    value: StringStorage.getInstance().local.get('google-analytics-cookies') == "1" ? true : false,
+    value: StringStorage.getInstance().local.has('google-analytics-cookies') ? (StringStorage.getInstance().local.get('google-analytics-cookies') == "1" ? true : false) : true,
     description: 'Google Analytics cookies are used to collect information about how visitors interact with our website. These cookies track data such as the number of visitors, the pages they visit, and the sources that referred them to our site. The data gathered is aggregated and anonymized, helping us understand website usage patterns and improve user experience. These cookies do not identify individual users and all information is used for statistical analysis only.'
   });
   StringCookies.getInstance().showSettings({ title: 'Cookies settings', description: 'I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full ', email: `privacy@atlas-squad.com` });
