@@ -3,6 +3,7 @@
     <div class="-w -a-p" data-string>
       <NuxtLink to="/terms-of-use" class="-grey -a-to-bottom" style="--l-delay: 0.3">Terms of Use</NuxtLink>
       <NuxtLink to="/cookie-policy" class="-grey -a-to-bottom" style="--l-delay: 0.3">Cookie Policy</NuxtLink>
+      <NuxtLink to="/privacy-policy" class="-grey -a-to-bottom" style="--l-delay: 0.3">Privacy Policy</NuxtLink>
     </div>
   </footer>
 </template>
