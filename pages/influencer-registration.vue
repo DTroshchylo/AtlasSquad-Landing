@@ -34,7 +34,7 @@
 
           <div class="submition">
 
-            <span class="checking -a-to-bottom">
+            <span class="checking -a-to-bottom" :class="[{ '-error': isCheckedTermsError }]">
               <input id="tc-agreement" type="checkbox" v-model="checkedTerms" />
               <span class="checkmark">
                 <svg>
@@ -85,7 +85,7 @@ const email = ref('')
 const why = ref('')
 const socialLink = ref('')
 const registrationForm = ref()
-
+const isCheckedTermsError = ref(false)
 
 
 
@@ -95,6 +95,13 @@ onMounted(() => {
 
   registrationForm.value?.addEventListener('submit', async (event: Event) => {
     event.preventDefault();
+
+    if (checkedTerms.value == false) {
+      isCheckedTermsError.value = true
+    } else {
+      isCheckedTermsError.value = false
+    }
+
     if (/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\[\]\\.,;:\s@\"]+\.)+[^<>()\[\]\\.,;:\s@\"]{2,})$/.test(email.value) && name.value.length > 0 && socialLink.value.length > 0 && checkedTerms.value) {
       await axios.get(`https://dev.atlas-squad.com/api/send-influencer?name=${name.value}&email=${email.value}&message=${socialLink.value}&why=${why.value}`)
       name.value = ''
@@ -247,6 +254,10 @@ onBeforeUnmount(() => {
                 transition: scale 0.6s var(--f-cubic);
               }
             }
+          }
+
+          .checking.-error {
+            box-shadow: 0 0 0 1px var(--c-red);
           }
 
           .checking input:checked~.checkmark {
