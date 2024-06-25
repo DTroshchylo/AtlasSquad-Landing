@@ -108,7 +108,7 @@ onMounted(() => {
       email.value = ''
       why.value = ''
       socialLink.value = ''
-      navigateTo('/?message=Data sent successfully')
+      navigateTo('/?message=Your request has been succesfuly sent.')
     }
   })
 })

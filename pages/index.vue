@@ -1,7 +1,7 @@
 <template>
   <main class="page home-page" ref="deep">
 
-    <div class="noty-message" v-if="isShowMessage">{{ message }}</div>
+
 
     <div class="bg" :class="[{
       '-form-active': isFocusOnElement || isHoverOnElement
@@ -131,6 +131,19 @@
         </div>
       </div>
     </section>
+
+
+    <teleport to='body'>
+
+      <div class="success-save" :class="[{ '-show': isShowMessage }]">
+        <span @click="closeModal"></span>
+        <div v-if="isShowMessage">
+          <p>{{ message }}</p>
+          <button @click="closeModal" class="-link -red -up -b">OK</button>
+        </div>
+
+      </div>
+    </teleport>
 
 
   </main>
@@ -268,17 +281,21 @@ const path = computed(() => route.path)
 const message = ref('')
 const isShowMessage = ref(false)
 
+const closeModal = () => {
+  isShowMessage.value = false
+}
+
 onMounted(() => {
-
-
   var messageData = route.query.message?.toString()
+
 
   if (messageData != null) {
     message.value = messageData
     isShowMessage.value = true
-    setTimeout(() => {
-      isShowMessage.value = false
-    }, 3200);
+
+    // setTimeout(() => {
+    //   isShowMessage.value = false
+    // }, 3200);
   }
   router.push('/')
 
