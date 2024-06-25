@@ -135,6 +135,7 @@ const submit = async () => {
     acceptsMarketing: false,
   }, invite.value)
 
+  console.log(answer)
   if (answer.status == 301) {
     //error.value = answer.text
   } else {

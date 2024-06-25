@@ -62,6 +62,7 @@ export const useAccount = defineStore(key, {
       let dataReq: any = {
         status: 200
       }
+      console.log(responce.data)
       if (responce.data.data.customerCreate == null) {
         return {
           status: 301,

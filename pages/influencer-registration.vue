@@ -93,19 +93,17 @@ const registrationForm = ref()
 onMounted(() => {
   let stringForm = StringValidation.getInstance()
 
-  if (/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\[\]\\.,;:\s@\"]+\.)+[^<>()\[\]\\.,;:\s@\"]{2,})$/.test(email.value) && name.value.length > 0 && why.value.length > 0) {
-    registrationForm.value?.addEventListener('submit', async (event: Event) => {
-      event.preventDefault();
+  registrationForm.value?.addEventListener('submit', async (event: Event) => {
+    event.preventDefault();
+    if (/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\[\]\\.,;:\s@\"]+\.)+[^<>()\[\]\\.,;:\s@\"]{2,})$/.test(email.value) && name.value.length > 0 && socialLink.value.length > 0 && checkedTerms.value) {
       await axios.get(`https://dev.atlas-squad.com/api/send-influencer?name=${name.value}&email=${email.value}&message=${socialLink.value}&why=${why.value}`)
       name.value = ''
       email.value = ''
       why.value = ''
       socialLink.value = ''
       navigateTo('/?message=Data sent successfully')
-    })
-  }
-
-
+    }
+  })
 })
 onBeforeUnmount(() => {
   document.querySelectorAll('.-inview').forEach(element => {
