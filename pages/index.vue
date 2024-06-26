@@ -190,6 +190,7 @@ const onSendEmail = async (e: any) => {
     if (answer.data.status == 403) {
       error.value = 'Email reserv'
       errors.value.push('Email reserv')
+      navigateTo(`https://dev-dashboard.atlas-squad.com/login`, { external: true })
     } else {
       axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}`)
       storage.local.set('email', email.value)
