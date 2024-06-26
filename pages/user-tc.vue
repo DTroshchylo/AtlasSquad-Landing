@@ -84,7 +84,13 @@
 
             <!-- <NuxtLink to="/registration">Submit / go to registration / go to platform, actually</NuxtLink> -->
             <Transition name="-t-submit">
-              <button v-if="checkedTerms" class="-up -b -red" @click="submit">Submit</button>
+              <button v-if="checkedTerms" class="-up -b -red" @click="submit" :class="[{ '-loading': isLoading }]">
+                Submit
+                <svg>
+                  <use href="#icon-40_loading" />
+                </svg>
+
+              </button>
               <!-- <a class="-up -b -red"
                 :href="`https://atlas-squad.fiddle.digital/registration?email=${email}&invite=${invite}`"
                 v-if="checkedTerms">Go to my Dashoboard</a> -->
@@ -112,6 +118,7 @@ const email = ref('')
 const password = ref('')
 const type = ref('')
 const invite = ref('')
+const isLoading = ref(false)
 const storeAccount = useAccount()
 
 function generatePassword(length: number = 12): string {
@@ -125,6 +132,9 @@ function generatePassword(length: number = 12): string {
 }
 
 const submit = async () => {
+
+  isLoading.value = true
+
   password.value = generatePassword()
   let answer = await storeAccount.create({
     email: email.value,
@@ -293,6 +303,23 @@ onBeforeUnmount(() => {
             top: 100%;
             padding: 1rem;
             display: block;
+
+            svg {
+              fill: var(--c-red);
+              width: 1rem;
+              height: 1rem;
+              position: absolute;
+              right: -.5rem;
+              top: .85rem;
+              opacity: 0;
+              animation: loading 0.45s linear infinite;
+            }
+          }
+
+          button.-loading {
+            svg {
+              opacity: 1;
+            }
           }
 
           .-t-submit-leave-active,
@@ -340,6 +367,16 @@ onBeforeUnmount(() => {
         }
       }
     }
+  }
+}
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  99.99% {
+    transform: rotate(360deg);
   }
 }
 </style>

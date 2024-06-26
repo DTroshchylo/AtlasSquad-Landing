@@ -98,7 +98,7 @@
         <div class="get-recruited -a-p -split" data-string>
 
           <div class="-a-p" data-string>
-            <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter.native="recruitedCap = true"
+            <NuxtLink to="/recruiters" class="-up -b -hover-element" @mouseenter.native="recruitedCap = true"
               @mouseleave.native="recruitedCap = false" v-if="desktop">
               <span class="wrap">
                 <span class="-base" data-string-split style="--l-delay: 0.9;">Become our
@@ -112,7 +112,7 @@
               </span>
             </NuxtLink>
 
-            <NuxtLink to="/influencer-tc" class="-up -b" v-if="mobile">
+            <NuxtLink to="/recruiters" class="-up -b" v-if="mobile">
               <span class="" style="--l-delay: 0.9;" data-string-split>Become our recruiter</span>
             </NuxtLink>
           </div>

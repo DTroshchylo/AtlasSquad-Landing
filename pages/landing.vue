@@ -102,7 +102,7 @@
         <div class="get-recruited -a-p -split" data-string>
 
           <div class="-a-p" data-string>
-            <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter.native="recruitedCap = true"
+            <NuxtLink to="/recruiters" class="-up -b -hover-element" @mouseenter.native="recruitedCap = true"
               @mouseleave.native="recruitedCap = false" v-if="desktop">
               <span class="wrap">
                 <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
@@ -115,7 +115,7 @@
               </span>
             </NuxtLink>
 
-            <NuxtLink to="/influencer-tc" class="-up -b" v-if="mobile">
+            <NuxtLink to="/recruiters" class="-up -b" v-if="mobile">
               <span class="" style="--l-delay: 0.9;" data-string-split>Become our recruiter</span>
             </NuxtLink>
           </div>
@@ -509,14 +509,13 @@ await useAsyncData('loadInfluencerPage', () => storeInfluencer.loadInfluencersAn
           // margin-top: 3rem;
           margin-bottom: 1.5rem;
 
-          clip-path: polygon(
-            2rem 0%, 100% 0%, 100% 100%, 0% 100%, 0% 2rem
-          );
+          clip-path: polygon(2rem 0%, 100% 0%, 100% 100%, 0% 100%, 0% 2rem);
 
           img {
             aspect-ratio: 640/480;
           }
         }
+
         h1 {
           margin-bottom: 0.5rem;
           margin-left: auto;
@@ -690,7 +689,7 @@ html.-loaded {
 
 @media (min-width: 1024px) {
   .page {
-    min-height: clamp(640px,calc(var(--vh, 1vh) * 100),calc(var(--vh, 1vh) * 100));
+    min-height: clamp(640px, calc(var(--vh, 1vh) * 100), calc(var(--vh, 1vh) * 100));
 
     .bg {
       .bg-ray {
@@ -769,9 +768,10 @@ html.-loaded {
           >figure {
             width: 32.3943662%;
             max-width: 11rem;
-            
+
             margin-top: 2rem;
           }
+
           h1 {
             max-width: 25rem;
           }
