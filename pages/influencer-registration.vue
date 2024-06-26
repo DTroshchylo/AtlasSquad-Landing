@@ -42,10 +42,12 @@
                 </svg>
               </span>
 
-              <label for="tc-agreement">I agree to the Terms & Conditions of Atlas Squad recruit program.</label>
+              <label for="tc-agreement">I agree to the
+                <NuxtLink to="/terms-of-use" class="-grey">Terms & Conditions</NuxtLink>
+                of Atlas Squad recruit program.</label>
             </span>
 
-            <span class="checking -a-to-bottom" style="--l-delay: 0.075;">
+            <span class="checking -a-to-bottom" style="--l-delay: 0.075;" :class="[{ '-error': ischeckedSubscriptionError }]">
               <input id="subscription-agreement" type="checkbox" v-model="checkedSubscription" />
               <span class="checkmark">
                 <svg>
@@ -86,6 +88,7 @@ const why = ref('')
 const socialLink = ref('')
 const registrationForm = ref()
 const isCheckedTermsError = ref(false)
+const ischeckedSubscriptionError = ref(false)
 
 
 
@@ -100,6 +103,11 @@ onMounted(() => {
       isCheckedTermsError.value = true
     } else {
       isCheckedTermsError.value = false
+    }
+    if (checkedSubscription.value == false) {
+      ischeckedSubscriptionError.value = true
+    } else {
+      ischeckedSubscriptionError.value = false
     }
 
     if (/^(([^<>()\[\]\\.,;:\s@\"]+(\.[^<>()\[\]\\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()\[\]\\.,;:\s@\"]+\.)+[^<>()\[\]\\.,;:\s@\"]{2,})$/.test(email.value) && name.value.length > 0 && socialLink.value.length > 0 && checkedTerms.value) {

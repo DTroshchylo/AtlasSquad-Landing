@@ -698,6 +698,8 @@ onBeforeUnmount(() => {
 
         .tt {
           width: 49.29577465%;
+          margin-top: 5%;
+          margin-bottom: 5%;
 
           .description {
             width: 65.71428571%;
@@ -770,11 +772,13 @@ onBeforeUnmount(() => {
     }
     .c-mentoring {
       .-w {
+      
         .graphics {
-          width: 60%;
+          width: 70% !important;
           margin-top: -10%;
           margin-bottom: -10%;
         }
+      
       }
     }
     .c-cta {
