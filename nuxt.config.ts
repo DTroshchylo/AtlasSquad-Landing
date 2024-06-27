@@ -101,7 +101,7 @@ export default defineNuxtConfig({
       }),
         pages.push({
           name: 'influencer-tc',
-          path: '/influencer-tc',
+          path: '/recruiters',
           file: '~/pages/influencer-tc.vue',
         }),
 

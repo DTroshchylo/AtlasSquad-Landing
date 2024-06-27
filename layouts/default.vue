@@ -101,7 +101,7 @@ onMounted(() => {
   if (stringStorage.local.has('cookies-answer')) {
 
   } else {
-    cookieManager.show('Cookie Consent', `Hi, this website uses essential cookies to ensure its proper operation and tracking cookies to understand how you interact with it. The latter will be set only after consent. `);
+    cookieManager.show('Cookie Consent', `We use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full Cookie Policy. `);
 
   }
 

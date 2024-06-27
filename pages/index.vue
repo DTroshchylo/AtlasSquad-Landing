@@ -100,7 +100,7 @@
         <div class="get-recruited -a-p -split" data-string>
 
           <div class="-a-p" data-string>
-            <NuxtLink to="/influencer-tc" class="-up -b -hover-element" @mouseenter.native="recruitedCap = true"
+            <NuxtLink to="/recruiters" class="-up -b -hover-element" @mouseenter.native="recruitedCap = true"
               @mouseleave.native="recruitedCap = false" v-if="desktop">
               <span class="wrap">
                 <span class="-base" data-string-split style="--l-delay: 0.9;">Become our recruiter</span>
@@ -113,7 +113,7 @@
               </span>
             </NuxtLink>
 
-            <NuxtLink to="/influencer-tc" class="-up -b" v-if="mobile">
+            <NuxtLink to="/recruiters" class="-up -b" v-if="mobile">
               <span class="" style="--l-delay: 0.9;" data-string-split>Become our recruiter</span>
             </NuxtLink>
 
@@ -190,6 +190,7 @@ const onSendEmail = async (e: any) => {
     if (answer.data.status == 403) {
       error.value = 'Email reserv'
       errors.value.push('Email reserv')
+      navigateTo(`https://dev-dashboard.atlas-squad.com/login`, { external: true })
     } else {
       axios.get(`https://dev.atlas-squad.com/api/send-emails?email=${email.value}`)
       storage.local.set('email', email.value)

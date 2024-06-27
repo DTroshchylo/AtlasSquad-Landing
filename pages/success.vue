@@ -1,6 +1,6 @@
 <template>
   <div class="now-404 -tac">
-    <span class="-h6">Check email</span>
+    <span class="-h6">Please check your email</span>
     <NuxtLink to="/">Back to Home</NuxtLink>
   </div>
 </template>
