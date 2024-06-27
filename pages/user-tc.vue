@@ -79,7 +79,9 @@
                 </svg>
               </span>
 
-              <label for="tc-agreement">agree to Terms of Service</label>
+              <label for="tc-agreement" class="tc-agreement"><span>agree to </span><a href="/terms-of-use"
+                  target="_blank">Terms of
+                  Service</a></label>
             </span>
 
             <!-- <NuxtLink to="/registration">Submit / go to registration / go to platform, actually</NuxtLink> -->
@@ -281,6 +283,15 @@ onBeforeUnmount(() => {
                 transform: translateZ(0);
                 scale: 2;
                 transition: scale 0.6s var(--f-cubic);
+              }
+            }
+
+            .tc-agreement{
+              a{
+                position: initial;
+                top: initial;
+                padding: initial;
+                display: initial;
               }
             }
           }
