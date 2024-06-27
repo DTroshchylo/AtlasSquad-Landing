@@ -42,9 +42,7 @@
                 </svg>
               </span>
 
-              <label for="tc-agreement">I agree to the
-                <NuxtLink to="/terms-of-use" class="-grey">Terms & Conditions</NuxtLink>
-                of Atlas Squad recruit program.</label>
+              <label for="tc-agreement">I agree to the <NuxtLink to="/terms-of-use" class="-grey">Terms & Conditions</NuxtLink> of the Atlas Squad recruit program.</label>
             </span>
 
             <span class="checking -a-to-bottom" style="--l-delay: 0.075;" :class="[{ '-error': ischeckedSubscriptionError }]">
@@ -55,7 +53,7 @@
                 </svg>
               </span>
 
-              <label for="subscription-agreement">I agree to receiving occasional emails and offers.</label>
+              <label for="subscription-agreement">I agree to receive communication from the Atlas Squad.</label>
             </span>
 
             <button type="submit" class="-link -red -up -b -a-to-bottom" style="--l-delay: 0.15;">Submit Form</button>
