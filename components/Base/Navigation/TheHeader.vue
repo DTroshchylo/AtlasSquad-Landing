@@ -7,6 +7,9 @@
         </svg>
       </NuxtLink>
       <div>
+        <a class="-grey -a-to-top" style="--l-delay: 0.3;" href="https://dashboard.atlas-squad.com" target="_blank">
+          <span>Login</span>
+        </a>
         <NuxtLink class="-grey -a-to-top" style="--l-delay: 0.15;" to="/more-info">
           <span>More Info</span>
           <svg>
@@ -75,6 +78,8 @@ onBeforeUnmount(() => {
     }
     
     >div {
+      display: flex;
+      gap: 2rem;
       margin-top: 1rem;
 
       a {
@@ -117,8 +122,9 @@ onBeforeUnmount(() => {
         margin-left: initial;
         margin-right: initial;
         text-align: right;
-        display: flex;
+        // display: flex;
         justify-content: flex-end;
+        gap: 1rem;
         width: 32.3943662%;
 
         a {

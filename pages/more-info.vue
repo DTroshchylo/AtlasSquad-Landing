@@ -774,7 +774,8 @@ onBeforeUnmount(() => {
       .-w {
       
         .graphics {
-          width: 70% !important;
+          scale: 1.25;
+          width: 60% !important;
           margin-top: -10%;
           margin-bottom: -10%;
         }
