@@ -60,11 +60,11 @@ onMounted(() => {
   StringCookies.getInstance().use('Shopify', {
     accept: () => {
       StringStorage.getInstance().local.set('shopify-cookies', "1")
-      console.log('Marketing cookies accepted');
+
     },
     deny: () => {
       StringStorage.getInstance().local.set('shopify-cookies', "0")
-      console.log('Marketing cookies denied');
+
     },
     value: StringStorage.getInstance().local.has('shopify-cookies') ? (StringStorage.getInstance().local.get('shopify-cookies') == "1" ? true : false) : true,
     readOnly: true,
@@ -74,52 +74,40 @@ onMounted(() => {
   StringCookies.getInstance().use('Google Analytics', {
     accept: () => {
       StringStorage.getInstance().local.set('google-analytics-cookies', "1")
-      console.log('Analytics cookies accepted');
+
     },
     deny: () => {
       StringStorage.getInstance().local.set('google-analytics-cookies', "0")
-      console.log('Analytics cookies denied');
+
     },
     value: StringStorage.getInstance().local.has('google-analytics-cookies') ? (StringStorage.getInstance().local.get('google-analytics-cookies') == "1" ? true : false) : true,
     description: 'Google Analytics cookies are used to collect information about how visitors interact with our website. These cookies track data such as the number of visitors, the pages they visit, and the sources that referred them to our site. The data gathered is aggregated and anonymized, helping us understand website usage patterns and improve user experience. These cookies do not identify individual users and all information is used for statistical analysis only.'
   });
-  //StringCookies.getInstance().showSettings({ title: 'Cookies settings', description: 'I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full ', email: `privacy@atlas-squad.com` });
-
   StringCookies.getInstance().on('acceptAll', () => {
     StringStorage.getInstance().local.set('google-analytics-cookies', "1")
     StringStorage.getInstance().local.set('shopify-cookies', "1")
+    stringStorage.local.set('cookies-answer', '1')
   });
   StringCookies.getInstance().on('deny', () => {
     StringStorage.getInstance().local.set('google-analytics-cookies', "0")
     StringStorage.getInstance().local.set('shopify-cookies', "0")
-  });
-
-
-
-
-
-  if (stringStorage.local.has('cookies-answer')) {
-
-  } else {
-    cookieManager.show('Cookie Consent', `We use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full Cookie Policy. `);
-
-  }
-
-
-  cookieManager.on('openSettings', () => {
-    cookieManager.showSettings({ title: 'Cookies settings', description: 'I use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full ', email: `privacy@atlas-squad.com` });
-  });
-
-  cookieManager.on('settingsChange', () => {
-    console.log('User changed cookie settings');
-  });
-
-  cookieManager.on('saveSettings', (settings: { enabled: string[], disabled: string[] }) => {
-    console.log('User saved settings', settings);
     stringStorage.local.set('cookies-answer', '1')
   });
+  if (stringStorage.local.has('cookies-answer')) {
+  } else {
+    StringCookies.getInstance().show('Cookie Consent', `We use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full <a href="https://dev.atlas-squad.com/cookie-policy" target="_blank">Cookie Policy</a>. `);
+  }
+  StringCookies.getInstance().on('openSettings', () => {
+    StringCookies.getInstance().showSettings({ title: 'Cookies settings', description: 'We use cookies to ensure the basic functionalities of the website and to enhance your online experience. You can choose for each category to opt-in/out whenever you want. For more details relative to cookies and other sensitive data, please read the full <a href="https://dev.atlas-squad.com/cookie-policy" target="_blank">Cookie Policy</a>. ', email: `privacy@atlas-squad.com` });
+  });
+  StringCookies.getInstance().on('settingsChange', () => {
 
-  //cookieManager.check();
+  });
+  StringCookies.getInstance().on('saveSettings', (settings: { enabled: string[], disabled: string[] }) => {
+
+    stringStorage.local.set('cookies-answer', '1')
+  });
+  StringCookies.getInstance().check();
 
 
   setTimeout(() => {
