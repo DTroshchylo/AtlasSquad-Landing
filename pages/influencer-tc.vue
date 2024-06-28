@@ -9,35 +9,44 @@
           </h1>
 
           <div class="body -a-p -split" data-string>
-            
+
             <span class="-up -b">
               <span data-string-split style="--l-delay: 0.6;">1 : Program Overview</span>
             </span>
             <p>
-              <span data-string-split style="--l-modifier: 2;">Atlas Squad Boot Camp revolutionizes willpower training with active engagement and diverse modules for personal growth. Recruits participate in real-world tasks and receive personalized 1:1 24h-response-time mentorship. Progressing through customized tasks, recruits become squad members after completing 25. Specialized modules cover willpower, survivor personality, team dynamics, and health, fostering holistic development.</span>
+              <span data-string-split style="--l-modifier: 2;">Atlas Squad Boot Camp revolutionizes willpower training
+                with active engagement and diverse modules for personal growth. Recruits participate in real-world tasks
+                and receive personalized 1:1 24h-response-time mentorship. Progressing through customized tasks,
+                recruits become squad members after completing 25. Specialized modules cover willpower, survivor
+                personality, team dynamics, and health, fostering holistic development.</span>
             </p>
-            
+
             <span class="-hl"></span>
 
             <span class="-up -b">
               <span data-string-split style="--l-delay: 0.6;">2 : Affiliate Perks</span>
             </span>
             <p>
-              <span data-string-split style="--l-modifier: 2;">Get access to one free module & receive exclusive Atlas Squad merch, alongside special papers for cathartic trauma release and commitment pledges.</span>
+              <span data-string-split style="--l-modifier: 2;">Get access to one free module & receive exclusive Atlas
+                Squad merch, alongside special papers for cathartic trauma release and commitment pledges.</span>
             </p>
             <p>
-              <span data-string-split style="--l-modifier: 2;">Plus, earn a generous 10% commission for every recruit you bring in. Simply share content featuring Atlas Squad to start earning and accessing your rewards today!</span>
+              <span data-string-split style="--l-modifier: 2;">Plus, earn a generous 10% commission for every recruit
+                you bring in. Simply share content featuring Atlas Squad to start earning and accessing your rewards
+                today!</span>
             </p>
-            
+
             <span class="-hl"></span>
 
             <span class="-up -b">
               <span data-string-split style="--l-delay: 0.6;">3 : Affiliate T&C</span>
             </span>
             <p>
-              <span data-string-split style="--l-modifier: 2;">Commission payment are made via PayPal monthly. Post one Atlas Squad content to unlock your exclusive merch package & earn. Recruiters must be at least 21.</span>
+              <span data-string-split style="--l-modifier: 2;">Commission payment are made via PayPal monthly. Post one
+                Atlas Squad content to unlock your exclusive merch package & earn. Recruiters must be at least
+                21.</span>
             </p>
-            
+
           </div>
 
 
@@ -56,7 +65,7 @@
             <!-- <Transition name="-t-submit">
               <NuxtLink class="-up -b -red" to="/influencer-registration" v-if="checkedTerms">Proceed to registration</NuxtLink>
             </Transition> -->
-            <NuxtLink class="-up -b -red" to="/influencer-registration">Proceed to registration</NuxtLink>
+            <NuxtLink class="-up -b -red" to="/recruiter-registration">Proceed to registration</NuxtLink>
           </div>
 
         </div>
@@ -102,19 +111,24 @@ onBeforeUnmount(() => {
 
         .body {
           >* {}
+
           .-h6 {
             margin-bottom: 1rem;
           }
+
           span {
             display: block;
             margin-bottom: 1rem;
           }
+
           span.-up {
             text-align: center;
           }
+
           p {
             margin-bottom: 1rem;
           }
+
           ul {
             li {
               list-style-type: decimal;
@@ -125,7 +139,7 @@ onBeforeUnmount(() => {
         .submition {
           position: relative;
           margin-top: 4rem;
-          
+
           display: flex;
           flex-direction: column;
           justify-content: flex-start;
@@ -202,6 +216,7 @@ onBeforeUnmount(() => {
           a {
             display: block;
           }
+
           // a {
           //   position: absolute;
           //   top: 100%;
@@ -224,12 +239,13 @@ onBeforeUnmount(() => {
     }
   }
 }
+
 @media (min-width: 1024px) {
   .page {
     .c-tc {
       .-w {
         .tc-content {
-          margin-top: clamp(3rem,5%,5%);
+          margin-top: clamp(3rem, 5%, 5%);
 
           .body {
             width: 49.29577465%;
