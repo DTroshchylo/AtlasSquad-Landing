@@ -77,7 +77,7 @@
             </button>
 
             <button type="submit" @click.native="onSendEmail($event)" v-if="mobile" class="-tac -a-to-top" data-string>
-              <span class="-up -b -link">Became a candidate ></span>
+              <span class="-up -b -link">Apply ></span>
             </button>
           </form>
 
@@ -90,8 +90,8 @@
     <Transition name="-t-desc">
       <div class="description -tac -a-p -split -split-random" data-string v-if="desktop && recruitedCap">
         <span v-if="recruitedCap" data-string-split data-string-split-mode="random" style="--l-modifier: 8;">The Atlas
-          Squad experience is for a select group of achievers who want the very best in AI-driven, personalized
-          self-improvement. Are you the kind of influencer who can bring such people to our platform?</span>
+          Squad experience is for a select group of people who want the very best in AI-driven, personalized
+          self-development. Are you the kind of influencer who can bring such people to our platform?</span>
       </div>
     </Transition>
 
