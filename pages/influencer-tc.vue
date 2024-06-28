@@ -28,12 +28,11 @@
             </span>
             <p>
               <span data-string-split style="--l-modifier: 2;">Get access to one free module & receive exclusive Atlas
-                Squad merch, alongside special papers for cathartic trauma release and commitment pledges.</span>
+                Squad merch, plus earn a generous 10% commission for every recruit you bring in.</span>
             </p>
             <p>
-              <span data-string-split style="--l-modifier: 2;">Plus, earn a generous 10% commission for every recruit
-                you bring in. Simply share content featuring Atlas Squad to start earning and accessing your rewards
-                today!</span>
+              <span data-string-split style="--l-modifier: 2;">Simply share content featuring Atlas Squad to start
+                earning and accessing your rewards today!</span>
             </p>
 
             <span class="-hl"></span>

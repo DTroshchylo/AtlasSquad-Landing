@@ -58,7 +58,7 @@
           <h2 class="-h6">Cookie List</h2>
           <p class="-b">We use cookies and other tracking technologies for the following purposes:</p>
 
-          <h3 class="-up -p -b">Strictly Necessary Cookies</h3>
+          <!-- <h3 class="-up -p -b">Strictly Necessary Cookies</h3>
           <p>These cookies are necessary for the website to function and cannot be switched off in our systems. They are
             usually only set in response to actions made by you which amount to a request for services, such as setting
             your privacy preferences, logging in or filling in forms. You can set your browser to block or alert you
@@ -89,7 +89,7 @@
               <div class="-tcolumn" style="--tr: 3;">Third Party</div>
               <div class="-tcolumn" style="--tr: 4;">20 Days</div>
             </div>
-          </div>
+          </div> -->
 
 
           <h3 class="-up -p -b">Analytics Cookies</h3>
@@ -111,10 +111,10 @@
               <div class="-tcolumn" style="--tr: 4;">Lifespan</div>
             </div>
             <div class="-trow -m-m" style="--tr: 2; --tw: 4;">
-              <div class="-tcolumn" style="--tr: 1;">??</div>
-              <div class="-tcolumn" style="--tr: 2;"></div>
-              <div class="-tcolumn" style="--tr: 3;">First Party</div>
-              <div class="-tcolumn" style="--tr: 4;">365 Days</div>
+              <div class="-tcolumn" style="--tr: 1;">Analytics</div>
+              <div class="-tcolumn" style="--tr: 2;">Google Analytics</div>
+              <div class="-tcolumn" style="--tr: 3;">Third Party</div>
+              <div class="-tcolumn" style="--tr: 4;">2 years</div>
             </div>
           </div>
 
@@ -137,15 +137,15 @@
               <div class="-tcolumn" style="--tr: 4;">Lifespan</div>
             </div>
             <div class="-trow -m-m" style="--tr: 2; --tw: 4;">
-              <div class="-tcolumn" style="--tr: 1;">??</div>
-              <div class="-tcolumn" style="--tr: 2;"></div>
-              <div class="-tcolumn" style="--tr: 3;"></div>
-              <div class="-tcolumn" style="--tr: 4;">A few seconds</div>
+              <div class="-tcolumn" style="--tr: 1;">Functional</div>
+              <div class="-tcolumn" style="--tr: 2;">Shopify</div>
+              <div class="-tcolumn" style="--tr: 3;">Third party</div>
+              <div class="-tcolumn" style="--tr: 4;">2 years</div>
             </div>
           </div>
 
 
-          <h3 class="-up -p -b">Targeting Cookies</h3>
+          <!-- <h3 class="-up -p -b">Targeting Cookies</h3>
           <p>Targeting cookies may be set through our site by our advertising partners. They can be used by these third
             parties to build a profile of your interests based on the browsing information they collect from you, which
             includes uniquely identifying your browser and terminal equipment. If you do not allow these cookies you
@@ -175,7 +175,7 @@
               <div class="-tcolumn" style="--tr: 3;">Third Party</div>
               <div class="-tcolumn" style="--tr: 4;">731 Days, Session</div>
             </div>
-          </div>
+          </div> -->
 
 
         </div>
