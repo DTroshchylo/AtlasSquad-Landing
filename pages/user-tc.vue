@@ -79,9 +79,7 @@
                 </svg>
               </span>
 
-              <label for="tc-agreement" class="tc-agreement"><span>agree to </span><a href="/terms-of-use"
-                  target="_blank">Terms of
-                  Service</a></label>
+              <label for="tc-agreement" class="tc-agreement"><span>I accept the </span><a href="/terms-of-use" target="_blank">Terms of Service</a></label>
             </span>
 
             <!-- <NuxtLink to="/registration">Submit / go to registration / go to platform, actually</NuxtLink> -->
