@@ -35,7 +35,7 @@ export const useAccount = defineStore(key, {
 
   actions: {
     async create(data: any, inviteCode: string) {
-      let responce = await axios.post('https://1abd10-4e.myshopify.com/api/2024-01/graphql.json', {
+      let responce = await axios.post('https://atlas-squad-test.myshopify.com/api/2024-01/graphql.json', {
         query: `mutation RegisterAccount {
           customerCreate(input: {
             email: "${data.email}", 
@@ -56,7 +56,7 @@ export const useAccount = defineStore(key, {
       }, {
         headers: {
           "X-Shopify-Storefront-Access-Token":
-            "5b5b7b1ace0134d44ca9a8311ff32acd"
+            "917f74a8cdb1b5ba7cddf3a8587f7457"
         }
       })
       let dataReq: any = {
@@ -79,7 +79,7 @@ export const useAccount = defineStore(key, {
       }
 
       if (dataReq.status == 200) {
-        let responce = await axios.post('https://1abd10-4e.myshopify.com/api/2024-01/graphql.json', {
+        let responce = await axios.post('https://atlas-squad-test.myshopify.com/api/2024-01/graphql.json', {
           query: `mutation SignInWithEmailAndPassword {
             customerAccessTokenCreate(input: { 
               email: "${data.email}", 
@@ -98,7 +98,7 @@ export const useAccount = defineStore(key, {
         }, {
           headers: {
             "X-Shopify-Storefront-Access-Token":
-              "5b5b7b1ace0134d44ca9a8311ff32acd"
+              "917f74a8cdb1b5ba7cddf3a8587f7457"
           }
         })
 
